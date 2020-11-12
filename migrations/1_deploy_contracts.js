@@ -1,5 +1,7 @@
 require('dotenv').config();
 const {
+    NAME,
+    SYMBOL,
     INITIAL_TOKEN_PRICE,
     PRICE_STEP,
     PRICE_INCREASE_NUMERATOR,
@@ -9,11 +11,13 @@ const {
     OWNER
 } = process.env;
 
-const NFT = artifacts.require("NFT");
+const PAW = artifacts.require("PAW");
 
 module.exports = async function (deployer) {
-    let NFTInst = await deployer.deploy(
-        NFT,
+    let PawInst = await deployer.deploy(
+        PAW,
+        NAME,
+        SYMBOL,
         INITIAL_TOKEN_PRICE,
         PRICE_STEP,
         PRICE_INCREASE_NUMERATOR,

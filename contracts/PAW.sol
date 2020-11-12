@@ -6,7 +6,7 @@ import "openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
 import "openzeppelin-solidity/contracts/access/AccessControl.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
-contract NFT is ERC721, AccessControl
+contract PAW is ERC721, AccessControl
 {
     using SafeMath for uint256;
 
@@ -14,14 +14,14 @@ contract NFT is ERC721, AccessControl
     modifier onlyGame {
         require(
             hasRole(GAME_ROLE, _msgSender()),
-            "Caller is not a game role"
+            "PAW: Caller is not a game role"
         );
         _;
     }
     modifier onlyAdmin {
         require(
             hasRole(DEFAULT_ADMIN_ROLE, _msgSender()),
-            "Caller is not a admin role"
+            "PAW: Caller is not a admin role"
         );
         _;
     }
@@ -42,6 +42,8 @@ contract NFT is ERC721, AccessControl
     uint256 internal ethToGameDenominator;
 
     constructor(
+        string memory _name,
+        string memory _symbol,
         uint256 _tokenPrice,
         uint256 _priceStep,
         uint256 _priceIncreaseNumerator,
@@ -51,14 +53,14 @@ contract NFT is ERC721, AccessControl
         address owner
     )
         public
-        ERC721("Name", "Symbol")
+        ERC721(_name, _symbol)
     {
-        require(_priceStep != 0, "NFT: Wrong priceStep");
-        require(_priceIncreaseNumerator <= _priceIncreaseDenominator, "NFT: Wrong inputs");
-        require(_priceIncreaseDenominator != 0, "NFT: Wrong inputs");
-        require(_ethToGameNumerator <= _ethToGameDenominator, "NFT: Wrong inputs");
-        require(_ethToGameDenominator != 0, "NFT: Wrong inputs");
-        require(owner != address(0), "NFT: Wrong owner");
+        require(_priceStep != 0, "PAW: Wrong priceStep");
+        require(_priceIncreaseNumerator <= _priceIncreaseDenominator, "PAW: Wrong inputs");
+        require(_priceIncreaseDenominator != 0, "PAW: Wrong inputs");
+        require(_ethToGameNumerator <= _ethToGameDenominator, "PAW: Wrong inputs");
+        require(_ethToGameDenominator != 0, "PAW: Wrong inputs");
+        require(owner != address(0), "PAW: Wrong owner");
 
         tokenPrice = _tokenPrice;
         priceStep = _priceStep;
@@ -71,21 +73,26 @@ contract NFT is ERC721, AccessControl
     }
 
     function closePreSale() external onlyAdmin {
-        require(isEndedPreSale == false, "NFT: Pre-sale is already closed");
+        require(isEndedPreSale == false, "PAW: Pre-sale is already closed");
 
         isEndedPreSale = true;
     }
 
-    function mintForPreSale() external onlyAdmin {
-        require(isEndedPreSale == false,  "NFT: Pre-sale is ended");
+    function mintForPreSale(uint256 count) external onlyAdmin {
+        require(isEndedPreSale == false,  "PAW: Pre-sale is ended");
+        require(count != 0, "PAW: count must be bigger than zero");
 
-        _mint(_msgSender(), tokenIdOfLastPreSaled++);
-        tokenIdOfLastPreSaled = tokenIdOfLastPreSaled.add(1);
-        tokenIdLast = tokenIdLast.add(1);
+        for (uint256 i = 0; i < count; ++i)
+        {
+            _mint(_msgSender(), tokenIdOfLastPreSaled);
+            tokenIdOfLastPreSaled = tokenIdOfLastPreSaled.add(1);
+            tokenIdLast = tokenIdLast.add(1);
+        }
     }
 
     function buyToken() external payable {
-        require(msg.value == tokenPrice, "NFT: Value is not equal to token price");
+        require(isEndedPreSale == true,  "PAW: Pre-sale is not ended");
+        require(msg.value == tokenPrice, "PAW: Value is not equal to token price");
 
         uint256 rawAmount = msg.value;
         // To game
