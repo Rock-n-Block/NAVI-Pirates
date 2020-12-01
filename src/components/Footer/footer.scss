@@ -1,0 +1,19 @@
+.footer{
+&__content {
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  height: 55px;
+}
+  &__left, &__center, &__right{
+    margin: auto;
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    font-feature-settings: 'liga' off;
+    color: #D9DBE1;
+  }
+}

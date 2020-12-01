@@ -1,0 +1,55 @@
+.war-strategy{
+  background: url("../../../assets/img/background_8.png") no-repeat;
+  background-position-x: center;
+  &__content{
+    height: 1000px;
+    &-title{
+      position: relative;
+      top:2.5em;
+      left:3em;
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 66px;
+      font-feature-settings: 'liga' off;
+
+      color: #D66032;
+    }
+    &-body{
+      position: relative;
+      top: 8.5em;
+      left:7em;
+      width: fit-content;
+      height: 615px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      &-frame {
+        background-color: white;
+        width: 24em;
+        margin: 2em;
+        padding: 30px;
+        box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+        border-radius: 16px;
+        &-text {
+          font-family: Manrope;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 28px;
+          font-feature-settings: 'liga' off;
+          color: #18191F;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+          margin: 10px 0;
+          &-special {
+            color: #ce8500;
+            margin: 4px;
+          }
+        }
+      }
+    }
+
+  }
+}

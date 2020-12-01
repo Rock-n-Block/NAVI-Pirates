@@ -1,0 +1,54 @@
+.paw-auction{
+  background: url("../../../assets/img/background_6.png") no-repeat;
+  background-position-x: center;
+  margin: 2em 0;
+  &__content{
+    &-title{
+      position: relative;
+      top:1.5em;
+      left:2.5em;
+      width: 11em;
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 66px;
+      font-feature-settings: 'liga' off;
+      color: #1490C7;
+    }
+    &-body{
+      position: relative;
+      top: 6em;
+      left: 6em;
+      width: fit-content;
+      height: 29em;
+      overflow-y: auto;
+      overflow-x: hidden;
+      &-frame {
+        background-color: white;
+        width: 23em;
+        margin: 2em;
+        padding: 30px;
+        box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+        border-radius: 16px;
+        &-text {
+          font-family: Manrope;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 28px;
+          font-feature-settings: 'liga' off;
+          color: #18191F;
+
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+          margin: 10px 0;
+          &-special {
+            color: #ce8500;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.paw{
+  background: url("../../../assets/img/background_1.png") no-repeat;
+  background-position-x: center;
+  height: 1771px;
+  margin:4em 0;
+  &__content{
+    &-title{
+      position: relative;
+      top:40px;
+      height: 66px;
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 66px;
+      text-align: center;
+      font-feature-settings: 'liga' off;
+      color: #FFFFFF;
+    }
+    &-frame{
+      position: relative;
+      top: 48em;
+      left: 0;
+      width: 42em;
+      padding: 30px;
+      background: #FFFFFF;
+      box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+      border-radius: 16px;
+      margin:1em auto;
+      &:nth-child(3n){
+        background: none;
+        width: 34em;
+          font-size: 16px;
+          line-height: 28px;
+          color: #FFFFFF;
+      }
+      &-text{
+        font-family: Manrope;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 28px;
+        font-feature-settings: 'liga' off;
+        &-special{
+          color: #1490C7;
+        }
+      }
+    }
+
+  }
+}

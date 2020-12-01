@@ -1,0 +1,60 @@
+.reg-economics{
+  background: url("../../../assets/img/background_7.png") no-repeat;
+  background-position-x: center;
+  &__content{
+    position: relative;
+    right: 2em ;
+    height: 1000px;
+    overflow-y: auto;
+    &-title{
+      position: absolute;
+      top: 1em;
+      width:10em;
+      left: 16em;
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 48px;
+      line-height: 66px;
+      font-feature-settings: 'liga' off;
+      color: #D65520;
+
+    }
+    &-body{
+      position: absolute;
+      top: 16em;
+      right: 6em;
+      width: fit-content;
+      overflow-y: auto;
+      overflow-x: hidden;
+      &-frame{
+        background-color: white;
+        width: 22em;
+        margin: 2em;
+        padding: 30px;
+        box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+        border-radius: 16px;
+        &-text{
+          position: relative;
+          font-family: Manrope;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 14px;
+          line-height: 28px;
+          font-feature-settings: 'liga' off;
+          color: #18191F;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+          margin: 10px 0;
+          &-special {
+            color: #CB5322;
+          ;
+          }
+
+          }
+      }
+    }
+  }
+
+}

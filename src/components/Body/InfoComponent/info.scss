@@ -1,0 +1,21 @@
+.info{
+
+  &__content{
+    position: relative;
+    margin: 3em auto;
+    width: fit-content;
+    font-family: Manrope;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 28px;
+    text-align: center;
+    text-transform: uppercase;
+    font-feature-settings: 'liga' off;
+    color: #CB5322;
+    &-text{
+      width: 59em;
+    }
+    }
+
+}

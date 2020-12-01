@@ -1,0 +1,33 @@
+.bear-vs-navy{
+  background: url("../../../assets/img/ships.png") no-repeat;
+  background-position-x: center;
+  height: 600px;
+  margin:4em 0;
+  &__content{
+    position: relative;
+    top:300px;
+    margin: auto;
+    padding: 30px;
+    background: #FFFFFF;
+    box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+    border-radius: 16px;
+    width: 537px;
+    &-text{
+      font-family: Manrope;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 28px;
+      font-feature-settings: 'liga' off;
+      color: #18191F;
+      flex: none;
+      order: 0;
+      flex-grow: 0;
+      margin: 10px 0;
+      &-special{
+        color: #1490C7;
+        margin: 5px;
+      }
+    }
+  }
+}
