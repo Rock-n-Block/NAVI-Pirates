@@ -5,7 +5,8 @@ const {
     ETHERSCAN_API_KEY,
     MNEMONIC,
     DEPLOY_GAS_LIMIT,
-    DEPLOY_GAS_PRICE
+    DEPLOY_GAS_PRICE,
+    INFURA_ID_PROJECT
 } = process.env;
 
 const Web3 = require("web3");
@@ -22,18 +23,25 @@ module.exports = {
 
     networks: {
         ropsten: {
-            provider: () => new HDWalletProvider(MNEMONIC, `https://ropsten.infura.io/v3/d8c3a96fe7ad4c6cb75acdacfad74ff6`),
+            provider: () => new HDWalletProvider(MNEMONIC, "https://ropsten.infura.io/" + INFURA_ID_PROJECT),
             network_id: 3,
             gas: DEPLOY_GAS_LIMIT,
             confirmations: 2,
             skipDryRun: true
         },
         mainnet: {
-            provider: () => new HDWalletProvider(MNEMONIC, `https://mainnet.infura.io/v3/d8c3a96fe7ad4c6cb75acdacfad74ff6`),
+            provider: () => new HDWalletProvider(MNEMONIC, "https://mainnet.infura.io/v3/" + INFURA_ID_PROJECT),
             network_id: 1,
             gasPrice: web3.utils.toWei(DEPLOY_GAS_PRICE, 'gwei'),
             gas: DEPLOY_GAS_LIMIT,
             skipDryRun: false
+        },
+        kovan: {
+            provider: () => new HDWalletProvider(MNEMONIC, "https://kovan.infura.io/v3/" + INFURA_ID_PROJECT),
+            network_id: 42,
+            confirmations: 2,
+            gas: DEPLOY_GAS_LIMIT,
+            skipDryRun: true
         },
     },
 
