@@ -24,7 +24,7 @@ function Header() {
                        <div>Login to Binance Smart Chain Wallet</div>
                    </button>
                     <button className = "header__right-nftCard-button">
-                       My VIP NFT CARD
+                        <div> My VIP NFT CARD </div>
                         <div className = "count-component">
                             <div className = "count-value">
                                 {count}

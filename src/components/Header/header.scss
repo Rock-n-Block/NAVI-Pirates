@@ -1,10 +1,13 @@
+@import '../../styles/fonts';
+
 .header{
   position: fixed;
   height: 72px;
   width: 100%;
   background: #FFFFFF;
   box-shadow: 0 1px 0 #E5E9F2;
-
+  font-family: MM;
+  font-weight: 700;
   &__content{
     flex-direction: row;
     justify-content: space-between;
@@ -18,31 +21,27 @@
   &__right-nftCard-button div{
    display: flex;
  }
-  &__right-nftCard-button,
-  &__right-pawCard-button {
-    div {
-      margin: auto;
-    }
-  }
+
   &__right-login-button,
   &__right-nftCard-button,
   &__right-pawCard-button
   {
     display: flex;
     align-items: center;
-    margin: auto 5px;
+    margin: auto 7.5px;
     padding: 9px;
+    height: 40px;
     border-radius: 8px;
   }
   &__right-login-button {
 
-    background: #3F3F47;
+      background: #3F3F47;
       left: calc(50% - 246px / 2 + 87px);
       top: calc(50% - 20px / 2 - 5191px);
-      font-family: Manrope;
-      font-style: normal;
-      font-weight: bold;
+
+      width: 303px;
       font-size: 14px;
+      font-style: normal;
       line-height: 20px;
       text-align: center;
       font-feature-settings: 'liga' off;
@@ -54,6 +53,9 @@
       width: 26px;
       height: 26px;
     }
+    div{
+      width: inherit;
+    }
   }
 
   &__right-nftCard-button {
@@ -61,32 +63,27 @@
     border: 2px solid;
     border-color: #005DC4;
     text-align: center;
+    height: 40px;
+    width: 171px;
     color: #005DC4;
-      font-family: Manrope;
-      font-style: normal;
-      font-weight: bold;
       font-size: 14px;
       line-height: 20px;
       font-feature-settings: 'liga' off;
       color: #005DC4;
     .count-component{
-      width: 24px;
-      height: 23px;
+      width: 28px;
+      height: 28px;
       background: #005DC4;
       border-radius: 8px;
-      margin-left: 9px;
     }
     .count-value{
       left: 76.88%;
       right: 22.5%;
       top: 0.25%;
       bottom: 99.56%;
-
-      font-family: Manrope;
-      font-style: normal;
-      font-weight: bold;
       font-size: 14px;
       line-height: 20px;
+      margin: auto;
       /* identical to box height, or 143% */
 
       text-align: center;
@@ -97,7 +94,8 @@
   }
 
   &__right-pawCard-button{
-    align-items: flex-start;
+    width: 174px;
+    align-items: center;
     left: 79.58%;
     right: 8.33%;
     top: 0.15%;
@@ -105,9 +103,6 @@
 
     background: #005DC4;
       position: static;
-      font-family: Manrope;
-      font-style: normal;
-      font-weight: bold;
       font-size: 14px;
       line-height: 20px;
       text-align: center;
