@@ -2,6 +2,8 @@ import React from "react";
 
 import './paw.scss';
 
+import bottle from '../../../assets/img/bottle.png'
+
 function PAWComponent() {
   return (
       <div className = "paw">
@@ -17,6 +19,9 @@ function PAWComponent() {
                   (a BEP-20 token) by the chest load. In a move to "PAW OUT" these pirates, a secret black
                   ops division of the BEAR NAVY has been formed, code name PAW (Pirate Assault Warriors).
               </div>
+                  <div className = "paw__content-frame-bottle">
+                      <img src={bottle} alt=""/>
+                  </div>
               </div>
               <div className = "paw__content-frame">
               <div className = "paw__content-frame-text">

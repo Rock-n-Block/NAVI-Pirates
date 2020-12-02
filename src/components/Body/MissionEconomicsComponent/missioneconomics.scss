@@ -1,6 +1,9 @@
+@import '../../../styles/fonts';
+
 .mission-economics{
   background: url("../../../assets/img/background_3.png") no-repeat;
   background-position-x: center;
+  font-family: MM;
   &__content{
     position: relative;
     right: 2em ;
@@ -11,7 +14,6 @@
       top: 2em;
       width: 5em;
       left: 16em;
-      font-family: Manrope;
       font-style: normal;
       font-weight: 800;
       font-size: 48px;
@@ -31,14 +33,13 @@
 
       &-frame{
         background-color: white;
-        width: 23em;
-        margin: 2em;
+        width: 26em;
+        margin-top: 2em;
         padding: 30px;
         box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
         border-radius: 16px;
         &-text{
           position: relative;
-          font-family: Manrope;
           font-style: normal;
           font-weight: normal;
           font-size: 16px;
@@ -51,8 +52,8 @@
           padding-bottom: 9px;
           margin: 10px 0px;
           &-special {
+            font-weight: bold;
             color: #6C5CE7;
-          ;
           }
           &-component{
             display: flex;

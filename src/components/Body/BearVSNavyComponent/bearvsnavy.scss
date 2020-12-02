@@ -1,8 +1,14 @@
+@import '../../../styles/fonts';
+
 .bear-vs-navy{
+  position: relative;
+  top:-6em;
   background: url("../../../assets/img/ships.png") no-repeat;
   background-position-x: center;
   height: 600px;
-  margin:4em 0;
+  font-family: MM;
+  font-style: normal;
+
   &__content{
     position: relative;
     top:300px;
@@ -11,11 +17,8 @@
     background: #FFFFFF;
     box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
     border-radius: 16px;
-    width: 537px;
+    width: 660px;
     &-text{
-      font-family: Manrope;
-      font-style: normal;
-      font-weight: normal;
       font-size: 16px;
       line-height: 28px;
       font-feature-settings: 'liga' off;
@@ -23,8 +26,8 @@
       flex: none;
       order: 0;
       flex-grow: 0;
-      margin: 10px 0;
       &-special{
+        font-weight: bold;
         color: #1490C7;
         margin: 5px;
       }

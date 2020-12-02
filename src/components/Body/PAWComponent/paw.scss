@@ -1,14 +1,15 @@
+@import '../../../styles/fonts';
+
 .paw{
+  position: relative;
+  top: -2em;
+  padding: 60px;
   background: url("../../../assets/img/background_1.png") no-repeat;
   background-position-x: center;
-  height: 1771px;
-  margin:4em 0;
+  height: 1656px;;
   &__content{
     &-title{
-      position: relative;
-      top:40px;
       height: 66px;
-      font-family: Manrope;
       font-style: normal;
       font-weight: 800;
       font-size: 48px;
@@ -19,9 +20,9 @@
     }
     &-frame{
       position: relative;
-      top: 48em;
+      top: 42em;
       left: 0;
-      width: 42em;
+      width: 800px;
       padding: 30px;
       background: #FFFFFF;
       box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
@@ -34,14 +35,19 @@
           line-height: 28px;
           color: #FFFFFF;
       }
+      &-bottle{
+        position: absolute;
+        right: 13px;
+        bottom: 2px;
+      }
+
       &-text{
-        font-family: Manrope;
-        font-style: normal;
         font-weight: normal;
         font-size: 16px;
         line-height: 28px;
         font-feature-settings: 'liga' off;
         &-special{
+          font-weight: bold;
           color: #1490C7;
         }
       }

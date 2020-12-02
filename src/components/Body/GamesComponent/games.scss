@@ -1,7 +1,13 @@
-.games {
-  background: url("../../../assets/img/Rectangle 370.png") round;
+@import '../../../styles/fonts';
 
-  padding: 7%;
+
+.games {
+  background: url("../../../assets/img/Rectangle 370.png");
+  background-size: cover;
+  padding: 198px 147px 254px 147px;
+  font-family: MM;
+  font-style: normal;
+  font-weight: 800;
   &__content {
     display: flex;
     justify-content: space-around;
@@ -9,27 +15,20 @@
   }
 
   &__title {
-    width: 412px;
-    height: 170px;
+    width: 430px;
     margin-bottom: 50px;
     left: 147px;
     top: 198px;
     text-align: left;
-    font-family: Manrope;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 93px;
+    font-size: 85px;
     line-height: 85px;
-
-
+    color: #4F320F;
     font-feature-settings: 'liga' off;
   }
   &__text{
-    width: 515px;
-    height: 224px;
+    width: 562px;
     left: 147px;
     top: 438px;
-    font-family: Manrope;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;

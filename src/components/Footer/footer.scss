@@ -1,14 +1,16 @@
+@import '../../styles/fonts';
+
 .footer{
   background-color: black;
+  font-family: Manrope;
 &__content {
   display: flex;
   justify-content: space-around;
   color: white;
-  height: 55px;
+  height:80px
 }
   &__left, &__center, &__right{
     margin: auto;
-    font-family: Manrope;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -22,6 +24,7 @@
     align-items: center;
       a{
         display: block;
+        margin: 12px;
         width: 32px;
         height: 32px;
       }

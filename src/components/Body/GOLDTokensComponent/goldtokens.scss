@@ -1,13 +1,16 @@
+@import '../../../styles/fonts';
+
+
 .gold-tokens{
   background: url("../../../assets/img/background_4.png") no-repeat;
   background-position-x: center;
+  font-family: MM;
   &__content{
 
     &-title{
       position: relative;
       top:1.5em;
       left:3em;
-      font-family: Manrope;
       font-style: normal;
       font-weight: 800;
       font-size: 48px;
@@ -17,21 +20,19 @@
     }
     &-body{
       position: relative;
-      top: 6em;
-      left:7em;
+      top: 7em;
+      left:8em;
       width: fit-content;
       height: 615px;
       overflow-y: auto;
       overflow-x: hidden;
     &-frame {
       background-color: white;
-      width: 24em;
-      margin: 2em;
+      width: 447px;
       padding: 30px;
       box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
       border-radius: 16px;
       &-text {
-        font-family: Manrope;
         font-style: normal;
         font-weight: normal;
         font-size: 16px;
@@ -43,6 +44,7 @@
         flex-grow: 0;
         margin: 10px 0;
         &-special {
+          font-weight: bold;
           color: #ce8500;
         }
       }

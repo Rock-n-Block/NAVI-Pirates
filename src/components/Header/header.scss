@@ -8,6 +8,7 @@
   box-shadow: 0 1px 0 #E5E9F2;
   font-family: MM;
   font-weight: 700;
+  z-index: 100;
   &__content{
     flex-direction: row;
     justify-content: space-between;
@@ -28,6 +29,7 @@
   {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: auto 7.5px;
     padding: 9px;
     height: 40px;
@@ -38,8 +40,6 @@
       background: #3F3F47;
       left: calc(50% - 246px / 2 + 87px);
       top: calc(50% - 20px / 2 - 5191px);
-
-      width: 303px;
       font-size: 14px;
       font-style: normal;
       line-height: 20px;
@@ -64,7 +64,6 @@
     border-color: #005DC4;
     text-align: center;
     height: 40px;
-    width: 171px;
     color: #005DC4;
       font-size: 14px;
       line-height: 20px;
@@ -75,6 +74,7 @@
       height: 28px;
       background: #005DC4;
       border-radius: 8px;
+      margin-left:13px;
     }
     .count-value{
       left: 76.88%;

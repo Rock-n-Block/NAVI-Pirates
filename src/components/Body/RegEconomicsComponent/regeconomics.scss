@@ -1,9 +1,12 @@
+@import '../../../styles/fonts';
+
 .reg-economics{
   background: url("../../../assets/img/background_7.png") no-repeat;
   background-position-x: center;
+  font-family: MM;
   &__content{
     position: relative;
-    right: 2em ;
+    right: 3em ;
     height: 1000px;
     overflow-y: auto;
     &-title{
@@ -11,7 +14,6 @@
       top: 1em;
       width:10em;
       left: 16em;
-      font-family: Manrope;
       font-style: normal;
       font-weight: 800;
       font-size: 48px;
@@ -22,21 +24,20 @@
     }
     &-body{
       position: absolute;
-      top: 16em;
-      right: 6em;
+      top: 19em;
+      right: 4em;
       width: fit-content;
       overflow-y: auto;
       overflow-x: hidden;
       &-frame{
         background-color: white;
-        width: 22em;
-        margin: 2em;
+        width: 440px;
+        margin-bottom: 2em;
         padding: 30px;
         box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
         border-radius: 16px;
         &-text{
           position: relative;
-          font-family: Manrope;
           font-style: normal;
           font-weight: normal;
           font-size: 14px;
@@ -48,6 +49,7 @@
           flex-grow: 0;
           margin: 10px 0;
           &-special {
+            font-weight: bold;
             color: #CB5322;
           ;
           }

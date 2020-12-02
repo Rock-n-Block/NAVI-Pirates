@@ -1,14 +1,16 @@
+@import '../../../styles/fonts';
+
 .reg-paw-card{
   background: url("../../../assets/img/background_2.png") no-repeat;
   background-position-x: center;
   margin:2em 0;
+  font-family: MM;
   &__content{
     height: 900px;
     &-title{
       position: relative;
       top:1.5em;
       left:2em;
-      font-family: Manrope;
       font-style: normal;
       font-weight: 800;
       font-size: 48px;
@@ -33,7 +35,6 @@
       border-radius: 16px;
       &-text {
         position: relative;
-        font-family: Manrope;
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
@@ -46,6 +47,7 @@
         margin: 1em 1em;
 
         &-special {
+          font-weight: bold;
           color: #1490C7;
         }
       }
