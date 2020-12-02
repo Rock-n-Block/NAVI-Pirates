@@ -1,5 +1,6 @@
-import './goldtokens.scss';
 import React from "react";
+
+import './goldtokens.scss';
 
 function GOLDTokensComponent() {
   return (

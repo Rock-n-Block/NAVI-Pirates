@@ -28,6 +28,7 @@
       height: 512px;
       overflow-y: auto;
       overflow-x: hidden;
+
       &-frame{
         background-color: white;
         width: 23em;
@@ -57,6 +58,7 @@
             display: flex;
             margin: 10px 0;
             &-percents{
+              min-width: 50px;
               margin-right: 1em;
               color: #6C5CE7;
               font-weight: bold;

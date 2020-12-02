@@ -1,6 +1,7 @@
-import './games.scss';
 import React from "react";
-import {NavLink} from "react-router-dom";
+
+import './games.scss';
+
 import bear_games from '../../../assets/img/Group.png'
 import big_logo from '../../../assets/img/Group 7108.png'
 

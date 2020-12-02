@@ -1,5 +1,7 @@
-import './regpawcard.scss';
 import React from "react";
+import {Scrollbars} from "react-custom-scrollbars";
+
+import './regpawcard.scss';
 
 function RegPAWCardComponent() {
   return (
@@ -10,6 +12,7 @@ function RegPAWCardComponent() {
                   Regular PAW CARD
               </div>
               <div className = "reg-paw-card__content-body">
+                  <Scrollbars style={{ width:500, height: 615 }}>
               <div className = "reg-paw-card__content-body-frame">
               <div className = "reg-paw-card__content-body-frame-text">
                   Each Regular PAW CARD displays a Bear Navy PAW Operative Ship with a unique character
@@ -59,6 +62,7 @@ function RegPAWCardComponent() {
                   </ol>
               </div>
               </div>
+                  </Scrollbars>
               </div>
 
       </div>

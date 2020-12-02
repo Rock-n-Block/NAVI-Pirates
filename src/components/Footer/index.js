@@ -1,11 +1,13 @@
+import React from "react";
+import {NavLink} from "react-router-dom";
+
 import './footer.scss';
+
 import dribble from '../../assets/img/Dribbble.svg'
 import twitter1 from '../../assets/img/Twitter.svg'
 import telegram from '../../assets/img/Twitter-1.svg'
 import youtube from '../../assets/img/Youtube.svg'
 
-import React from "react";
-import {NavLink} from "react-router-dom";
 
 export const dribble_url = "/";
 export const twitter_url = "/";

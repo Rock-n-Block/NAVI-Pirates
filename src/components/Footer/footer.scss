@@ -1,6 +1,6 @@
 .footer{
-&__content {
   background-color: black;
+&__content {
   display: flex;
   justify-content: space-around;
   color: white;
@@ -16,4 +16,15 @@
     font-feature-settings: 'liga' off;
     color: #D9DBE1;
   }
+  &__right{
+    &-contacts{
+    display: flex;
+    align-items: center;
+      a{
+        display: block;
+        width: 32px;
+        height: 32px;
+      }
+  }
+}
 }

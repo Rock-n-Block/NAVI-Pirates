@@ -1,5 +1,7 @@
-import './bearvsnavy.scss';
 import React from "react";
+
+import './bearvsnavy.scss';
+
 
 function BearVSNavyComponent() {
   return (

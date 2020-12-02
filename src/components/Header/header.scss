@@ -1,8 +1,13 @@
 .header{
+  position: fixed;
+  height: 72px;
+  width: 100%;
+  background: #FFFFFF;
+  box-shadow: 0 1px 0 #E5E9F2;
+
   &__content{
-    margin: 20px;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
   }
   &__content,
   &__left, &__right,
@@ -23,27 +28,15 @@
   &__right-nftCard-button,
   &__right-pawCard-button
   {
-    justify-content: flex-start;
-    a{
-      text-decoration: none;
-    }
-    .text{
-      padding: 13px;
-    }
-    margin-left: 10px;
-
-    padding: 2px;
+    display: flex;
+    align-items: center;
+    margin: auto 5px;
+    padding: 9px;
     border-radius: 8px;
-
-
   }
   &__right-login-button {
-    left: 642px;
-    top: 16px;
+
     background: #3F3F47;
-    .text a{
-      width: 246px;
-      height: 20px;
       left: calc(50% - 246px / 2 + 87px);
       top: calc(50% - 20px / 2 - 5191px);
       font-family: Manrope;
@@ -54,18 +47,21 @@
       text-align: center;
       font-feature-settings: 'liga' off;
       color: #FFFFFF;
+
+
+    img{
+      margin-right: 10px;
+      width: 26px;
+      height: 26px;
     }
   }
 
   &__right-nftCard-button {
-
-    left: 1097px;
-    top: 22px;
+    padding: 9px;
     border: 2px solid;
     border-color: #005DC4;
     text-align: center;
     color: #005DC4;
-    .text a{
       font-family: Manrope;
       font-style: normal;
       font-weight: bold;
@@ -73,14 +69,12 @@
       line-height: 20px;
       font-feature-settings: 'liga' off;
       color: #005DC4;
-    }
     .count-component{
-      width: 28px;
-      height: 28px;
-      left: 1097px;
-      top: 22px;
+      width: 24px;
+      height: 23px;
       background: #005DC4;
       border-radius: 8px;
+      margin-left: 9px;
     }
     .count-value{
       left: 76.88%;
@@ -103,18 +97,13 @@
   }
 
   &__right-pawCard-button{
-
-
     align-items: flex-start;
-
     left: 79.58%;
     right: 8.33%;
     top: 0.15%;
     bottom: 99.46%;
 
     background: #005DC4;
-
-    .text a{
       position: static;
       font-family: Manrope;
       font-style: normal;
@@ -128,7 +117,7 @@
       order: 0;
       flex-grow: 0;
     }
-  }
+
 }
 .icon{
   position: relative;

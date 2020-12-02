@@ -1,5 +1,6 @@
-import './info.scss';
 import React from "react";
+
+import './info.scss';
 
 function InfoComponent() {
   return (

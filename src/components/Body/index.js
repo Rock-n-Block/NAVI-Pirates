@@ -1,5 +1,5 @@
-import './body.scss';
 import React from "react";
+
 import {BearVSNavyComponent,
     GamesComponent,
     OfferingComponent,
@@ -12,6 +12,8 @@ import {BearVSNavyComponent,
     InfoComponent,
     RegEconomicsComponent
 } from '../../components'
+
+import './body.scss';
 
 
 

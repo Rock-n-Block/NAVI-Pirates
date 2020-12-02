@@ -1,5 +1,6 @@
-import './regeconomics.scss';
 import React from "react";
+
+import './regeconomics.scss';
 
 function RegEconomicsComponent() {
   return (

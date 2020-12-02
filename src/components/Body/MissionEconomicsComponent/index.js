@@ -1,5 +1,8 @@
-import './missioneconomics.scss';
 import React from "react";
+import {Scrollbars} from "react-custom-scrollbars";
+
+import './missioneconomics.scss';
+
 
 function RegPAWCardComponent() {
   return (
@@ -10,6 +13,7 @@ function RegPAWCardComponent() {
                   Mission Economics
               </div>
               <div className = "mission-economics__content-body">
+                  <Scrollbars style={{ width:500, height: 512 }}>
               <div className = "mission-economics__content-body-frame">
                   <div className = "mission-economics__content-body-frame-text">
                   1/4 of BNB entering each of the four field bay is paid to the Injury Insurance Pool
@@ -82,7 +86,7 @@ function RegPAWCardComponent() {
                       </div>
                   </div>
               </div>
-
+                  </Scrollbars>
               </div>
 
       </div>

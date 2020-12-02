@@ -1,15 +1,16 @@
-
-import './header.scss';
-import { NavLink} from 'react-router-dom';
-import logo from '../../assets/img/logo.svg'
 import React from "react";
+import { NavLink} from 'react-router-dom';
+import {Scrollbar} from 'react-scrollbars-custom'
+import './header.scss';
+
+import logo from '../../assets/img/logo.svg'
 import login_img from '../../assets/img/login_image.png'
 
 function Header() {
     let count = 4;
 
     return (
-    <header>
+    <div className="header">
         <div className = "row">
             <div className = "header__content">
               <div className = "header__left">
@@ -18,28 +19,25 @@ function Header() {
                 </NavLink>
               </div>
                 <div className = "header__right">
-                   <div className = "header__right-login-button">
-                       <div className = "icon"><img src={login_img}/></div>
-                       <div className = "text">
-                           <NavLink to = "/">Login to Binance Smart Chain Wallet
-                           </NavLink>
-                       </div>
-                   </div>
-                    <div className = "header__right-nftCard-button">
-                        <div className = "text"> <NavLink to = "/">My VIP NFT CARD</NavLink></div>
+                   <button className = "header__right-login-button">
+                     <img src={login_img}/>
+                       <div>Login to Binance Smart Chain Wallet</div>
+                   </button>
+                    <button className = "header__right-nftCard-button">
+                       My VIP NFT CARD
                         <div className = "count-component">
                             <div className = "count-value">
                                 {count}
                             </div>
                         </div>
-                    </div>
-                    <div className = "header__right-pawCard-button">
-                        <div className="text"><NavLink to = "/">BUY VIP PAW CARD</NavLink></div>
-                    </div>
+                    </button>
+                    <button className = "header__right-pawCard-button">
+                        BUY VIP PAW CARD
+                    </button>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
   );
 }
 

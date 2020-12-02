@@ -1,6 +1,6 @@
-import './offering.scss';
 import React from "react";
-import bear from '../../../assets/img/bear.png'
+
+import './offering.scss';
 
 function OfferingComponent() {
   return (

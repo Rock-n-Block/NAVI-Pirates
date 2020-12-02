@@ -1,6 +1,6 @@
-import './paw.scss';
 import React from "react";
-import cards from '../../../assets/img/Game.png'
+
+import './paw.scss';
 
 function PAWComponent() {
   return (

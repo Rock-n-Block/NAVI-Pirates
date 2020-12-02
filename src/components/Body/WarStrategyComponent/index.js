@@ -1,5 +1,7 @@
-import './warstrategy.scss';
 import React from "react";
+
+import './warstrategy.scss';
+import {Scrollbars} from "react-custom-scrollbars";
 
 function GOLDTokensComponent() {
   return (
@@ -10,6 +12,7 @@ function GOLDTokensComponent() {
                   War Strategy
               </div>
               <div className = "war-strategy__content-body">
+                  <Scrollbars style={{ width:500, height: 612 }}>
               <div className = "war-strategy__content-body-frame">
                   <div className = "war-strategy__content-body-frame-text">
                       The pirates launch four ships to loot tourist yachts of their GOLD tokens treasures
@@ -58,6 +61,7 @@ function GOLDTokensComponent() {
                   </div>
 
               </div>
+                  </Scrollbars>
               </div>
 
 

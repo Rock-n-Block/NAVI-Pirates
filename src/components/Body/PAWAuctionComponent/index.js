@@ -1,5 +1,6 @@
-import './pawauction.scss';
 import React from "react";
+
+import './pawauction.scss';
 
 function PAWAuctionComponent() {
   return (
