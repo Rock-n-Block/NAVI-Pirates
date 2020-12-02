@@ -30,5 +30,5 @@ module.exports = async function (deployer, network) {
     );
 
     //console.log(await vipPawInst.owner());
-    await vipPawInst.transferOwnership(OWNER);
+    //await vipPawInst.transferOwnership(OWNER);
 };
