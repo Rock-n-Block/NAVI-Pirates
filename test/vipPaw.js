@@ -4,10 +4,6 @@ const { expect, assert } = require("chai");
 const expectRevert = require("./utils/expectRevert.js");
 const helper = require("openzeppelin-test-helpers/src/time.js");
 const time = require("openzeppelin-test-helpers/src/time.js");
-/*
-timeNow = new BN((await web3.eth.getBlock("latest")).timestamp);
-await helper.increase(LAUNCH_TIME.add(ROUND_TIME.mul(currentDay.add(FIVE))).sub(timeNow).add(ONE));
-*/
 chai.use(require("chai-bn")(BN));
 
 require('dotenv').config();
@@ -31,6 +27,9 @@ const FOUR = new BN(4);
 const FIVE = new BN(5);
 const SIX = new BN(6);
 const SEVEN = new BN(7);
+const EIGHT = new BN(7);
+const NINE = new BN(7);
+const TEN = new BN(7);
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
@@ -40,7 +39,8 @@ contract(
     'vipPaw-test',
     ([
         vipPawOwner,
-        user1
+        user1,
+        user2
     ]) => {
         let vipPawInst;
 
@@ -181,7 +181,179 @@ contract(
         })
 
         it("#3 Test end of crowdsale with reach of hard cap", async () => {
+            let softCap = TWO;
+            let hardCap = TEN;
 
+            let timeNow = new BN((await web3.eth.getBlock("latest")).timestamp);
+            let openTime = timeNow;
+            let closeTime = openTime.add(new BN(60 * 60 * 24));
+
+            vipPawInst = await vipPaw.new(
+                NAME,
+                SYMBOL,
+                TOKEN_PRICE,
+                softCap,
+                hardCap,
+                PERCENT_OF_CASHBACK,
+                openTime,
+                closeTime,
+                {from: vipPawOwner}
+            );
+
+            numTokens = TEN;
+            let tokenPrice = new BN(TOKEN_PRICE);
+            let percentOfCashback = new BN(PERCENT_OF_CASHBACK);
+            let defaultCashback = tokenPrice.mul(percentOfCashback).div(new BN(1000));
+            await vipPawInst.buyToken(numTokens, {from: user1, value: tokenPrice.mul(numTokens)});
+
+            expect(await vipPawInst.balanceOf(user1)).to.be.bignumber.that.equals(numTokens);
+            expect(await vipPawInst.moneyCollectedAll()).to.be.bignumber.that.equals(tokenPrice.mul(numTokens));
+            expect(await vipPawInst.moneyForCashback()).to.be.bignumber.that.equals(defaultCashback.mul(numTokens));
+
+            await expectRevert(
+                vipPawInst.withdraw({from: user1, gasPrice: ZERO}),
+                "vipPaw: Sender must be owner of the contract"
+            );
+
+            let ethBalanceOfVipPawOwnerBefore = new BN(await web3.eth.getBalance(vipPawOwner));
+            await vipPawInst.withdraw({from: vipPawOwner, gasPrice: ZERO});
+            let ethBalanceOfVipPawOwnerAfter = new BN(await web3.eth.getBalance(vipPawOwner));
+            expect(ethBalanceOfVipPawOwnerAfter.sub(ethBalanceOfVipPawOwnerBefore)).to.be.bignumber.that.equals(
+                tokenPrice.mul(numTokens).sub(defaultCashback.mul(numTokens))
+            );
+
+            await expectRevert(
+                vipPawInst.withdraw({from: vipPawOwner, gasPrice: ZERO}),
+                "vipPaw: Nothing to return"
+            );
+        })
+
+        it("#4 Test end of crowdsale with reach of soft cap and not reach hard cap", async () => {
+            let softCap = TWO;
+            let hardCap = TEN;
+
+            let timeNow = new BN((await web3.eth.getBlock("latest")).timestamp);
+            let openTime = timeNow;
+            let closeTime = openTime.add(new BN(60 * 60 * 24));
+
+            vipPawInst = await vipPaw.new(
+                NAME,
+                SYMBOL,
+                TOKEN_PRICE,
+                softCap,
+                hardCap,
+                PERCENT_OF_CASHBACK,
+                openTime,
+                closeTime,
+                {from: vipPawOwner}
+            );
+
+            numTokens = TWO;
+            let tokenPrice = new BN(TOKEN_PRICE);
+            let percentOfCashback = new BN(PERCENT_OF_CASHBACK);
+            let defaultCashback = tokenPrice.mul(percentOfCashback).div(new BN(1000));
+            await vipPawInst.buyToken(numTokens, {from: user1, value: tokenPrice.mul(numTokens)});
+
+            expect(await vipPawInst.balanceOf(user1)).to.be.bignumber.that.equals(numTokens);
+            expect(await vipPawInst.moneyCollectedAll()).to.be.bignumber.that.equals(tokenPrice.mul(numTokens));
+            expect(await vipPawInst.moneyForCashback()).to.be.bignumber.that.equals(defaultCashback.mul(numTokens));
+
+            await expectRevert(
+                vipPawInst.withdraw({from: user1, gasPrice: ZERO}),
+                "vipPaw: Crowdsale is not closed"
+            );
+            await expectRevert(
+                vipPawInst.withdraw({from: vipPawOwner, gasPrice: ZERO}),
+                "vipPaw: Crowdsale is not closed"
+            );
+
+            timeNow = new BN((await web3.eth.getBlock("latest")).timestamp);
+            await helper.increase(closeTime.sub(timeNow));
+
+            await expectRevert(
+                vipPawInst.withdraw({from: user1, gasPrice: ZERO}),
+                "vipPaw: Sender must be owner of the contract"
+            );
+
+            let ethBalanceOfVipPawOwnerBefore = new BN(await web3.eth.getBalance(vipPawOwner));
+            await vipPawInst.withdraw({from: vipPawOwner, gasPrice: ZERO});
+            let ethBalanceOfVipPawOwnerAfter = new BN(await web3.eth.getBalance(vipPawOwner));
+            expect(ethBalanceOfVipPawOwnerAfter.sub(ethBalanceOfVipPawOwnerBefore)).to.be.bignumber.that.equals(
+                tokenPrice.mul(numTokens).sub(defaultCashback.mul(numTokens))
+            );
+
+            await expectRevert(
+                vipPawInst.withdraw({from: vipPawOwner, gasPrice: ZERO}),
+                "vipPaw: Nothing to return"
+            );
+        })
+
+        it("#5 Test end of crowdsale with no reach of soft cap", async () => {
+            let softCap = EIGHT;
+            let hardCap = TEN;
+
+            let timeNow = new BN((await web3.eth.getBlock("latest")).timestamp);
+            let openTime = timeNow;
+            let closeTime = openTime.add(new BN(60 * 60 * 24));
+
+            vipPawInst = await vipPaw.new(
+                NAME,
+                SYMBOL,
+                TOKEN_PRICE,
+                softCap,
+                hardCap,
+                PERCENT_OF_CASHBACK,
+                openTime,
+                closeTime,
+                {from: vipPawOwner}
+            );
+
+            numTokens = FIVE;
+            let tokenPrice = new BN(TOKEN_PRICE);
+            let percentOfCashback = new BN(PERCENT_OF_CASHBACK);
+            let defaultCashback = tokenPrice.mul(percentOfCashback).div(new BN(1000));
+            await vipPawInst.buyToken(numTokens, {from: user1, value: tokenPrice.mul(numTokens)});
+
+            expect(await vipPawInst.balanceOf(user1)).to.be.bignumber.that.equals(numTokens);
+            expect(await vipPawInst.moneyCollectedAll()).to.be.bignumber.that.equals(tokenPrice.mul(numTokens));
+            expect(await vipPawInst.moneyForCashback()).to.be.bignumber.that.equals(defaultCashback.mul(numTokens));
+
+            await expectRevert(
+                vipPawInst.withdraw({from: user1, gasPrice: ZERO}),
+                "vipPaw: Crowdsale is not closed"
+            );
+            await expectRevert(
+                vipPawInst.withdraw({from: vipPawOwner, gasPrice: ZERO}),
+                "vipPaw: Crowdsale is not closed"
+            );
+
+            timeNow = new BN((await web3.eth.getBlock("latest")).timestamp);
+            await helper.increase(closeTime.sub(timeNow));
+
+            let ethBalanceOfUser1Before = new BN(await web3.eth.getBalance(user1));
+            await vipPawInst.getCashback(ZERO, {gasPrice: ZERO});
+            expect(await vipPawInst.moneyCollectedAll()).to.be.bignumber.that.equals(tokenPrice.mul(numTokens).sub(defaultCashback));
+            expect(await vipPawInst.moneyForCashback()).to.be.bignumber.that.equals(defaultCashback.mul(numTokens.sub(ONE)));
+            let ethBalanceOfUser1After = new BN(await web3.eth.getBalance(user1));
+            expect(ethBalanceOfUser1After.sub(ethBalanceOfUser1Before)).to.be.bignumber.that.equals(defaultCashback);
+
+            await expectRevert(
+                vipPawInst.withdraw({from: user2}),
+                "vipPaw: Need to have vip paw cards to refund"
+            );
+            ethBalanceOfUser1Before = new BN(await web3.eth.getBalance(user1));
+            await vipPawInst.withdraw({from: user1, gasPrice: ZERO});
+            ethBalanceOfUser1After = new BN(await web3.eth.getBalance(user1));
+            expect(await vipPawInst.balanceOf(user1)).to.be.bignumber.that.equals(ZERO);
+            expect(ethBalanceOfUser1After.sub(ethBalanceOfUser1Before)).to.be.bignumber.that.equals(tokenPrice.mul(numTokens).sub(defaultCashback));
+
+            expect(await vipPawInst.moneyCollectedAll()).to.be.bignumber.that.equals(ZERO);
+            expect(await vipPawInst.moneyForCashback()).to.be.bignumber.that.equals(ZERO);
+
+            await expectRevert(
+                vipPawInst.withdraw({from: user1}),
+                "vipPaw: Need to have vip paw cards to refund"
+            );
         })
     }
 )

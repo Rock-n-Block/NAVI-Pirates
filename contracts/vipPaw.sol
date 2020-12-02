@@ -122,7 +122,7 @@ contract vipPaw is ERC721, Ownable
             uint256 tokenId;
             for(uint256 ind = 0; ind < len; ind = ind.add(1))
             {
-                tokenId = tokenOfOwnerByIndex(sender, ind);
+                tokenId = tokenOfOwnerByIndex(sender, 0);
                 amountToRefund = tokenPrice.sub(maxCashbackAmout).add(cashbackOfToken[tokenId]);
                 amountToRefundAll = amountToRefundAll.add(amountToRefund);
 
