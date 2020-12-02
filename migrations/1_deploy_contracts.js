@@ -1,6 +1,6 @@
 require('dotenv').config();
 const {
-    INITIAL_TOKEN_PRICE,
+    TOKEN_PRICE,
     SOFTCAP_IN_TOKENS,
     PERCENT_OF_CASHBACK,
     OPEN_CROWDSALE_TIME,
@@ -21,7 +21,7 @@ module.exports = async function (deployer, network) {
         vipPaw,
         NAME,
         SYMBOL,
-        INITIAL_TOKEN_PRICE,
+        TOKEN_PRICE,
         SOFTCAP_IN_TOKENS,
         MAX_SUPPLY,
         PERCENT_OF_CASHBACK,

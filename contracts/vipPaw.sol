@@ -69,7 +69,7 @@ contract vipPaw is ERC721, Ownable
     function buyToken(uint256 count) external payable
     {
         require(
-            _isEndedCrowdsale() == false,
+            _isClosedCrowdsale() == false,
             "vipPaw: Crowdsale is closed"
         );
 
@@ -105,7 +105,7 @@ contract vipPaw is ERC721, Ownable
     function withdraw() external
     {
         require(
-            _isEndedCrowdsale() == true,
+            _isClosedCrowdsale() == true,
             "vipPaw: Crowdsale is not closed"
         );
         address payable sender = _msgSender();
@@ -165,9 +165,11 @@ contract vipPaw is ERC721, Ownable
         moneyForCashback = moneyForCashback.sub(amount);
     }
 
-    function _isEndedCrowdsale() private view returns(bool)
+    function _isClosedCrowdsale() private view returns(bool)
     {
-        if (now < closeCrowdsaleTime)
+        if (now < openCrowdsaleTime)
+            return true;
+        else if (now < closeCrowdsaleTime)
         {
             if (lastTokenId >= maxSupply)
                 return true;
@@ -180,7 +182,9 @@ contract vipPaw is ERC721, Ownable
 
     function _isRefund() private view returns(bool)
     {
-        if (now < closeCrowdsaleTime)
+        if (now < openCrowdsaleTime)
+            return false;
+        else if (now < closeCrowdsaleTime)
         {
             require(
                 lastTokenId >= maxSupply,
