@@ -66,6 +66,18 @@ contract vipPaw is ERC721, Ownable
         closeCrowdsaleTime = _closeCrowdsaleTime;
     }
 
+    /* bool isFirstTime = true;
+    function startCrowdsale() external onlyOwner
+    {
+        require(
+            isFirstTime == true,
+            "vipPaw: Can not open crowdsale twice"
+        );
+        openCrowdsaleTime = now;
+        closeCrowdsaleTime = now + 10 minutes;
+        isFirstTime = false;
+    } */
+
     function buyToken(uint256 count) external payable
     {
         require(
