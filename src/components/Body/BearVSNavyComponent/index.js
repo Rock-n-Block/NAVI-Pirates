@@ -2,11 +2,23 @@ import React from "react";
 
 import './bearvsnavy.scss';
 
+import title from '../../../assets/img/title.png'
+import board1 from '../../../assets/img/board1.png'
+import board2 from '../../../assets/img/board2.png'
 
 function BearVSNavyComponent() {
   return (
       <div className = "bear-vs-navy">
       <div className = "row">
+          <div className = "bear-vs-navy__title">
+              <img src={title} alt=""/>
+          </div>
+          <div className = "bear-vs-navy__img-1">
+              <img src={board1} alt=""/>
+          </div>
+          <div className = "bear-vs-navy__img-2">
+              <img src={board2} alt=""/>
+          </div>
           <div className = "bear-vs-navy__content">
             <div className = "bear-vs-navy__content-text">
                 BEAR NAVY Vs. Pirates (BVP) gaming smart-contract is an innovative game designed to mint

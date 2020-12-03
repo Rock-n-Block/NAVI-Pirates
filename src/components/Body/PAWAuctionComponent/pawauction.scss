@@ -6,6 +6,10 @@
   margin: 2em 0;
   height: 775px;
   font-family: MM;
+  @media (max-width: 376px) {
+    background: #F6F9FF;
+    border-radius: 30px;
+  }
   &__content{
     &-title{
       position: relative;
@@ -48,6 +52,15 @@
             color: #ce8500;
           }
         }
+      }
+    }
+    &-img {
+      display: none;
+      background: #47AFDD;
+      border-radius: 30px;
+      @media (max-width: 376px) {
+        display: block;
+        text-align: center;
       }
     }
   }

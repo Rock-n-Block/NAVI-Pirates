@@ -3,6 +3,8 @@ import {Scrollbars} from "react-custom-scrollbars";
 
 import './regpawcard.scss';
 
+import pawcard from '../../../assets/img/Paw Card.png'
+
 function RegPAWCardComponent() {
   return (
       <div className = "reg-paw-card">
@@ -11,8 +13,11 @@ function RegPAWCardComponent() {
               <div className = "reg-paw-card__content-title">
                   Regular PAW CARD
               </div>
+              <div className = "reg-paw-card__content-img">
+                  <img src={pawcard} alt=""/>
+              </div>
               <div className = "reg-paw-card__content-body">
-                  <Scrollbars style={{ width:500, height: 615 }}>
+                  <Scrollbars style={{ width:520, height: 615 }}>
               <div className = "reg-paw-card__content-body-frame">
               <div className = "reg-paw-card__content-body-frame-text">
                   Each Regular PAW CARD displays a Bear Navy PAW Operative Ship with a unique character
@@ -39,25 +44,25 @@ function RegPAWCardComponent() {
                   <span className = "reg-paw-card__content-body-frame-text-special">
                      SubMarines
                   </span>
-                      - contains 0 to 10 Open Chest.
+                          <span>- contains 0 to 10 Open Chest.</span>
                       </li>
                       <li>
                   <span className = "reg-paw-card__content-body-frame-text-special">
                       GunBoat
                   </span>
-                      - contains 11 to 100 Open Chest.
+                          <span> - contains 11 to 100 Open Chest.</span>
                       </li>
                       <li>
                   <span className = "reg-paw-card__content-body-frame-text-special">
                    BattleShip
                   </span>
-                      - contains 101 to 1000 Open Chest.
+                          <span>- contains 101 to 1000 Open Chest.</span>
                       </li>
                       <li>
                   <span className = "reg-paw-card__content-body-frame-text-special">
                    Aircraft Carrier
                   </span>
-                      - contains 1001 or more Open Chest.
+                          <span> - contains 1001 or more Open Chest.</span>
                       </li>
                   </ol>
               </div>

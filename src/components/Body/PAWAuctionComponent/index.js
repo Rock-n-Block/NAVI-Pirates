@@ -1,6 +1,7 @@
 import React from "react";
 
 import './pawauction.scss';
+import img from '../../../assets/img/AuctionCard.png'
 
 function PAWAuctionComponent() {
   return (
@@ -10,6 +11,9 @@ function PAWAuctionComponent() {
             <div className = "paw-auction__content-title">
                 PAW CARD AUCTION Marketplace
             </div>
+              <div className="paw-auction__content-img">
+                  <img src={img} alt=""/>
+              </div>
               <div className = "paw-auction__content-body">
                 <div className = "paw-auction__content-body-frame">
                     <div className = "paw-auction__content-body-frame-text">

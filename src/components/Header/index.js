@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink} from 'react-router-dom';
-import {Scrollbar} from 'react-scrollbars-custom'
 import './header.scss';
 
 import logo from '../../assets/img/logo.svg'
 import login_img from '../../assets/img/login_image.png'
+import trust_img from '../../assets/img/trust.png'
 
 function Header() {
     let count = 4;
@@ -23,6 +23,11 @@ function Header() {
                      <img src={login_img}/>
                        <div>Login to Binance Smart Chain Wallet</div>
                    </button>
+                    <button className = "header__right-login-1-button">
+                        <img src={trust_img}/>
+                        <div>Trust Wallet</div>
+                    </button>
+
                     <button className = "header__right-nftCard-button">
                         <div> My VIP NFT CARD </div>
                         <div className = "count-component">

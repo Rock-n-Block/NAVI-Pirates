@@ -4,6 +4,8 @@ import './paw.scss';
 
 import bottle from '../../../assets/img/bottle.png'
 
+import game from '../../../assets/img/Game.png'
+
 function PAWComponent() {
   return (
       <div className = "paw">
@@ -11,6 +13,9 @@ function PAWComponent() {
           <div className = "paw__content">
               <div className = "paw__content-title">
                   Pirate Assault Warriors
+              </div>
+              <div className = "paw__content-img">
+                  <img src={game} alt=""/>
               </div>
               <div className = "paw__content-frame">
               <div className = "paw__content-frame-text">

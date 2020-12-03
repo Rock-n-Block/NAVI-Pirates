@@ -34,7 +34,6 @@ function OfferingComponent() {
                       website.
                   </div>
                   <div className="nft-offering__content-body-left-img-1">
-                      <img src={rectangle} alt=""/>
                   </div>
 
               </div>
@@ -46,7 +45,6 @@ function OfferingComponent() {
                       </span>
                   </div>
                   <div className="nft-offering__content-body-left-img-2">
-                      <img src={rectangle} alt=""/>
                   </div>
                   <img className="nft-offering__content-body-left-backPicture" src={third} alt=""/>
               </div>
@@ -77,7 +75,6 @@ function OfferingComponent() {
                       transparently.
                   </div>
                   <div className="nft-offering__content-body-right-img">
-                      <img src={rectangle} alt=""/>
                   </div>
               </div>
           <div className="nft-offering__content-body-bottom">

@@ -3,10 +3,19 @@
 .reg-paw-card{
   background: url("../../../assets/img/background_2.png") no-repeat;
   background-position-x: center;
-  margin:2em 0;
+
   font-family: MM;
+  margin-top: 50px;
+  @media (max-width: 376px) {
+    background: #F6F9FF;
+
+  }
+
   &__content{
     height: 900px;
+    @media (max-width: 376px) {
+      height: max-content;
+    }
     &-title{
       position: relative;
       top:1.5em;
@@ -17,6 +26,11 @@
       line-height: 66px;
       font-feature-settings: 'liga' off;
       color: #1490C7;
+      @media (max-width: 376px) {
+        top:0;
+        left:0;
+        text-align: center;
+      }
     }
     &-body{
       position: relative;
@@ -26,6 +40,9 @@
       height: 615px;
       overflow-y: auto;
       overflow-x: hidden;
+      @media (max-width: 376px) {
+        height: inherit;
+      }
     &-frame {
       background-color: white;
       width: 27em;
@@ -33,6 +50,9 @@
       padding: 9px;
       box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
       border-radius: 16px;
+      @media (max-width: 376px) {
+        width: 100%;
+      }
       &-text {
         position: relative;
         font-style: normal;
@@ -47,12 +67,33 @@
         margin: 1em 1em;
 
         &-special {
+          margin: 3px;
           font-weight: bold;
           color: #1490C7;
         }
       }
     }
     }
+    &-img{
+      display: none;
+      background: #47AFDD;
+      border-radius: 37.4556px;
+      @media (max-width: 376px) {
+        display: block;
+        text-align: center;
+      }
+    }
   }
 
+}
+ol li {
+  content: counter(num) '.';
+  counter-increment: num;
+  color: #1490C7;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 28px;
+  span{
+    color: black;
+  }
 }

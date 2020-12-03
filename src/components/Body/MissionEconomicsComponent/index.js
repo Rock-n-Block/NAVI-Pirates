@@ -4,6 +4,8 @@ import {Scrollbars} from "react-custom-scrollbars";
 import './missioneconomics.scss';
 
 
+import addCard from '../../../assets/img/AddCard.png'
+
 function RegPAWCardComponent() {
   return (
       <div className = "mission-economics">
@@ -11,6 +13,9 @@ function RegPAWCardComponent() {
           <div className = "mission-economics__content">
               <div className = "mission-economics__content-title">
                   Mission Economics
+              </div>
+              <div className = "mission-economics__content-img">
+                  <img src={addCard} alt=""/>
               </div>
               <div className = "mission-economics__content-body">
                   <Scrollbars style={{ width:500, height: 512 }}>

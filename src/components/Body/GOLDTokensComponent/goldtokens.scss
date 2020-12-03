@@ -4,6 +4,12 @@
 .gold-tokens{
   background: url("../../../assets/img/background_4.png") no-repeat;
   background-position-x: center;
+  margin-top: 50px;
+  @media (max-width: 376px) {
+    background: #FCE6A1;
+    border-radius: 30px;
+    padding-top: 40px;
+  }
   font-family: MM;
   &__content{
 
@@ -17,21 +23,37 @@
       line-height: 66px;
       font-feature-settings: 'liga' off;
       color: #A0730A;
+      @media (max-width: 376px) {
+        top:0;
+        left:0;
+        text-align: center;
+        font-size: 40px;
+        line-height: 55px;
+      }
     }
     &-body{
       position: relative;
       top: 7em;
       left:8em;
       width: fit-content;
-      height: 615px;
+      height:580px;
       overflow-y: auto;
       overflow-x: hidden;
+      @media (max-width: 376px) {
+        top: 0;
+        left:0;
+        padding: 20px 17px 20px 18px;
+        width: inherit;
+      }
     &-frame {
       background-color: white;
       width: 447px;
       padding: 30px;
       box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
       border-radius: 16px;
+      @media (max-width: 376px) {
+        width: inherit;
+      }
       &-text {
         font-style: normal;
         font-weight: normal;
@@ -48,6 +70,18 @@
           color: #ce8500;
         }
       }
+      }
+
+
+
+    }
+    &-img {
+      display: none;
+      @media (max-width: 376px) {
+        display: block;
+        margin-top: 35px;
+        background: #FFF0BF;
+        border-radius: 30px;
       }
     }
   }

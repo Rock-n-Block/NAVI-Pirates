@@ -2,6 +2,8 @@ import React from "react";
 
 import './regeconomics.scss';
 
+import img from '../../../assets/img/Paw Card.png'
+
 function RegEconomicsComponent() {
   return (
       <div className = "reg-economics">
@@ -9,6 +11,9 @@ function RegEconomicsComponent() {
           <div className = "reg-economics__content">
               <div className = "reg-economics__content-title">
                   Regular PAW CARD Issuance ECONOMICS
+              </div>
+              <div className="reg-economics__content-img">
+                  <img src={img} alt=""/>
               </div>
               <div className = "reg-economics__content-body">
               <div className = "reg-economics__content-body-frame">

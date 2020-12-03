@@ -2,6 +2,8 @@ import React from "react";
 
 import './goldtokens.scss';
 
+import money from '../../../assets/img/Money.png'
+
 function GOLDTokensComponent() {
   return (
       <div className = "gold-tokens">
@@ -9,6 +11,9 @@ function GOLDTokensComponent() {
           <div className = "gold-tokens__content">
               <div className = "gold-tokens__content-title">
                   GOLD tokens
+              </div>
+              <div className="gold-tokens__content-img">
+                  <img src={money} alt=""/>
               </div>
               <div className = "gold-tokens__content-body">
               <div className = "gold-tokens__content-body-frame">
@@ -24,7 +29,6 @@ function GOLDTokensComponent() {
                       </span>
                   </div>
               </div>
-
               </div>
       </div>
       </div>

@@ -1,13 +1,13 @@
 @import './fonts';
 
 body{
-  font-family: BB;
+  font-family: MM;
 }
 .row {
   max-width: 1320px;
   padding: 0 10px;
   width: 100%;
-  margin: 8px auto;
+  margin: auto;
   &--sm {
     max-width: 630px;
   }
@@ -28,4 +28,10 @@ body{
 
 button{
   font-family: MB;
+}
+
+@media (max-width: 376px) {
+  .row{
+    padding: 0 0;
+  }
 }

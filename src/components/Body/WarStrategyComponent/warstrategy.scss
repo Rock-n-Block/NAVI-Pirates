@@ -4,8 +4,12 @@
   background: url("../../../assets/img/background_8.png") no-repeat;
   background-position-x: center;
   font-family: MM;
+  @media (max-width: 376px) {
+    background: #FFEABC;
+    border-radius: 30px;
+  }
   &__content{
-    height: 1000px;
+    height: 950px;
     &-title{
       position: relative;
       top:2.5em;
@@ -51,6 +55,14 @@
         }
       }
     }
-
+    &-img {
+      display: none;
+      background: #E0846B;
+      border-radius: 37.5px;
+      @media (max-width: 376px) {
+        display: block;
+        text-align: center;
+      }
+    }
   }
 }

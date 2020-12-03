@@ -1,19 +1,25 @@
 @import '../../../styles/fonts';
 
-.nft-offering{
+.nft-offering {
   background-color: #47AFDD;
   border-radius: 60px;
   position: relative;
   top: -7em;
   z-index: 0;
   font-family: MM;
+  @media (max-width: 376px) {
+    padding: 40px 30px 0 30px;
+  }
 
   &__content {
     position: relative;
     border-radius: 60px;
     padding-bottom: 46px;
     padding-top: 72px;
-    &-title{
+    @media (max-width: 376px) {
+      padding-top: 0;
+    }
+    &-title {
       font-weight: 800;
       font-size: 100px;
       line-height: 137px;
@@ -24,123 +30,178 @@
       font-feature-settings: 'liga' off;
 
       color: #FAC34E;
-      text-shadow: 2px 2px 0px #FFFFFF, 7px 7px 0px #000000;
-    }
-    &-picture{
-      display: flex;
-      justify-content: center;
-    }
-    &-backPicture{
-      &-first,&-second{
-        position: absolute;
-      }
-      &-first{
-        top: 56px;
-        right: 94.1px;
-      }
-      &-second{
-        top: -116px;
-        left: 35px;
+      text-shadow: 2px 2px 0 #FFFFFF, 7px 7px 0 #000000;
+
+      @media (max-width: 376px) {
+        font-size: 50px;
+        line-height: 68px;
+        letter-spacing: 0.02em;
       }
     }
-  &-body {
-    position: relative;
+      &-picture {
+        display: flex;
+        justify-content: center;
+        @media (max-width: 376px) {
+          & {
+            img {
+              width: 286px;
+              height: 453px;
+            }
+          }
+        }
+      }
+      &-backPicture {
+        &-first, &-second {
+          position: absolute;
+        }
+        &-first {
+          top: 56px;
+          right: 94.1px;
+        }
+        &-second {
+          top: -116px;
+          left: 35px;
+        }
+      }
+      &-body {
+        position: relative;
 
-    &-left {
-      position: absolute;
-      background: #FFFFFF;
-      width: 253px;
-      top: 472px;
-      left: 95px;
-      font-weight: bold;
+        &-left {
+          position: absolute;
+          background: #FFFFFF;
+          width: 253px;
+          top: 472px;
+          left: 95px;
+          font-weight: bold;
 
+          @media (max-width: 376px) {
+            margin-bottom: 5px;
+          }
+          &-img-1, &-img-2 {
+            width: 26.59px;
+            height: 26.59px;
+            background: #FFFFFF;
+            transform: rotate(135deg);
+            position: absolute;
+            right: -13px;
+          }
+          &-img-1 {
+            bottom: 97.4px;
+            @media (max-width: 376px) {
+              display: none;
+            }
+          }
+          &-img-2 {
+            top: 69px;
+            @media (max-width: 376px) {
+              display: none;
+            }
+          }
+          &:nth-child(2n) {
+            top: 130px;
+            font-weight: normal;
+          }
+          &-backPicture {
+            position: absolute;
+            bottom: -43px;
+            left: -34px;
+          }
+        }
+        &-right {
+          position: absolute;
+          right: 0;
+          padding: 30px;
+          width: 360px;
+          top: 13em;
+          border-radius: 0 30px 0 0;
 
-      &-img-1,&-img-2{
-        position: absolute;
-        right: -19px;
-      }
-      &-img-1 {
-        bottom: 97.4px;
-      }
-      &-img-2 {
-        top:69px;
-      }
-      &:nth-child(2n) {
-        top: 130px;
-        font-weight: normal;
-      }
-      &-backPicture{
-        position: absolute;
-        bottom: -43px;
-        left: -34px;
-      }
-    }
-    &-right {
-      position: absolute;
-      right: 0px;
-      padding: 30px;
-      width: 360px;
-      top: 13em;
+          @media (max-width: 376px) {
+            margin-top:20px;
+          }
 
-      border-radius: 0 30px 0 0;
-      &-cap{
-        position: absolute;
-        right: -71px;
-        top: -75px;
-      }
-      &-img{
-        position: absolute;
-        top: 97px;
-        left: -17px;
-        transform: rotate(
-                        180deg
-        );
-      }
-    }
-    &-right, &-left {
-      box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
-      border-radius: 16px;
-      background-color: white;
-      padding: 30px;
-      &-text {
+          &-cap {
+            position: absolute;
+            right: -71px;
+            top: -75px;
 
-        font-size: 16px;
-        line-height: 28px;
-        font-feature-settings: 'liga' off;
-        color: #18191F;
-        &-special{
-          color: #1490C7;
-          margin: 5px;
+            @media (max-width: 376px) {
+              &{
+                img{
+                  right: -80px;
+                  top: -75px;
+                }
+              }
+            }
+          }
+          &-img {
+            position: absolute;
+            top: 97px;
+            left: -13px;
+            width: 26.59px;
+            height: 26.59px;
+            background: #FFFFFF;
+            transform: rotate(135deg);
+            @media (max-width: 376px) {
+              display: none;
+            }
+          }
+        }
+        &-right, &-left {
+          box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+          border-radius: 16px;
+          background-color: white;
+          padding: 30px;
+          @media (max-width: 376px) {
+            position: relative;
+            top:0 !important;
+            left:0 !important;
+            width:inherit;
+            font-size: 16px;
+            line-height: 28px;
+          }
+          &-text {
+
+            font-size: 16px;
+            line-height: 28px;
+            font-feature-settings: 'liga' off;
+            color: #18191F;
+            &-special {
+              color: #1490C7;
+              margin: 5px;
+            }
+          }
+        }
+
+        &-bottom {
+          margin: auto;
+          width: 660px;
+          background-color: white;
+          box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+          border-radius: 16px;
+          @media (max-width: 376px) {
+            position: relative;
+            width: inherit;
+          }
+          &-text {
+            font-weight: bold;
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+            margin: 10px 0;
+            padding: 20px;
+
+            font-size: 16px;
+            line-height: 28px;
+            text-align: center;
+            text-transform: uppercase;
+            font-feature-settings: 'liga' off;
+            &-special {
+              font-weight: bold;
+              color: #1490C7;
+              margin: 5px;
+            }
+          }
         }
       }
     }
-
-    &-bottom {
-      margin: auto;
-      width: 660px;
-      background-color: white;
-      box-shadow: 0px 30px 40px rgba(212, 217, 232, 0.2);
-      border-radius: 16px;
-      &-text {
-        font-weight: bold;
-        flex: none;
-        order: 0;
-        flex-grow: 0;
-        margin: 10px 0;
-        padding: 20px;
-
-        font-size: 16px;
-        line-height: 28px;
-        text-align: center;
-        text-transform: uppercase;
-        font-feature-settings: 'liga' off;
-        &-special{
-          font-weight: bold;
-          color: #1490C7;
-          margin: 5px;
-          }
-      }
-    }
   }
-  }
-}

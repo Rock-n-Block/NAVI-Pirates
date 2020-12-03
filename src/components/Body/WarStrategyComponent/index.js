@@ -3,6 +3,8 @@ import React from "react";
 import './warstrategy.scss';
 import {Scrollbars} from "react-custom-scrollbars";
 
+import img from '../../../assets/img/WARStrategyGard.png'
+
 function GOLDTokensComponent() {
   return (
       <div className = "war-strategy">
@@ -10,6 +12,9 @@ function GOLDTokensComponent() {
           <div className = "war-strategy__content">
               <div className = "war-strategy__content-title">
                   War Strategy
+              </div>
+              <div className="war-strategy__content-img">
+                  <img src={img} alt=""/>
               </div>
               <div className = "war-strategy__content-body">
                   <Scrollbars style={{ width:500, height: 612 }}>

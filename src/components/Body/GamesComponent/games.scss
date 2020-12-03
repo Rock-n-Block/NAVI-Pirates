@@ -2,43 +2,89 @@
 
 
 .games {
-  background: url("../../../assets/img/Rectangle 370.png");
+  background: url("../../../assets/img/background_11.png");
   background-size: cover;
-  padding: 198px 147px 254px 147px;
+  height: calc(100vh + 7em);
   font-family: MM;
   font-style: normal;
   font-weight: 800;
+  padding: 126px 147px 254px 147px;
+  @media (max-width: 376px) {
+    padding: 32px 30px 0 30px;
+  }
+
   &__content {
-    display: flex;
-    justify-content: space-around;
+    position: relative;
 
-  }
+    @media (max-width: 376px) {
+      display: block;
+    }
+    &-middle{
+      &-logo{
+        display: none;
+        @media (max-width: 376px) {
+          display: block;
+          text-align: center;
+        }
+      }
+    }
+    &-logo {
+      position: absolute;
+      @media (max-width: 376px) {
+        display: none;
+      }
+      top:0;
+      right:0;
+      &-img {
+        text-align: center;
 
-  &__title {
-    width: 430px;
-    margin-bottom: 50px;
-    left: 147px;
-    top: 198px;
-    text-align: left;
-    font-size: 85px;
-    line-height: 85px;
-    color: #4F320F;
-    font-feature-settings: 'liga' off;
-  }
-  &__text{
-    width: 562px;
-    left: 147px;
-    top: 438px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 32px;
-    font-feature-settings: 'liga' off;
-    color: #4F320F;
-  }
-  &__logo{
-    &-img{
-      text-align: center;
+        @media (max-width: 376px) {
+          & {
+            img {
+              width: 155.18px;
+              height: 162.14px;
+            }
+          }
+        }
+      }
+    }
+
+    &-title {
+      position: relative;
+      width: 430px;
+      margin-bottom: 50px;
+      text-align: left;
+      font-size: 85px;
+      line-height: 85px;
+      color: #4F320F;
+      font-feature-settings: 'liga' off;
+      @media (max-width: 376px) {
+        font-size: 57px;
+        font-weight: 800;
+        width: inherit;
+        text-align: center;
+        line-height: 48px;
+        margin-bottom: 32px;
+      }
+    }
+    &-text {
+      position: relative;
+      width: 562px;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 32px;
+      font-feature-settings: 'liga' off;
+      color: #18191F;
+
+      @media (max-width: 376px) {
+        font-size: 14px;
+        width: inherit;
+        line-height: 32px;
+      }
     }
   }
+
+
+
 }
