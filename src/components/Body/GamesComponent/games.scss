@@ -4,11 +4,10 @@
 .games {
   background: url("../../../assets/img/background_11.png");
   background-size: cover;
-  height: calc(100vh + 7em);
-  font-family: MM;
+  height: calc(80vw + 7em);
   font-style: normal;
-  font-weight: 800;
-  padding: 126px 147px 254px 147px;
+  font-weight: 700;
+  padding: 126px 0 254px 0;
   @media (max-width: 376px) {
     padding: 32px 30px 0 30px;
   }

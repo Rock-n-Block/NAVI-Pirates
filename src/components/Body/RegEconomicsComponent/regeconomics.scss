@@ -1,35 +1,51 @@
 @import '../../../styles/fonts';
 
 .reg-economics{
-  background: url("../../../assets/img/background_7.png") no-repeat;
-  background-position-x: center;
-  font-family: MM;
+  box-sizing: border-box;
+  margin-top:100px;
+ // font-family: MM;
   @media (max-width: 376px) {
     background: #FFEAA7;
     border-radius: 30px;
   }
-  &__content{
+  &__content {
+    display: flex;
+    flex-direction: row;
     position: relative;
-    right: 3em ;
-    height: 1000px;
-    overflow-y: auto;
+    &-img{
+      &-first{
+        position: absolute;
+        right: -53px;
+        top: 114px;
+      }
+      &-second{
+        position: absolute;
+        left: -42px;
+        bottom: -51px;
+      }
+     }
+  }
+  &__right-content{
+    background-color:#FFEAA7;
+    border-radius:0 30px 30px 0;
+    width:50%;
+    padding-top: 60px;
+    padding-right: 59px;
+    padding-bottom: 15px;
+    padding-left: 61px;
     &-title{
-      position: absolute;
-      top: 1em;
-      width:10em;
-      left: 16em;
+      width: 10em;
       font-style: normal;
       font-weight: 800;
-      font-size: 48px;
-      line-height: 66px;
+      font-size: 36px;
+      margin-bottom: 43px;
+      line-height: 51px;
       font-feature-settings: 'liga' off;
       color: #D65520;
 
     }
     &-body{
-      position: absolute;
-      top: 19em;
-      right: 4em;
+
       width: fit-content;
       overflow-y: auto;
       overflow-x: hidden;
@@ -44,6 +60,7 @@
           position: relative;
           font-style: normal;
           font-weight: normal;
+          margin-bottom: 47px;
           font-size: 14px;
           line-height: 28px;
           font-feature-settings: 'liga' off;
@@ -71,5 +88,19 @@
       }
     }
   }
-
+  &__left-content{
+    background-color:#FFD44A;
+    border-radius:30px 0 0 30px;
+    width:50%;
+    &-img{
+      position: relative;
+      img{
+        position: absolute;
+        width: 43em;
+        height: 57em;
+        left: -138px;
+        top: -2px;
+      }
+    }
+  }
 }

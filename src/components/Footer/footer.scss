@@ -2,12 +2,13 @@
 
 .footer{
   background-color: black;
-  font-family: Manrope;
+  box-sizing: border-box;
+ // font-family: MM;
 &__content {
   display: flex;
   justify-content: space-around;
   color: white;
-  height:80px
+  //height:80px
 }
   &__left, &__center, &__right{
     margin: auto;

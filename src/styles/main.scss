@@ -1,10 +1,10 @@
 @import './fonts';
 
 body{
-  font-family: MM;
+  font-family: MB;
 }
 .row {
-  max-width: 1320px;
+  max-width: 1120px;
   padding: 0 10px;
   width: 100%;
   margin: auto;
@@ -34,4 +34,7 @@ button{
   .row{
     padding: 0 0;
   }
+}
+*{
+  box-sizing: border-box;
 }

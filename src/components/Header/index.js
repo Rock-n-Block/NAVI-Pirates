@@ -3,11 +3,20 @@ import { NavLink} from 'react-router-dom';
 import './header.scss';
 
 import logo from '../../assets/img/logo.svg'
+import tab from '../../assets/img/tab.png'
 import login_img from '../../assets/img/login_image.png'
 import trust_img from '../../assets/img/trust.png'
 
 function Header() {
     let count = 4;
+
+    const reload = () =>{
+        window.location.reload();
+    };
+
+    const up = () =>{
+        document.documentElement.scrollTop = 0;
+    };
 
     return (
     <div className="header">
@@ -15,8 +24,10 @@ function Header() {
             <div className = "header__content">
               <div className = "header__left">
                 <NavLink to = "/">
-                    <img src = {logo} alt = "" />
+                    <img src = {logo} alt = ""  onClick={reload}/>
+                    <img className="tab" src = {tab} alt = ""  onClick={up}/>
                 </NavLink>
+
               </div>
                 <div className = "header__right">
                    <button className = "header__right-login-button">

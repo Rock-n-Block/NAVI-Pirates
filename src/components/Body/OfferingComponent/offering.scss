@@ -3,6 +3,7 @@
 .nft-offering {
   background-color: #47AFDD;
   border-radius: 60px;
+  box-sizing: border-box;
   position: relative;
   top: -7em;
   z-index: 0;
@@ -61,6 +62,7 @@
         &-second {
           top: -116px;
           left: 35px;
+          z-index: -10;
         }
       }
       &-body {
@@ -71,7 +73,7 @@
           background: #FFFFFF;
           width: 253px;
           top: 472px;
-          left: 95px;
+          left: 50px;
           font-weight: bold;
 
           @media (max-width: 376px) {
@@ -109,7 +111,7 @@
         }
         &-right {
           position: absolute;
-          right: 0;
+          right:-52px;
           padding: 30px;
           width: 360px;
           top: 13em;

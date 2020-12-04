@@ -4,7 +4,7 @@ import './paw.scss';
 
 import bottle from '../../../assets/img/bottle.png'
 
-import game from '../../../assets/img/Game.png'
+import game from '../../../assets/img/Game 1 (2).png'
 
 function PAWComponent() {
   return (
