@@ -17,7 +17,9 @@ import arrowNextImg from '../../assets/img/next.png'
 function Header() {
 
     const [isTabActive, setIsTabActive]  = React.useState(false);
+    const [isCounterActive, setCounterActive] = React.useState(false);
     const [isSlidesActive, setSlidesActive] = React.useState(false);
+    const [value,changeValue] = React.useState(2);
 
 
     const ref = useRef(null);
@@ -90,35 +92,31 @@ function Header() {
                             </div>
                         </div>
                     </button>
+
                     <button className = "header__right-pawCard-button">
                         BUY VIP PAW CARD
-                        <div className = "pawCard-count-component-down" onClick={()=>{
-                            document.getElementById("pawCard-panel").style.display = "block";
-                            document.getElementsByClassName("pawCard-count-component-up")[0].style.display = "block";
-                            document.getElementsByClassName("pawCard-count-component-down")[0].style.display = "none"
 
-                        }}>
-                        </div>
-                        <div className = "pawCard-count-component-up" onClick={()=>{
-                            document.getElementById("pawCard-panel").style.display = "";
-                            document.getElementsByClassName("pawCard-count-component-down")[0].style.display = "block";
-                            document.getElementsByClassName("pawCard-count-component-up")[0].style.display = "none";
-                        }}>
-                        </div>
+                        {isCounterActive? (
+                            <div className = "pawCard-count-component-up" onClick={()=>setCounterActive(false)}/>
+                        ):
+                            ( <div className = "pawCard-count-component-down"
+                                   onClick={()=>setCounterActive(true)}/>)}
+
                     </button>
-                    <div className = "header__right-pawCard-panel" id = "pawCard-panel">
+                    {isCounterActive?(<div className = "header__right-pawCard-panel" id = "pawCard-panel">
                         <div className="header__right-pawCard-panel-counter">
-                            <button>-</button>
+                            <button onClick={() => changeValue(value-1)}>-</button>
                             <div className="header__right-pawCard-panel-value">
-                                20
+                                {value}
                             </div>
-                            <button>+</button>
+                            <button onClick={() => changeValue(value+1)}>+</button>
                         </div>
                         <div className="header__right-pawCard-panel-cost">
                             $ 200
                         </div>
                         <button className="header__right-pawCard-panel-buy-button">BUY CARD</button>
-                    </div>
+                    </div>):(null)}
+
                 </div>
                 {isSlidesActive ? (
                     <div className = "header__swiper" id = "swiper">
@@ -134,6 +132,34 @@ function Header() {
                                 <div className="swiper-slide-data">
                                     <div className="swiper-slide-value">
                                         count 1
+                                    </div>
+                                    <button className="swiper-slide-button">
+                                        WITH DRAW
+                                    </button>
+                                    <div className="swiper-slide-id">
+                                        #1
+                                    </div>
+                                </div>
+                                <div className="swiper-slide-data">
+                                    <div className="swiper-slide-value">
+                                        count 2
+                                    </div>
+                                    <button className="swiper-slide-button">
+                                        WITH DRAW
+                                    </button>
+                                    <div className="swiper-slide-id">
+                                        #2
+                                    </div>
+                                </div>
+                                <div className="swiper-slide-data">
+                                    <div className="swiper-slide-value">
+                                        count 3
+                                    </div>
+                                    <button className="swiper-slide-button">
+                                        WITH DRAW
+                                    </button>
+                                    <div className="swiper-slide-id">
+                                        #3
                                     </div>
                                 </div>
                             </SwiperSlide>

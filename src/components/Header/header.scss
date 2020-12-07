@@ -14,19 +14,26 @@
 
 &__swiper{
   position: fixed;
-  top:10%;
+  top: 85px;
+  left:0;
+  width: 100%;
+  background-image: url("../../assets/img/swiper-back.png");
+  background-color: #727285;
+  box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.15);
+  border-radius: 0px 0px 40px 40px;
+  .swiper-wrapper{
+
+  }
   div{
-    background-image: url("../../assets/img/swiper-back.png");
-    background-color: #727285;
-    box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.15);
-    border-radius: 0px 0px 40px 40px;
+
     width: 68em;
     height: 500px;
   }
   .swiper-slide-data{
     background:url("../../assets/img/card1.png") no-repeat;
-    position: absolute;
+    position: relative;
     top:20px;
+
   }
 }
 
@@ -191,20 +198,19 @@
   width: 28px;
   height: 28px;
   border-radius: 8px;
-  margin-left:13px;
+  margin-left: 10px;
   background-image:url("../../assets/img/button_a.png"); ;
 }
   .pawCard-count-component-up{
-    display: none;
     width: 28px;
     height: 28px;
     border-radius: 8px;
-    margin-left:13px;
+    margin-left: 10px;
     background-image:url("../../assets/img/button_a.png");
     transform: rotate(180deg);
   }
   &__right-pawCard-panel{
-    display: none;
+
     position: fixed;
     right: 45em;
     top: 9%;
@@ -212,7 +218,7 @@
     background: #005DC4;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
-    width: 164px;
+    width: 196px;
     padding: 15px 20px 20px 15px;
 
     &-buy-button{
@@ -283,12 +289,13 @@
     }
   }
   &__right-pawCard-button{
-    width: 174px;
+    width: 196px;
     align-items: center;
     left: 79.58%;
     right: 8.33%;
     top: 0.15%;
     bottom: 99.46%;
+
 
     background: #005DC4;
       position: static;
@@ -325,4 +332,55 @@
   top: 90px;
 }
 
+.media__btn--prev,.media__btn--next{
+  position: absolute;
+  top: 36%;
+  z-index: 20;
+  width: inherit !important;
+  height: inherit !important;
+  cursor: pointer;
+}
 
+.media__btn--prev{
+  left:0;
+  margin-left:20px;
+}
+.media__btn--next{
+  right: 0;
+  margin-right:20px;
+}
+
+.swiper-slide-value{
+  width:100px !important;
+  height: 29px !important;
+  position: absolute;
+  left: 117px;
+  bottom: 159px;
+  background: none;
+  text-align: center;
+}
+.swiper-slide{
+  display: flex;
+  padding-left: 56px;
+  padding-right: 56px;
+}
+.swiper-slide-button{
+  position: absolute;
+  bottom: 106px;
+  left: 101px;
+  height: 42px;
+  width: 130px;
+  background-color: #b19659;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+.swiper-slide-id{
+  width:10em !important;
+  height:20px !important;
+  position: absolute;
+  bottom: 32px;
+  left: 80px;
+  text-align: center;
+}
