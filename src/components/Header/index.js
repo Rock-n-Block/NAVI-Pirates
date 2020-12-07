@@ -16,7 +16,7 @@ import trust_img from '../../assets/img/trust.png'
 import arrowPrevImg from '../../assets/img/prev.png'
 import arrowNextImg from '../../assets/img/next.png'
 
-function Header1({ binanceService }) {
+function Header({ binanceService }) {
     const dispatch = useDispatch();
 
     const [isTabActive, setIsTabActive] = React.useState(false);
@@ -227,4 +227,4 @@ function Header1({ binanceService }) {
     );
 }
 
-export default Header1;
+export default Header;
