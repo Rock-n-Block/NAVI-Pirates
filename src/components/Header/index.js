@@ -17,17 +17,19 @@ import arrowPrevImg from '../../assets/img/prev.png'
 import arrowNextImg from '../../assets/img/next.png'
 
 function Header({ binanceService }) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const [isTabActive, setIsTabActive]  = React.useState(false);
     const [isCounterActive, setCounterActive] = React.useState(false);
     const [isSlidesActive, setSlidesActive] = React.useState(false);
+    const [swipe, setSwipe] = React.useState(false);
     const [value,changeValue] = React.useState(2);
 
 
     const ref = useRef(null);
 
     const goNext = () => {
+
         if (ref.current !== null && ref.current.swiper !== null) {
             ref.current.swiper.slideNext();
         }
@@ -53,9 +55,9 @@ function Header({ binanceService }) {
         binanceService.getAccount()
             .then(res => dispatch(userActions.setUserData(res)))
             .catch(err => dispatch(userActions.setUserData(err)))
-    }
+    };
 
-    const userAddress = useSelector(({ user }) => user.address)
+    const userAddress = useSelector(({ user }) => user.address);
 
     //hook for function
     React.useEffect(() => {
@@ -134,7 +136,7 @@ function Header({ binanceService }) {
                             spaceBetween={30}
                             slidesPerView={1}
                             // effect="fade"
-                         //   onSwiper={swiper => setSwiper(swiper)}
+                            onSwiper={swiper => setSwipe(swiper)}
                             //onSlideChangeTransitionEnd={handleSlideChange}
 
                         >
@@ -176,7 +178,13 @@ function Header({ binanceService }) {
                             <SwiperSlide>
                                 <div className="swiper-slide-data">
                                     <div className="swiper-slide-value">
-                                        count 2
+                                        count 4
+                                    </div>
+                                    <button className="swiper-slide-button">
+                                        WITH DRAW
+                                    </button>
+                                    <div className="swiper-slide-id">
+                                        #1
                                     </div>
                                 </div>
                             </SwiperSlide>
@@ -187,14 +195,15 @@ function Header({ binanceService }) {
                                     </div>
                                 </div>
                             </SwiperSlide>
+                            <div className="media__btn media__btn--prev" onClick={()=>swipe.slidePrev()}>
+                                <img src={arrowPrevImg} alt="" />
+                            </div>
+                            <div className="media__btn media__btn--next" onClick={()=>swipe.slideNext()}>
+                                <img src={arrowNextImg} alt="" />
+                            </div>
                         </Swiper>
 
-                    <div className="media__btn media__btn--prev" onClick={() => goPrev()}>
-                        <img src={arrowPrevImg} alt="" />
-                    </div>
-                    <div className="media__btn media__btn--next" onClick={() => goNext()}>
-                        <img src={arrowNextImg} alt="" />
-                    </div>
+
 
                 </div>): null}
 
