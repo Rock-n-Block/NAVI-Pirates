@@ -8,12 +8,35 @@
   margin-top: 100px;
   @media (max-width: 376px) {
     background: #F6F9FF;
-
+    border-radius: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 &__content{
   display: flex;
   flex-direction: row;
+  @media (max-width: 376px) {
+      display: block;
+    padding-left: 0;
+
+  }
 }
+  &__middle-content{
+    display: none;
+    background-color: #47AFDD;
+    border-radius: 37px;
+    @media (max-width: 376px) {
+      display: block;
+    }
+    img{
+      @media (max-width: 376px) {
+        width: 100%;
+        position: relative;
+        left: 35px;
+        top: 30px;
+      }
+    }
+  }
   &__right-content{
 
     background-color: #F6F9FF;
@@ -24,6 +47,9 @@
     padding-left: 60px;
     @media (max-width: 376px) {
       height: max-content;
+      padding-left: 0;
+      padding-top: 0;
+      width: 100%;
     }
     &-title{
       position: relative;
@@ -48,9 +74,14 @@
       overflow-y: auto;
       overflow-x: hidden;
       @media (max-width: 376px) {
+        margin-top: 40px;
+        width: inherit;
         height: inherit;
         top:0;
         left:0;
+        padding-left: 17px;
+        padding-right: 18px;
+
       }
     &-frame {
       background-color: white;
@@ -61,6 +92,10 @@
       margin-bottom: 49px;
       @media (max-width: 376px) {
         width: 100%;
+        margin-bottom: 0;
+        &:first-child{
+          margin-bottom: 20px;
+        }
       }
       &-text {
         position: relative;
@@ -102,7 +137,9 @@
     border-radius:0 60px 60px 0;
     width: 50%;
     background-size: contain;
-
+    @media (max-width: 376px) {
+      display: none;
+    }
     &-img{
       text-align: center;
       position: relative;
@@ -113,24 +150,36 @@
         top: 15px;
         right: 53px;
         z-index: 10;
+        @media (max-width: 376px) {
+          display: none;
+        }
       }
       &-second{
         position: absolute;
         bottom: -36em;
         left: -42px;
         z-index: 10;
+        @media (max-width: 376px) {
+          display: none;
+        }
       }
       &-third{
         position: absolute;
         top: 42em;
         left: 53px;
         z-index: 10;
+        @media (max-width: 376px) {
+          display: none;
+        }
       }
       &-forth{
         position: absolute;
         top: -36px;
         left: -49px;
         z-index: 10;
+        @media (max-width: 376px) {
+          display: none;
+        }
       }
       img:first-child{
         position: absolute;

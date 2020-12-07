@@ -12,6 +12,25 @@
   z-index: 100;
 
 
+&__swiper{
+  position: fixed;
+  top:10%;
+  div{
+    background-image: url("../../assets/img/swiper-back.png");
+    background-color: #727285;
+    box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.15);
+    border-radius: 0px 0px 40px 40px;
+    width: 68em;
+    height: 500px;
+  }
+  .swiper-slide-data{
+    background:url("../../assets/img/card1.png") no-repeat;
+    position: absolute;
+    top:20px;
+  }
+}
+
+
   @media (max-width: 376px) {
     position: relative;
     height: max-content;
@@ -150,7 +169,8 @@
       border-radius: 8px;
       margin-left:13px;
     }
-    .count-value{
+
+  .count-value{
       left: 76.88%;
       right: 22.5%;
       top: 0.25%;
@@ -166,7 +186,102 @@
       color: #FFFFFF;
     }
   }
+.pawCard-count-component-down{
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  margin-left:13px;
+  background-image:url("../../assets/img/button_a.png"); ;
+}
+  .pawCard-count-component-up{
+    display: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    margin-left:13px;
+    background-image:url("../../assets/img/button_a.png");
+    transform: rotate(180deg);
+  }
+  &__right-pawCard-panel{
+    display: none;
+    position: fixed;
+    right: 45em;
+    top: 9%;
+    z-index: 1;
+    background: #005DC4;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    width: 164px;
+    padding: 15px 20px 20px 15px;
 
+    &-buy-button{
+      height: 34px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      width: 100%;
+      margin-top:20px;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      font-feature-settings: 'liga' off;
+
+      color: #005DC4;
+    }
+    &-value{
+      padding:16px;
+      background-color: white;
+      opacity: 0.25;
+      color: black;
+      border-radius: 12px;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 20px;
+      /* identical to box height, or 91% */
+
+      text-align: center;
+      font-feature-settings: 'liga' off;
+
+
+    }
+
+    &-cost{
+      margin-top:20px;
+      text-align: center;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 20px;
+      /* identical to box height, or 91% */
+
+      text-align: center;
+      font-feature-settings: 'liga' off;
+
+      color: #FFFFFF;
+
+    }
+    &-counter{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      button{
+        background: #FFFFFF;
+        opacity: 0.25;
+        border-radius: 30px;
+        width: 28px;
+        height: 24px;
+        &:first-child{
+          margin-right: 14px;
+        }
+        &:last-child{
+          margin-left: 14px;
+        }
+      }
+    }
+  }
   &__right-pawCard-button{
     width: 174px;
     align-items: center;
@@ -209,4 +324,5 @@
   left: 20px;
   top: 90px;
 }
+
 

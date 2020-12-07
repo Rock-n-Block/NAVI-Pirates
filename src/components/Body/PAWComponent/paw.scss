@@ -18,18 +18,26 @@
     border-radius: 60px;
     padding-top: 60px;
     padding-bottom: 70px;
-
+    @media (max-width: 376px) {
+      background:none;
+      background-color: #19C2FD ;
+      padding: 0;
+    }
     &-img {
       display: block;
       text-align: center;
       margin-top: 23px;
+      @media (max-width: 376px) {
+        margin-top: 0;
+      }
       img{
         width: 43em;
       }
       @media (max-width: 376px) {
         img{
           position: relative;
-          left: -5vw;
+          left: -40px;
+          width: 125%;
         }
       }
     }
@@ -46,8 +54,6 @@
       @media (max-width: 376px){
          font-size: 34px;
         line-height: 55px;
-        margin: 20px 30px 0 30px;
-        padding: 20px;
      }
     }
     &-frame{
@@ -68,11 +74,13 @@
           color: #FFFFFF;
         @media (max-width: 376px){
           width: inherit;
+
         }
       }
       @media (max-width: 376px){
         top:0;
         width: inherit;
+        margin: 0;
       }
       &-bottle{
         position: absolute;

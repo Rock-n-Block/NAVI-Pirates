@@ -11,10 +11,49 @@
   @media (max-width: 376px) {
     background: #F7F9FF;
     border-radius: 30px;
+    padding-bottom: 20px;
   }
   &__content{
     display: flex;
     flex-direction: row;
+    @media (max-width: 376px) {
+      display: block;
+      padding-left: 0;
+
+    }
+  }
+  &__middle-content{
+    display: none;
+    background-color: #CAC6EA;
+    border-radius: 37px;
+    @media (max-width: 376px) {
+      display: block;
+    }
+    &-img{
+      padding: 48px 17px 28px 17px;
+    }
+    &-img-3{
+      position: relative;
+      @media (max-width: 376px) {
+        position: relative;
+        top:20px;
+        right: 0;
+        width: 100%;
+      }
+    }
+    &-img-1,&-img-2{
+      position: absolute;
+      z-index: 0;
+      width: 20%;
+    }
+    &-img-1{
+      right: 16px;
+      top: 170px;
+    }
+    &-img-2{
+      top: 34em;
+      left: 22px;
+    }
   }
 
   &__right-content {
@@ -24,11 +63,21 @@
     padding-top: 80px;
     padding-left: 62px;
     position: relative;
-    img{
+    @media (max-width: 376px) {
+      height: max-content;
+      padding-left: 0;
+      padding-top: 0;
+      width: 100%;
+    }
+    &-bubbles{
       position: absolute;
       top: 63px;
       right: -45px;
+      @media (max-width: 376px) {
+        display: none;
+      }
     }
+
     &-title{
 
       width: 5em;
@@ -40,6 +89,12 @@
       font-feature-settings: 'liga' off;
 
       color: #6C5CE7;
+      @media (max-width: 376px) {
+        top:0;
+        left:0;
+        text-align: center;
+        width:inherit;
+      }
     }
     &-body{
 
@@ -48,6 +103,16 @@
       overflow-y: auto;
       overflow-x: hidden;
 
+      @media (max-width: 376px) {
+        margin-top: 40px;
+        width: inherit;
+        height: inherit;
+        top:0;
+        left:0;
+        padding-left: 17px;
+        padding-right: 18px;
+
+      }
       &-frame{
         background-color: white;
         width: 26em;
@@ -55,6 +120,13 @@
         padding: 30px;
         box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
         border-radius: 16px;
+        @media (max-width: 376px) {
+          width: 100%;
+          margin-bottom: 0;
+          &:first-child{
+            margin-bottom: 20px;
+          }
+        }
         &-text{
           position: relative;
           font-style: normal;
@@ -111,6 +183,9 @@
     border-radius: 30px 0 0 30px;
     width: 50%;
     position: relative;
+    @media (max-width: 376px) {
+      display: none;
+    }
     &-img{
       position: absolute;
       left: -6px;
