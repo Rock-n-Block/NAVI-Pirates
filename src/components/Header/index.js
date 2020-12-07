@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 import { NavLink} from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { userActions } from '../../redux/actions';
 
 import 'swiper/swiper.scss';
 import './header.scss';
@@ -14,7 +16,8 @@ import trust_img from '../../assets/img/trust.png'
 import arrowPrevImg from '../../assets/img/prev.png'
 import arrowNextImg from '../../assets/img/next.png'
 
-function Header() {
+function Header({ binanceService }) {
+    const dispatch = useDispatch()
 
     const [isTabActive, setIsTabActive]  = React.useState(false);
     const [isCounterActive, setCounterActive] = React.useState(false);
@@ -46,6 +49,13 @@ function Header() {
         document.documentElement.scrollTop = 0;
     };
 
+    const handleLogin = () => {
+        binanceService.getAccount()
+            .then(res => dispatch(userActions.setUserData(res)))
+            .catch(err => dispatch(userActions.setUserData(err)))
+    }
+
+    const userAddress = useSelector(({ user }) => user.address)
 
     //hook for function
     React.useEffect(() => {
@@ -59,28 +69,28 @@ function Header() {
     }, []);
 
     return (
-    <div className="header">
-        <div className = "row">
-            <div className = "header__content">
-              <div className = "header__left">
-                <NavLink to = "/">
-                    <img src = {logo} alt = ""  onClick={reload}/>
-                    {isTabActive?(
-                        <img className="tab" src = {tab} alt = ""  onClick={up}/>
-                    ):
-                        (null)}
-                </NavLink>
+        <div className="header">
+            <div className="row">
+                <div className="header__content">
+                    <div className="header__left">
+                        <NavLink to="/">
+                            <img src={logo} alt="" onClick={reload} />
+                            {isTabActive ? (
+                                <img className="tab" src={tab} alt="" onClick={up} />
+                            ) :
+                                (null)}
+                        </NavLink>
 
-              </div>
-                <div className = "header__right">
-                   <button className = "header__right-login-button">
-                     <img src={login_img}/>
-                       <div>Login to Binance Smart Chain Wallet</div>
-                   </button>
-                    <button className = "header__right-login-1-button">
-                        <img src={trust_img}/>
-                        <div>Trust Wallet</div>
-                    </button>
+                    </div>
+                    <div className="header__right">
+                        {!userAddress && <button className="header__right-login-button" onClick={handleLogin}>
+                            <img src={login_img} />
+                            <div>Login to Binance Smart Chain Wallet</div>
+                        </button>}
+                        <button className="header__right-login-1-button">
+                            <img src={trust_img} />
+                            <div>Trust Wallet</div>
+                        </button>
 
                     <button className = "header__right-nftCard-button" onClick={()=>{
                         setSlidesActive(!isSlidesActive)
