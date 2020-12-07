@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -19,10 +19,10 @@ import arrowNextImg from '../../assets/img/next.png'
 function Header({ binanceService }) {
     const dispatch = useDispatch()
 
-    const [isTabActive, setIsTabActive]  = React.useState(false);
+    const [isTabActive, setIsTabActive] = React.useState(false);
     const [isCounterActive, setCounterActive] = React.useState(false);
     const [isSlidesActive, setSlidesActive] = React.useState(false);
-    const [value,changeValue] = React.useState(2);
+    const [pawCardAmount, setPawCardAmount] = React.useState('');
 
 
     const ref = useRef(null);
@@ -41,11 +41,11 @@ function Header({ binanceService }) {
 
     let count = 4;
 
-    const reload = () =>{
+    const reload = () => {
         window.location.reload();
     };
 
-    const up = () =>{
+    const up = () => {
         document.documentElement.scrollTop = 0;
     };
 
@@ -92,116 +92,117 @@ function Header({ binanceService }) {
                             <div>Trust Wallet</div>
                         </button>
 
-                    <button className = "header__right-nftCard-button" onClick={()=>{
-                        setSlidesActive(!isSlidesActive)
-                    }}>
-                        <div> My VIP NFT CARD </div>
-                        <div className = "count-component">
-                            <div className = "count-value">
-                                {count}
+                        <button className="header__right-nftCard-button" onClick={() => {
+                            setSlidesActive(!isSlidesActive)
+                        }}>
+                            <div> My VIP NFT CARD </div>
+                            <div className="count-component">
+                                <div className="count-value">
+                                    {count}
+                                </div>
                             </div>
+                        </button>
+
+                        <div className="header__right-pawCard-wrapper">
+                            <button className="header__right-pawCard-button" onClick={() => setCounterActive(!isCounterActive)}>
+                                BUY VIP PAW CARD
+
+                        {isCounterActive ? (
+                                    <div className="pawCard-count-component-up" />
+                                ) :
+                                    (<div className="pawCard-count-component-down" />)}
+
+                            </button>
+                            {isCounterActive ? (<div className="header__right-pawCard-panel" id="pawCard-panel">
+                                <div className="header__right-pawCard-panel-counter">
+                                    <button onClick={() => setPawCardAmount(pawCardAmount <= 0 ? 0 : +pawCardAmount - 1)}></button>
+                                    <div className="header__right-pawCard-panel-value">
+                                        <input placeholder="0" type="number" value={pawCardAmount} onChange={({ target }) => setPawCardAmount(target.value)} />
+                                    </div>
+                                    <button onClick={() => setPawCardAmount(+pawCardAmount + 1)}></button>
+                                </div>
+                                <div className="header__right-pawCard-panel-cost">
+                                    $ 200
                         </div>
-                    </button>
-
-                    <button className = "header__right-pawCard-button">
-                        BUY VIP PAW CARD
-
-                        {isCounterActive? (
-                            <div className = "pawCard-count-component-up" onClick={()=>setCounterActive(false)}/>
-                        ):
-                            ( <div className = "pawCard-count-component-down"
-                                   onClick={()=>setCounterActive(true)}/>)}
-
-                    </button>
-                    {isCounterActive?(<div className = "header__right-pawCard-panel" id = "pawCard-panel">
-                        <div className="header__right-pawCard-panel-counter">
-                            <button onClick={() => changeValue(value-1)}>-</button>
-                            <div className="header__right-pawCard-panel-value">
-                                {value}
-                            </div>
-                            <button onClick={() => changeValue(value+1)}>+</button>
+                                <button className="header__right-pawCard-panel-buy-button">BUY CARD</button>
+                            </div>) : (null)}
                         </div>
-                        <div className="header__right-pawCard-panel-cost">
-                            $ 200
-                        </div>
-                        <button className="header__right-pawCard-panel-buy-button">BUY CARD</button>
-                    </div>):(null)}
 
-                </div>
-                {isSlidesActive ? (
-                    <div className = "header__swiper" id = "swiper">
-                        <Swiper
-                            spaceBetween={30}
-                            slidesPerView={1}
+                    </div>
+                    {isSlidesActive ? (
+                        <div className="header__swiper" id="swiper">
+                            <Swiper
+                                spaceBetween={30}
+                                slidesPerView={1}
                             // effect="fade"
-                         //   onSwiper={swiper => setSwiper(swiper)}
+                            //   onSwiper={swiper => setSwiper(swiper)}
                             //onSlideChangeTransitionEnd={handleSlideChange}
 
-                        >
-                            <SwiperSlide>
-                                <div className="swiper-slide-data">
-                                    <div className="swiper-slide-value">
-                                        count 1
+                            >
+                                <SwiperSlide>
+                                    <div className="swiper-slide-data">
+                                        <div className="swiper-slide-value">
+                                            count 1
                                     </div>
-                                    <button className="swiper-slide-button">
-                                        WITH DRAW
+                                        <button className="swiper-slide-button">
+                                            WITH DRAW
                                     </button>
-                                    <div className="swiper-slide-id">
-                                        #1
+                                        <div className="swiper-slide-id">
+                                            #1
                                     </div>
-                                </div>
-                                <div className="swiper-slide-data">
-                                    <div className="swiper-slide-value">
-                                        count 2
                                     </div>
-                                    <button className="swiper-slide-button">
-                                        WITH DRAW
+                                    <div className="swiper-slide-data">
+                                        <div className="swiper-slide-value">
+                                            count 2
+                                    </div>
+                                        <button className="swiper-slide-button">
+                                            WITH DRAW
                                     </button>
-                                    <div className="swiper-slide-id">
-                                        #2
+                                        <div className="swiper-slide-id">
+                                            #2
                                     </div>
-                                </div>
-                                <div className="swiper-slide-data">
-                                    <div className="swiper-slide-value">
-                                        count 3
                                     </div>
-                                    <button className="swiper-slide-button">
-                                        WITH DRAW
+                                    <div className="swiper-slide-data">
+                                        <div className="swiper-slide-value">
+                                            count 3
+                                    </div>
+                                        <button className="swiper-slide-button">
+                                            WITH DRAW
                                     </button>
-                                    <div className="swiper-slide-id">
-                                        #3
+                                        <div className="swiper-slide-id">
+                                            #3
                                     </div>
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="swiper-slide-data">
-                                    <div className="swiper-slide-value">
-                                        count 2
                                     </div>
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="swiper-slide-data">
-                                    <div className="swiper-slide-value">
-                                        count 3
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div className="swiper-slide-data">
+                                        <div className="swiper-slide-value">
+                                            count 2
                                     </div>
-                                </div>
-                            </SwiperSlide>
-                        </Swiper>
+                                    </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div className="swiper-slide-data">
+                                        <div className="swiper-slide-value">
+                                            count 3
+                                    </div>
+                                    </div>
+                                </SwiperSlide>
+                            </Swiper>
 
-                    <div className="media__btn media__btn--prev" onClick={() => goPrev()}>
-                        <img src={arrowPrevImg} alt="" />
-                    </div>
-                    <div className="media__btn media__btn--next" onClick={() => goNext()}>
-                        <img src={arrowNextImg} alt="" />
-                    </div>
+                            <div className="media__btn media__btn--prev" onClick={() => goPrev()}>
+                                <img src={arrowPrevImg} alt="" />
+                            </div>
+                            <div className="media__btn media__btn--next" onClick={() => goNext()}>
+                                <img src={arrowNextImg} alt="" />
+                            </div>
 
-                </div>): null}
+                        </div>) : null}
 
+                </div>
             </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default Header;

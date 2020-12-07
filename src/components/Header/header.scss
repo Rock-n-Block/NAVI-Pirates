@@ -1,60 +1,55 @@
 @import '../../styles/fonts';
 
-.header{
+.header {
   position: fixed;
   padding-top: 16px;
   padding-bottom: 16px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-sizing: border-box;
-  box-shadow: 0 1px 0 #E5E9F2;
-  width:100%;
+  box-shadow: 0 1px 0 #e5e9f2;
+  width: 100%;
   font-weight: 700;
   z-index: 100;
 
-
-&__swiper{
-  position: fixed;
-  top: 85px;
-  left:0;
-  width: 100%;
-  background-image: url("../../assets/img/swiper-back.png");
-  background-color: #727285;
-  box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.15);
-  border-radius: 0px 0px 40px 40px;
-  .swiper-wrapper{
-
+  &__swiper {
+    position: fixed;
+    top: 85px;
+    left: 0;
+    width: 100%;
+    background-image: url('../../assets/img/swiper-back.png');
+    background-color: #727285;
+    box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.15);
+    border-radius: 0px 0px 40px 40px;
+    .swiper-wrapper {
+    }
+    div {
+      width: 68em;
+      height: 500px;
+    }
+    .swiper-slide-data {
+      background: url('../../assets/img/card1.png') no-repeat;
+      position: relative;
+      top: 20px;
+    }
   }
-  div{
-
-    width: 68em;
-    height: 500px;
-  }
-  .swiper-slide-data{
-    background:url("../../assets/img/card1.png") no-repeat;
-    position: relative;
-    top:20px;
-
-  }
-}
-
 
   @media (max-width: 376px) {
     position: relative;
     height: max-content;
-
   }
 
   &__content,
-  &__left, &__right,
+  &__left,
+  &__right,
   &__right-login-button,
   &__right-nftCard-button,
   &__right-pawCard-button,
   &__right-pawCard-button div,
-  &__right-nftCard-button div{
-   display: flex;
- }
+  &__right-nftCard-button div {
+    display: flex;
+  }
 
-  &__content{
+  &__content {
     @media (max-width: 376px) {
       display: block;
     }
@@ -66,20 +61,19 @@
   &__right-login-button,
   &__right-nftCard-button,
   &__right-pawCard-button,
-  &__right-login-1-button
-  {
+  &__right-login-1-button {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: auto 7.5px;
+    margin-right: 15px;
     padding: 9px;
     height: 40px;
-    border:none;
+    border: none;
     border-radius: 8px;
     outline: none !important;
     cursor: pointer;
   }
-  &__left{
+  &__left {
     a {
       @media (max-width: 376px) {
         margin: auto;
@@ -87,10 +81,10 @@
     }
   }
   &__right {
-    &-login-1-button{
+    height: fit-content;
+    &-login-1-button {
       display: none;
-      background: #005DC4;
-
+      background: #005dc4;
     }
     @media (max-width: 376px) {
       margin-top: 20px;
@@ -98,7 +92,7 @@
       grid-template-rows: 50% 95%;
       grid-template-columns: 50% 50%;
       padding-bottom: 20px;
-      &-login-button{
+      &-login-button {
         display: none;
       }
       &-login-1-button {
@@ -108,29 +102,29 @@
         width: 80%;
         grid-column-start: 1;
         grid-column-end: 3;
-        div{
+        div {
           font-size: 80%;
         }
       }
     }
   }
-  &__right-login-button{
-    background: #3F3F47;
+  &__right-login-button {
+    background: #3f3f47;
   }
-  &__right-login-1-button  {
-    background: #005DC4;
+  &__right-login-1-button {
+    background: #005dc4;
   }
 
-  &__right-login-button,  &__right-login-1-button  {
-
-      left: calc(50% - 246px / 2 + 87px);
-      top: calc(50% - 20px / 2 - 5191px);
-      font-size: 14px;
-      font-style: normal;
-      line-height: 20px;
-      text-align: center;
-      font-feature-settings: 'liga' off;
-      color: #FFFFFF;
+  &__right-login-button,
+  &__right-login-1-button {
+    left: calc(50% - 246px / 2 + 87px);
+    top: calc(50% - 20px / 2 - 5191px);
+    font-size: 14px;
+    font-style: normal;
+    line-height: 20px;
+    text-align: center;
+    font-feature-settings: 'liga' off;
+    color: #ffffff;
 
     @media (max-width: 376px) {
       margin: auto;
@@ -139,28 +133,27 @@
       grid-column-start: 1;
       grid-column-end: 3;
     }
-    img{
+    img {
       margin-right: 10px;
       width: 26px;
       height: 26px;
     }
-    div{
+    div {
       width: inherit;
-
-      }
+    }
   }
 
   &__right-nftCard-button {
     padding: 9px;
     border: 2px solid;
-    border-color: #005DC4;
+    border-color: #005dc4;
     text-align: center;
     height: 40px;
-    color: #005DC4;
-      font-size: 14px;
-      line-height: 20px;
-      font-feature-settings: 'liga' off;
-      color: #005DC4;
+    color: #005dc4;
+    font-size: 14px;
+    line-height: 20px;
+    font-feature-settings: 'liga' off;
+    color: #005dc4;
     @media (max-width: 376px) {
       margin: auto 3% auto auto;
       width: 84%;
@@ -169,15 +162,15 @@
       padding: 6px;
       font-size: 70%;
     }
-      .count-component{
+    .count-component {
       width: 28px;
       height: 28px;
-      background: #005DC4;
+      background: #005dc4;
       border-radius: 8px;
-      margin-left:13px;
+      margin-left: 13px;
     }
 
-  .count-value{
+    .count-value {
       left: 76.88%;
       right: 22.5%;
       top: 0.25%;
@@ -190,58 +183,87 @@
       text-align: center;
       font-feature-settings: 'liga' off;
 
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
-.pawCard-count-component-down{
-  display: block;
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  margin-left: 10px;
-  background-image:url("../../assets/img/button_a.png"); ;
-}
-  .pawCard-count-component-up{
+  .pawCard-count-component-down {
+    display: block;
     width: 28px;
     height: 28px;
     border-radius: 8px;
     margin-left: 10px;
-    background-image:url("../../assets/img/button_a.png");
+    background-image: url('../../assets/img/button_a.png');
+  }
+  .pawCard-count-component-up {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    margin-left: 10px;
+    background-image: url('../../assets/img/button_a.png');
     transform: rotate(180deg);
   }
-  &__right-pawCard-panel{
-
-    position: fixed;
-    right: 45em;
-    top: 9%;
+  &__right-pawCard-wrapper {
+    position: relative;
+    height: fit-content;
+  }
+  &__right-pawCard-panel {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 2px);
     z-index: 1;
-    background: #005DC4;
+    background: #005dc4;
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     width: 196px;
     padding: 15px 20px 20px 15px;
 
-    &-buy-button{
+    &-buy-button {
       height: 34px;
-      background: #FFFFFF;
+      background: #ffffff;
       border-radius: 8px;
       width: 100%;
-      margin-top:20px;
+      margin-top: 20px;
       font-style: normal;
       font-weight: bold;
+      cursor: pointer;
+      outline: none !important;
+      border: none;
       font-size: 14px;
       line-height: 20px;
       text-align: center;
       font-feature-settings: 'liga' off;
 
-      color: #005DC4;
+      color: #005dc4;
     }
-    &-value{
-      padding:16px;
-      background-color: white;
-      opacity: 0.25;
-      color: black;
+    &-value {
+      padding: 16px;
+      background-color: rgba(255, 255, 255, 0.25);
       border-radius: 12px;
+      width: 60px;
+      line-height: 20px;
+      /* identical to box height, or 91% */
+
+      text-align: center;
+      font-feature-settings: 'liga' off;
+      input {
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+        border: none;
+        outline: none !important;
+        width: 100%;
+        background: transparent;
+        text-align: center;
+        color: white;
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.5);
+        }
+      }
+    }
+
+    &-cost {
+      margin-top: 20px;
+      text-align: center;
       font-style: normal;
       font-weight: bold;
       font-size: 22px;
@@ -251,62 +273,86 @@
       text-align: center;
       font-feature-settings: 'liga' off;
 
-
+      color: #ffffff;
     }
-
-    &-cost{
-      margin-top:20px;
-      text-align: center;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 22px;
-      line-height: 20px;
-      /* identical to box height, or 91% */
-
-      text-align: center;
-      font-feature-settings: 'liga' off;
-
-      color: #FFFFFF;
-
-    }
-    &-counter{
+    &-counter {
       display: flex;
       justify-content: space-around;
       align-items: center;
-      button{
-        background: #FFFFFF;
-        opacity: 0.25;
-        border-radius: 30px;
+      button {
+        background-color: rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
         width: 28px;
-        height: 24px;
-        &:first-child{
+        color: white;
+        border: none;
+        position: relative;
+        outline: none !important;
+        height: 28px;
+        cursor: pointer;
+        &:first-child {
           margin-right: 14px;
+          &::before {
+            content: '';
+            display: block;
+            width: 12px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            height: 2px;
+            background: white;
+            border-radius: 5px;
+          }
         }
-        &:last-child{
+        &:last-child {
           margin-left: 14px;
+          &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: block;
+            width: 12px;
+            height: 2px;
+            background: white;
+            border-radius: 5px;
+          }
+          &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(90deg);
+            display: block;
+            width: 12px;
+            height: 2px;
+            background: white;
+            border-radius: 5px;
+          }
         }
       }
     }
   }
-  &__right-pawCard-button{
+  &__right-pawCard-button {
     width: 196px;
     align-items: center;
     left: 79.58%;
     right: 8.33%;
+    margin: 0;
     top: 0.15%;
     bottom: 99.46%;
 
-
-    background: #005DC4;
-      position: static;
-      font-size: 14px;
-      line-height: 20px;
-      text-align: center;
-      font-feature-settings: 'liga' off;
-      color: #FFFFFF;
-      flex: none;
-      order: 0;
-      flex-grow: 0;
+    background: #005dc4;
+    position: static;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+    font-feature-settings: 'liga' off;
+    color: #ffffff;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
     @media (max-width: 376px) {
       margin: auto auto auto 3%;
       width: 84%;
@@ -314,25 +360,24 @@
       font-size: 70%;
       display: flex;
       flex-direction: row;
-      justify-content: center
+      justify-content: center;
     }
   }
-
-
 }
-.icon{
+.icon {
   position: relative;
   top: 12px;
   left: 5px;
 }
-.tab{
+.tab {
   display: block;
   position: fixed;
   left: 20px;
   top: 90px;
 }
 
-.media__btn--prev,.media__btn--next{
+.media__btn--prev,
+.media__btn--next {
   position: absolute;
   top: 36%;
   z-index: 20;
@@ -341,17 +386,17 @@
   cursor: pointer;
 }
 
-.media__btn--prev{
-  left:0;
-  margin-left:20px;
+.media__btn--prev {
+  left: 0;
+  margin-left: 20px;
 }
-.media__btn--next{
+.media__btn--next {
   right: 0;
-  margin-right:20px;
+  margin-right: 20px;
 }
 
-.swiper-slide-value{
-  width:100px !important;
+.swiper-slide-value {
+  width: 100px !important;
   height: 29px !important;
   position: absolute;
   left: 117px;
@@ -359,12 +404,12 @@
   background: none;
   text-align: center;
 }
-.swiper-slide{
+.swiper-slide {
   display: flex;
   padding-left: 56px;
   padding-right: 56px;
 }
-.swiper-slide-button{
+.swiper-slide-button {
   position: absolute;
   bottom: 106px;
   left: 101px;
@@ -376,9 +421,9 @@
   color: white;
   cursor: pointer;
 }
-.swiper-slide-id{
-  width:10em !important;
-  height:20px !important;
+.swiper-slide-id {
+  width: 10em !important;
+  height: 20px !important;
   position: absolute;
   bottom: 32px;
   left: 80px;
