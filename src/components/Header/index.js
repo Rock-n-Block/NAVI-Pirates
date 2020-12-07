@@ -27,6 +27,7 @@ function Header({ binanceService }) {
 
 
     const ref = useRef(null);
+    const pawCardRef = useRef();
 
     let count = 4;
 
@@ -45,6 +46,20 @@ function Header({ binanceService }) {
     };
 
     const userAddress = useSelector(({ user }) => user.address);
+
+    const outsidePawCardClick = (e) => {
+        const path = e.path || (e.composedPath && e.composedPath())
+        if (!path.includes(pawCardRef.current)) {
+            setCounterActive(false)
+        }
+    }
+
+    React.useEffect(() => {
+        document.body.addEventListener('click', outsidePawCardClick)
+        return () => {
+            document.body.removeEventListener('click', outsidePawCardClick)
+        };
+    }, []);
 
     //hook for function
     React.useEffect(() => {
@@ -102,7 +117,7 @@ function Header({ binanceService }) {
                             </button>)}
 
 
-                        <div className="header__right-pawCard-wrapper">
+                        <div className="header__right-pawCard-wrapper" ref={pawCardRef}>
                             <button className="header__right-pawCard-button" onClick={() => setCounterActive(!isCounterActive)}>
                                 BUY VIP PAW CARD
 
