@@ -17,27 +17,16 @@ import arrowPrevImg from '../../assets/img/prev.png'
 import arrowNextImg from '../../assets/img/next.png'
 
 function Header({ binanceService }) {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const [isTabActive, setIsTabActive] = React.useState(false);
     const [isCounterActive, setCounterActive] = React.useState(false);
     const [isSlidesActive, setSlidesActive] = React.useState(false);
     const [pawCardAmount, setPawCardAmount] = React.useState('');
+    const [swipe, setSwipe] = React.useState(false);
 
 
     const ref = useRef(null);
-
-    const goNext = () => {
-        if (ref.current !== null && ref.current.swiper !== null) {
-            ref.current.swiper.slideNext();
-        }
-    };
-
-    const goPrev = () => {
-        if (ref.current !== null && ref.current.swiper !== null) {
-            ref.current.swiper.slidePrev();
-        }
-    };
 
     let count = 4;
 
@@ -53,9 +42,9 @@ function Header({ binanceService }) {
         binanceService.getAccount()
             .then(res => dispatch(userActions.setUserData(res)))
             .catch(err => dispatch(userActions.setUserData(err)))
-    }
+    };
 
-    const userAddress = useSelector(({ user }) => user.address)
+    const userAddress = useSelector(({ user }) => user.address);
 
     //hook for function
     React.useEffect(() => {
@@ -91,8 +80,7 @@ function Header({ binanceService }) {
                             <img src={trust_img} />
                             <div>Trust Wallet</div>
                         </button>
-
-                        <button className="header__right-nftCard-button" onClick={() => {
+                        {!isSlidesActive ? (<button className="header__right-nftCard-button" onClick={() => {
                             setSlidesActive(!isSlidesActive)
                         }}>
                             <div> My VIP NFT CARD </div>
@@ -101,7 +89,18 @@ function Header({ binanceService }) {
                                     {count}
                                 </div>
                             </div>
-                        </button>
+                        </button>) :
+                            (<button className="header__right-nftCard-button-active" onClick={() => {
+                                setSlidesActive(!isSlidesActive)
+                            }}>
+                                <div> My VIP NFT CARD </div>
+                                <div className="count-component-active">
+                                    <div className="count-value">
+                                        {count}
+                                    </div>
+                                </div>
+                            </button>)}
+
 
                         <div className="header__right-pawCard-wrapper">
                             <button className="header__right-pawCard-button" onClick={() => setCounterActive(!isCounterActive)}>
@@ -134,8 +133,8 @@ function Header({ binanceService }) {
                             <Swiper
                                 spaceBetween={30}
                                 slidesPerView={1}
-                            // effect="fade"
-                            //   onSwiper={swiper => setSwiper(swiper)}
+
+                                onSwiper={swiper => setSwipe(swiper)}
                             //onSlideChangeTransitionEnd={handleSlideChange}
 
                             >
@@ -143,35 +142,48 @@ function Header({ binanceService }) {
                                     <div className="swiper-slide-data">
                                         <div className="swiper-slide-value">
                                             count 1
-                                    </div>
+                                        </div>
                                         <button className="swiper-slide-button">
                                             WITH DRAW
-                                    </button>
+                                        </button>
                                         <div className="swiper-slide-id">
                                             #1
-                                    </div>
+                                        </div>
                                     </div>
                                     <div className="swiper-slide-data">
                                         <div className="swiper-slide-value">
                                             count 2
-                                    </div>
+                                        </div>
                                         <button className="swiper-slide-button">
                                             WITH DRAW
-                                    </button>
+                                        </button>
                                         <div className="swiper-slide-id">
                                             #2
-                                    </div>
+                                        </div>
                                     </div>
                                     <div className="swiper-slide-data">
                                         <div className="swiper-slide-value">
                                             count 3
-                                    </div>
+                                        </div>
                                         <button className="swiper-slide-button">
                                             WITH DRAW
-                                    </button>
+                                            </button>
                                         <div className="swiper-slide-id">
                                             #3
+                                            </div>
                                     </div>
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <div className="swiper-slide-data">
+                                        <div className="swiper-slide-value">
+                                            count 4
+                                        </div>
+                                        <button className="swiper-slide-button">
+                                            WITH DRAW
+                                        </button>
+                                        <div className="swiper-slide-id">
+                                            #1
+                                        </div>
                                     </div>
                                 </SwiperSlide>
                                 <SwiperSlide>
@@ -181,21 +193,15 @@ function Header({ binanceService }) {
                                     </div>
                                     </div>
                                 </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="swiper-slide-data">
-                                        <div className="swiper-slide-value">
-                                            count 3
-                                    </div>
-                                    </div>
-                                </SwiperSlide>
+                                <div className="media__btn media__btn--prev" onClick={() => swipe.slidePrev()}>
+                                    <img src={arrowPrevImg} alt="" />
+                                </div>
+                                <div className="media__btn media__btn--next" onClick={() => swipe.slideNext()}>
+                                    <img src={arrowNextImg} alt="" />
+                                </div>
                             </Swiper>
 
-                            <div className="media__btn media__btn--prev" onClick={() => goPrev()}>
-                                <img src={arrowPrevImg} alt="" />
-                            </div>
-                            <div className="media__btn media__btn--next" onClick={() => goNext()}>
-                                <img src={arrowNextImg} alt="" />
-                            </div>
+
 
                         </div>) : null}
 

@@ -43,9 +43,11 @@
   &__right,
   &__right-login-button,
   &__right-nftCard-button,
+  &__right-nftCard-button-active,
   &__right-pawCard-button,
   &__right-pawCard-button div,
-  &__right-nftCard-button div {
+  &__right-nftCard-button div,
+  &__right-nftCard-button-active div {
     display: flex;
   }
 
@@ -60,6 +62,7 @@
   }
   &__right-login-button,
   &__right-nftCard-button,
+  &__right-nftCard-button-active,
   &__right-pawCard-button,
   &__right-login-1-button {
     display: flex;
@@ -142,7 +145,7 @@
       width: inherit;
     }
   }
-
+  &__right-nftCard-button-active,
   &__right-nftCard-button {
     padding: 9px;
     border: 2px solid;
@@ -162,14 +165,21 @@
       padding: 6px;
       font-size: 70%;
     }
-    .count-component {
+    .count-component,
+    .count-component-active {
       width: 28px;
       height: 28px;
       background: #005dc4;
       border-radius: 8px;
       margin-left: 13px;
     }
-
+    .count-component-active {
+      background: white;
+      border-color: white;
+      .count-value {
+        color: #717182 !important;
+      }
+    }
     .count-value {
       left: 76.88%;
       right: 22.5%;
@@ -185,6 +195,11 @@
 
       color: #ffffff;
     }
+  }
+  &__right-nftCard-button-active {
+    border-color: white !important;
+    background: #717182;
+    color: white;
   }
   .pawCard-count-component-down {
     display: block;
@@ -381,8 +396,8 @@
   position: absolute;
   top: 36%;
   z-index: 20;
-  width: inherit !important;
-  height: inherit !important;
+  width: 43px !important;
+  height: 25px !important;
   cursor: pointer;
 }
 
