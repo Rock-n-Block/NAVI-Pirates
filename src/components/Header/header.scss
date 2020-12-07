@@ -52,6 +52,9 @@
   }
 
   &__content {
+    align-items: center;
+  }
+  &__content {
     @media (max-width: 376px) {
       display: block;
     }
