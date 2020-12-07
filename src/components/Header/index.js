@@ -28,19 +28,6 @@ function Header({ binanceService }) {
 
     const ref = useRef(null);
 
-    const goNext = () => {
-
-        if (ref.current !== null && ref.current.swiper !== null) {
-            ref.current.swiper.slideNext();
-        }
-    };
-
-    const goPrev = () => {
-        if (ref.current !== null && ref.current.swiper !== null) {
-            ref.current.swiper.slidePrev();
-        }
-    };
-
     let count = 4;
 
     const reload = () =>{
@@ -93,17 +80,27 @@ function Header({ binanceService }) {
                             <img src={trust_img} />
                             <div>Trust Wallet</div>
                         </button>
+                        {!isSlidesActive?( <button className = "header__right-nftCard-button" onClick={()=>{
+                                setSlidesActive(!isSlidesActive)
+                            }}>
+                                <div> My VIP NFT CARD </div>
+                                <div className = "count-component">
+                                    <div className = "count-value">
+                                        {count}
+                                    </div>
+                                </div>
+                            </button>):
+                            ( <button className = "header__right-nftCard-button-active" onClick={()=>{
+                                setSlidesActive(!isSlidesActive)
+                            }}>
+                                <div> My VIP NFT CARD </div>
+                                <div className = "count-component-active">
+                                    <div className = "count-value">
+                                        {count}
+                                    </div>
+                                </div>
+                            </button>)}
 
-                    <button className = "header__right-nftCard-button" onClick={()=>{
-                        setSlidesActive(!isSlidesActive)
-                    }}>
-                        <div> My VIP NFT CARD </div>
-                        <div className = "count-component">
-                            <div className = "count-value">
-                                {count}
-                            </div>
-                        </div>
-                    </button>
 
                     <button className = "header__right-pawCard-button">
                         BUY VIP PAW CARD
@@ -135,7 +132,7 @@ function Header({ binanceService }) {
                         <Swiper
                             spaceBetween={30}
                             slidesPerView={1}
-                            // effect="fade"
+
                             onSwiper={swiper => setSwipe(swiper)}
                             //onSlideChangeTransitionEnd={handleSlideChange}
 
