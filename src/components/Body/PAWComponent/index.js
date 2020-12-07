@@ -2,6 +2,10 @@ import React from "react";
 
 import './paw.scss';
 
+import bottle from '../../../assets/img/bottle.png'
+
+import game from '../../../assets/img/Game 1 (2).png'
+
 function PAWComponent() {
   return (
       <div className = "paw">
@@ -10,6 +14,9 @@ function PAWComponent() {
               <div className = "paw__content-title">
                   Pirate Assault Warriors
               </div>
+              <div className = "paw__content-img">
+                  <img src={game} alt=""/>
+              </div>
               <div className = "paw__content-frame">
               <div className = "paw__content-frame-text">
                   There is a continuous ongoing war in four field bays of a corner of the BEARing
@@ -17,6 +24,9 @@ function PAWComponent() {
                   (a BEP-20 token) by the chest load. In a move to "PAW OUT" these pirates, a secret black
                   ops division of the BEAR NAVY has been formed, code name PAW (Pirate Assault Warriors).
               </div>
+                  <div className = "paw__content-frame-bottle">
+                      <img src={bottle} alt=""/>
+                  </div>
               </div>
               <div className = "paw__content-frame">
               <div className = "paw__content-frame-text">

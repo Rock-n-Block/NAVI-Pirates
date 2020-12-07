@@ -1,33 +1,107 @@
-.bear-vs-navy{
-  background: url("../../../assets/img/ships.png") no-repeat;
-  background-position-x: center;
-  height: 600px;
-  margin:4em 0;
-  &__content{
-    position: relative;
-    top:300px;
-    margin: auto;
-    padding: 30px;
-    background: #FFFFFF;
-    box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
-    border-radius: 16px;
-    width: 537px;
-    &-text{
-      font-family: Manrope;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 16px;
-      line-height: 28px;
-      font-feature-settings: 'liga' off;
-      color: #18191F;
-      flex: none;
-      order: 0;
-      flex-grow: 0;
-      margin: 10px 0;
-      &-special{
-        color: #1490C7;
-        margin: 5px;
+@import '../../../styles/fonts';
+
+.bear-vs-navy {
+  position: relative;
+  top: -4em;
+  margin-top:50px;
+
+  box-sizing: border-box;
+  // font-family: MM;
+  font-style: normal;
+  @media (max-width: 376px) {
+    background: #47AFDD;
+    border-radius: 30px;
+    margin-top: 56px;
+    font-size: 16px;
+    line-height: 28px;
+    padding: 0 17px 0 18px;
+  }
+    &__title, &__img-1, &__img-2 {
+
+      @media (max-width: 376px) {
+        display: block;
       }
     }
+    &__title {
+      position: relative;
+      top: -33px;
+      left: 0;
+      text-align: center;
+      img {
+        @media (max-width: 376px) {
+          width: 100%;
+        }
+      }
+    }
+    &__img-1 {
+      position: absolute;
+      top: 49px;
+      left: -108px;
+      text-align: center;
+      @media (max-width: 376px) {
+        position: relative;
+        top: -23px;
+        left: -76px;
+      }
+      img {
+        @media (max-width: 376px) {
+          width: 50%;
+        }
+      }
+    }
+    &__img-2 {
+      position: absolute;
+      top: 129px;
+      right: -71px;
+      text-align: center;
+      @media (max-width: 376px) {
+        position: relative;
+        top: -75px;
+        right: -76px;
+      }
+      img {
+        @media (max-width: 376px) {
+          width: 50%;
+        }
+      }
+    }
+
+    &__content {
+      position: relative;
+      margin: auto;
+      padding: 30px;
+      background: #FFFFFF;
+      box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+      border-radius: 16px;
+      width: 660px;
+      @media (max-width: 376px) {
+        position: relative;
+        top: -45px;
+        margin: 0;
+        width: inherit;
+      }
+      &-text {
+        font-size: 16px;
+        line-height: 28px;
+        font-feature-settings: 'liga' off;
+        color: #18191F;
+        flex: none;
+        order: 0;
+        flex-grow: 0;
+        &-special {
+          font-weight: bold;
+          color: #1490C7;
+          margin: 5px;
+        }
+      }
+    }
+  &__body {
+    background: #47AFDD;
+    border-radius: 60px;
+    position: relative;
+    padding-bottom:46px;
+    @media (max-width: 376px) {
+      padding-bottom: 0;
+    }
   }
-}
+  }

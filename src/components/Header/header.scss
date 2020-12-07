@@ -2,16 +2,41 @@
 
 .header{
   position: fixed;
-  height: 72px;
-  width: 100%;
+  padding-top: 16px;
+  padding-bottom: 16px;
   background: #FFFFFF;
+  box-sizing: border-box;
   box-shadow: 0 1px 0 #E5E9F2;
-  font-family: MM;
+  width:100%;
   font-weight: 700;
-  &__content{
-    flex-direction: row;
-    justify-content: space-between;
+  z-index: 100;
+
+
+&__swiper{
+  position: fixed;
+  top:10%;
+  div{
+    background-image: url("../../assets/img/swiper-back.png");
+    background-color: #727285;
+    box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.15);
+    border-radius: 0px 0px 40px 40px;
+    width: 68em;
+    height: 500px;
   }
+  .swiper-slide-data{
+    background:url("../../assets/img/card1.png") no-repeat;
+    position: absolute;
+    top:20px;
+  }
+}
+
+
+  @media (max-width: 376px) {
+    position: relative;
+    height: max-content;
+
+  }
+
   &__content,
   &__left, &__right,
   &__right-login-button,
@@ -22,24 +47,77 @@
    display: flex;
  }
 
+  &__content{
+    @media (max-width: 376px) {
+      display: block;
+    }
+  }
+  &__content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
   &__right-login-button,
   &__right-nftCard-button,
-  &__right-pawCard-button
+  &__right-pawCard-button,
+  &__right-login-1-button
   {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: auto 7.5px;
     padding: 9px;
     height: 40px;
+    border:none;
     border-radius: 8px;
+    outline: none !important;
+    cursor: pointer;
   }
-  &__right-login-button {
+  &__left{
+    a {
+      @media (max-width: 376px) {
+        margin: auto;
+      }
+    }
+  }
+  &__right {
+    &-login-1-button{
+      display: none;
+      background: #005DC4;
 
-      background: #3F3F47;
+    }
+    @media (max-width: 376px) {
+      margin-top: 20px;
+      display: grid;
+      grid-template-rows: 50% 95%;
+      grid-template-columns: 50% 50%;
+      padding-bottom: 20px;
+      &-login-button{
+        display: none;
+      }
+      &-login-1-button {
+        display: flex;
+        margin: auto;
+        height: 40px;
+        width: 80%;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        div{
+          font-size: 80%;
+        }
+      }
+    }
+  }
+  &__right-login-button{
+    background: #3F3F47;
+  }
+  &__right-login-1-button  {
+    background: #005DC4;
+  }
+
+  &__right-login-button,  &__right-login-1-button  {
+
       left: calc(50% - 246px / 2 + 87px);
       top: calc(50% - 20px / 2 - 5191px);
-
-      width: 303px;
       font-size: 14px;
       font-style: normal;
       line-height: 20px;
@@ -47,7 +125,13 @@
       font-feature-settings: 'liga' off;
       color: #FFFFFF;
 
-
+    @media (max-width: 376px) {
+      margin: auto;
+      height: 40px;
+      width: inherit;
+      grid-column-start: 1;
+      grid-column-end: 3;
+    }
     img{
       margin-right: 10px;
       width: 26px;
@@ -55,7 +139,8 @@
     }
     div{
       width: inherit;
-    }
+
+      }
   }
 
   &__right-nftCard-button {
@@ -64,19 +149,28 @@
     border-color: #005DC4;
     text-align: center;
     height: 40px;
-    width: 171px;
     color: #005DC4;
       font-size: 14px;
       line-height: 20px;
       font-feature-settings: 'liga' off;
       color: #005DC4;
-    .count-component{
+    @media (max-width: 376px) {
+      margin: auto 3% auto auto;
+      width: 84%;
+      display: flex;
+      justify-content: center;
+      padding: 6px;
+      font-size: 70%;
+    }
+      .count-component{
       width: 28px;
       height: 28px;
       background: #005DC4;
       border-radius: 8px;
+      margin-left:13px;
     }
-    .count-value{
+
+  .count-value{
       left: 76.88%;
       right: 22.5%;
       top: 0.25%;
@@ -92,7 +186,102 @@
       color: #FFFFFF;
     }
   }
+.pawCard-count-component-down{
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  margin-left:13px;
+  background-image:url("../../assets/img/button_a.png"); ;
+}
+  .pawCard-count-component-up{
+    display: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    margin-left:13px;
+    background-image:url("../../assets/img/button_a.png");
+    transform: rotate(180deg);
+  }
+  &__right-pawCard-panel{
+    display: none;
+    position: fixed;
+    right: 45em;
+    top: 9%;
+    z-index: 1;
+    background: #005DC4;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    width: 164px;
+    padding: 15px 20px 20px 15px;
 
+    &-buy-button{
+      height: 34px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      width: 100%;
+      margin-top:20px;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      font-feature-settings: 'liga' off;
+
+      color: #005DC4;
+    }
+    &-value{
+      padding:16px;
+      background-color: white;
+      opacity: 0.25;
+      color: black;
+      border-radius: 12px;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 20px;
+      /* identical to box height, or 91% */
+
+      text-align: center;
+      font-feature-settings: 'liga' off;
+
+
+    }
+
+    &-cost{
+      margin-top:20px;
+      text-align: center;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 20px;
+      /* identical to box height, or 91% */
+
+      text-align: center;
+      font-feature-settings: 'liga' off;
+
+      color: #FFFFFF;
+
+    }
+    &-counter{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      button{
+        background: #FFFFFF;
+        opacity: 0.25;
+        border-radius: 30px;
+        width: 28px;
+        height: 24px;
+        &:first-child{
+          margin-right: 14px;
+        }
+        &:last-child{
+          margin-left: 14px;
+        }
+      }
+    }
+  }
   &__right-pawCard-button{
     width: 174px;
     align-items: center;
@@ -111,7 +300,17 @@
       flex: none;
       order: 0;
       flex-grow: 0;
+    @media (max-width: 376px) {
+      margin: auto auto auto 3%;
+      width: 84%;
+      padding: 7px;
+      font-size: 70%;
+      display: flex;
+      flex-direction: row;
+      justify-content: center
     }
+  }
+
 
 }
 .icon{
@@ -119,3 +318,11 @@
   top: 12px;
   left: 5px;
 }
+.tab{
+  display: block;
+  position: fixed;
+  left: 20px;
+  top: 90px;
+}
+
+

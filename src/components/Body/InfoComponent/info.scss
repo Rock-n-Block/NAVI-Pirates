@@ -1,10 +1,12 @@
 .info{
-
+  box-sizing: border-box;
+  margin-top:150px;
   &__content{
     position: relative;
-    margin: 3em auto;
-    width: fit-content;
-    font-family: Manrope;
+    margin: auto;
+    padding: 40px;
+
+   // font-family: Manrope;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -14,7 +16,7 @@
     font-feature-settings: 'liga' off;
     color: #CB5322;
     &-text{
-      width: 59em;
+      margin-bottom: 2em;
     }
     }
 

@@ -1,17 +1,87 @@
+@import '../../../styles/fonts';
+
+
+
 .mission-economics{
-  background: url("../../../assets/img/background_3.png") no-repeat;
+
   background-position-x: center;
+  box-sizing: border-box;
+  margin-top:100px;
+ // font-family: MM;
+  @media (max-width: 376px) {
+    background: #F7F9FF;
+    border-radius: 30px;
+    padding-bottom: 20px;
+  }
   &__content{
-    position: relative;
-    right: 2em ;
-    height: 900px;
-    overflow-y: auto;
-    &-title{
+    display: flex;
+    flex-direction: row;
+    @media (max-width: 376px) {
+      display: block;
+      padding-left: 0;
+
+    }
+  }
+  &__middle-content{
+    display: none;
+    background-color: #CAC6EA;
+    border-radius: 37px;
+    @media (max-width: 376px) {
+      display: block;
+    }
+    &-img{
+      padding: 48px 17px 28px 17px;
+    }
+    &-img-3{
+      position: relative;
+      @media (max-width: 376px) {
+        position: relative;
+        top:20px;
+        right: 0;
+        width: 100%;
+      }
+    }
+    &-img-1,&-img-2{
       position: absolute;
-      top: 2em;
+      z-index: 0;
+      width: 20%;
+    }
+    &-img-1{
+      right: 16px;
+      top: 170px;
+    }
+    &-img-2{
+      top: 34em;
+      left: 22px;
+    }
+  }
+
+  &__right-content {
+    background-color:#F6F9FF;
+    border-radius: 0 30px 30px 0;
+    width: 50%;
+    padding-top: 80px;
+    padding-left: 62px;
+    position: relative;
+    @media (max-width: 376px) {
+      height: max-content;
+      padding-left: 0;
+      padding-top: 0;
+      width: 100%;
+    }
+    &-bubbles{
+      position: absolute;
+      top: 63px;
+      right: -45px;
+      @media (max-width: 376px) {
+        display: none;
+      }
+    }
+
+    &-title{
+
       width: 5em;
       left: 16em;
-      font-family: Manrope;
       font-style: normal;
       font-weight: 800;
       font-size: 48px;
@@ -19,26 +89,46 @@
       font-feature-settings: 'liga' off;
 
       color: #6C5CE7;
+      @media (max-width: 376px) {
+        top:0;
+        left:0;
+        text-align: center;
+        width:inherit;
+      }
     }
     &-body{
-      position: absolute;
-      top: 16em;
-      right: 4em;
+
       width: fit-content;
       height: 512px;
       overflow-y: auto;
       overflow-x: hidden;
 
+      @media (max-width: 376px) {
+        margin-top: 40px;
+        width: inherit;
+        height: inherit;
+        top:0;
+        left:0;
+        padding-left: 17px;
+        padding-right: 18px;
+
+      }
       &-frame{
         background-color: white;
-        width: 23em;
-        margin: 2em;
+        width: 26em;
+        margin-top: 2em;
         padding: 30px;
         box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
         border-radius: 16px;
+        @media (max-width: 376px) {
+          width: 100%;
+          margin-bottom: 0;
+          &:first-child{
+            margin-bottom: 20px;
+          }
+        }
         &-text{
           position: relative;
-          font-family: Manrope;
           font-style: normal;
           font-weight: normal;
           font-size: 16px;
@@ -51,8 +141,8 @@
           padding-bottom: 9px;
           margin: 10px 0px;
           &-special {
+            font-weight: bold;
             color: #6C5CE7;
-          ;
           }
           &-component{
             display: flex;
@@ -77,5 +167,34 @@
         }
       }
     }
+    &-img {
+      display: none;
+      background: #CAC6EA;
+      border-radius: 18.8625px;
+      @media (max-width: 376px) {
+        display: block;
+        text-align: center;
+      }
+    }
   }
+  &__left-content{
+    background: url("../../../assets/img/background_3.png") no-repeat;
+    background-color: #CAC6EA;
+    border-radius: 30px 0 0 30px;
+    width: 50%;
+    position: relative;
+    @media (max-width: 376px) {
+      display: none;
+    }
+    &-img{
+      position: absolute;
+      left: -6px;
+      top: -28px;
+      text-align: center;
+      padding-top: 51px;
+      width: 34em;
+      height: 48em;
+    }
+    }
+
 }
