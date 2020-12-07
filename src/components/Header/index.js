@@ -99,6 +99,7 @@ function Header({ binanceService }) {
                                         {count}
                                     </div>
                                 </div>
+                                <div className = "nftCard-button-img"/>
                             </button>)}
 
 
@@ -109,7 +110,8 @@ function Header({ binanceService }) {
                             <div className = "pawCard-count-component-up" onClick={()=>setCounterActive(false)}/>
                         ):
                             ( <div className = "pawCard-count-component-down"
-                                   onClick={()=>setCounterActive(true)}/>)}
+                                   onClick={()=>setCounterActive(true)}/>)
+                            }
 
                     </button>
                     {isCounterActive?(<div className = "header__right-pawCard-panel" id = "pawCard-panel">
@@ -181,7 +183,7 @@ function Header({ binanceService }) {
                                         WITH DRAW
                                     </button>
                                     <div className="swiper-slide-id">
-                                        #1
+                                        #4
                                     </div>
                                 </div>
                             </SwiperSlide>

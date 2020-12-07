@@ -207,6 +207,7 @@
     border-color: white !important;
     background: #717182;
     color: white;
+
   }
 .pawCard-count-component-down{
   display: block;
@@ -214,7 +215,8 @@
   height: 28px;
   border-radius: 8px;
   margin-left: 10px;
-  background-image:url("../../assets/img/button_a.png"); ;
+  background-image:url("../../assets/img/button_a.png");
+
 }
   .pawCard-count-component-up{
     width: 28px;
@@ -398,4 +400,17 @@
   bottom: 32px;
   left: 80px;
   text-align: center;
+  color: white;
+  opacity: 0.5;
+}
+.nftCard-button-img{
+  width: 17.59px;
+  height: 17.59px;
+  background: #717182;
+  transform: rotate(
+                  135deg
+  );
+  position: absolute;
+  z-index: 2;
+  top: 52px;
 }
