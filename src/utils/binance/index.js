@@ -1,8 +1,12 @@
+import Web3 from 'web3';
+
 const IS_PRODUCTION = false;
 
 export default class BinanceService {
     constructor() {
         this.binance = window['BinanceChain']
+        this.Web3Provider = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+
 
         this.binance.on('chainChanged', () => window.location.reload());
         this.binance.on('accountsChanged', () => window.location.reload());
@@ -27,5 +31,9 @@ export default class BinanceService {
             }
 
         })
+    }
+
+    getContract(abi, address) {
+        return new this.Web3Provider.eth.Contract(abi, address);
     }
 }

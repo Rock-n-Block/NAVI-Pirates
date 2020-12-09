@@ -2,11 +2,11 @@ import React from "react";
 
 import { Header, Body, Footer } from '../../components'
 
-const MainPage = ({ binanceService }) => {
+const MainPage = () => {
 
     return (
         <div className="container">
-            <Header binanceService={binanceService} />
+            <Header />
             <Body />
             <Footer />
         </div>

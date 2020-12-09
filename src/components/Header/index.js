@@ -2,8 +2,10 @@ import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector, useDispatch } from 'react-redux';
+import BigNumber from "bignumber.js"
 
 import { userActions } from '../../redux/actions';
+import { useContractContext } from '../../contexts/contractContext';
 
 import 'swiper/swiper.scss';
 import './header.scss';
@@ -16,8 +18,10 @@ import trust_img from '../../assets/img/trust.png'
 import arrowPrevImg from '../../assets/img/prev.png'
 import arrowNextImg from '../../assets/img/next.png'
 
-function Header({ binanceService }) {
+function Header() {
     const dispatch = useDispatch();
+
+    const { binanceService, contractService } = useContractContext()
 
     const [isTabActive, setIsTabActive] = React.useState(false);
     const [isCounterActive, setCounterActive] = React.useState(false);
@@ -25,8 +29,11 @@ function Header({ binanceService }) {
     const [pawCardAmount, setPawCardAmount] = React.useState('');
     const [swipe, setSwipe] = React.useState(false);
 
+    const [isCrowdsaleClosed, setCrowdsaleClosed] = React.useState(false)
 
-    const ref = useRef(null);
+    const [cardPrice, setCardPrice] = React.useState(0)
+
+
     const pawCardRef = useRef();
 
     let count = 4;
@@ -54,6 +61,25 @@ function Header({ binanceService }) {
         }
     }
 
+    const handleCountCardsChange = (amount) => {
+        if (pawCardAmount + amount <= 0) {
+            setPawCardAmount(0)
+        } else {
+            setPawCardAmount(+pawCardAmount + amount)
+        }
+    }
+
+    const getData = async () => {
+        const isClosed = await contractService.isClosedCrowdsale()
+        setCrowdsaleClosed(isClosed)
+
+        if (!isClosed) {
+            const price = await contractService.tokenPrice()
+
+            setCardPrice(price)
+        }
+    }
+
     React.useEffect(() => {
         document.body.addEventListener('click', outsidePawCardClick)
         return () => {
@@ -61,7 +87,6 @@ function Header({ binanceService }) {
         };
     }, []);
 
-    //hook for function
     React.useEffect(() => {
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 1200) {
@@ -72,6 +97,12 @@ function Header({ binanceService }) {
         });
     }, []);
 
+    React.useEffect(() => {
+        if (contractService) {
+            getData()
+        }
+    }, [contractService])
+
     return (
         <div className="header">
             <div className="row">
@@ -80,8 +111,8 @@ function Header({ binanceService }) {
                         <NavLink to="/">
                             <img src={logo} alt="" onClick={reload} />
                             {isTabActive ? (
-                                    <img className="tab" src={tab} alt="" onClick={up} />
-                                ) :
+                                <img className="tab" src={tab} alt="" onClick={up} />
+                            ) :
                                 (null)}
                         </NavLink>
 
@@ -96,15 +127,15 @@ function Header({ binanceService }) {
                             <div>Trust Wallet</div>
                         </button>
                         {!isSlidesActive ? (<button className="header__right-nftCard-button" onClick={() => {
-                                setSlidesActive(!isSlidesActive)
-                            }}>
-                                <div> My VIP NFT CARD </div>
-                                <div className="count-component">
-                                    <div className="count-value">
-                                        {count}
-                                    </div>
+                            setSlidesActive(!isSlidesActive)
+                        }}>
+                            <div> My VIP NFT CARD </div>
+                            <div className="count-component">
+                                <div className="count-value">
+                                    {count}
                                 </div>
-                            </button>) :
+                            </div>
+                        </button>) :
                             (<button className="header__right-nftCard-button-active" onClick={() => {
                                 setSlidesActive(!isSlidesActive)
                             }}>
@@ -114,7 +145,7 @@ function Header({ binanceService }) {
                                         {count}
                                     </div>
                                 </div>
-                                <div className = "header__right-nftCard-button-active-img"/>
+                                <div className="header__right-nftCard-button-active-img" />
                             </button>)}
 
 
@@ -123,21 +154,21 @@ function Header({ binanceService }) {
                                 BUY VIP PAW CARD
 
                                 {isCounterActive ? (
-                                        <div className="pawCard-count-component-up" />
-                                    ) :
+                                    <div className="pawCard-count-component-up" />
+                                ) :
                                     (<div className="pawCard-count-component-down" />)}
 
                             </button>
                             {isCounterActive ? (<div className="header__right-pawCard-panel" id="pawCard-panel">
                                 <div className="header__right-pawCard-panel-counter">
-                                    <button onClick={() => setPawCardAmount(pawCardAmount <= 0 ? 0 : +pawCardAmount - 1)}></button>
+                                    <button onClick={() => handleCountCardsChange(-1)}></button>
                                     <div className="header__right-pawCard-panel-value">
                                         <input placeholder="0" type="number" value={pawCardAmount} onChange={({ target }) => setPawCardAmount(target.value)} />
                                     </div>
-                                    <button onClick={() => setPawCardAmount(+pawCardAmount + 1)}></button>
+                                    <button onClick={() => handleCountCardsChange(1)}></button>
                                 </div>
                                 <div className="header__right-pawCard-panel-cost">
-                                    $ 200
+                                    {cardPrice && pawCardAmount ? new BigNumber(cardPrice).multipliedBy(pawCardAmount).toFixed() : 0} BNB
                                 </div>
                                 <button className="header__right-pawCard-panel-buy-button">BUY CARD</button>
                             </div>) : (null)}
@@ -151,7 +182,7 @@ function Header({ binanceService }) {
                                 slidesPerView={1}
 
                                 onSwiper={swiper => setSwipe(swiper)}
-                                //onSlideChangeTransitionEnd={handleSlideChange}
+                            //onSlideChangeTransitionEnd={handleSlideChange}
 
                             >
                                 <SwiperSlide>
