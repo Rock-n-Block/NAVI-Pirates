@@ -256,8 +256,11 @@ contract vipPaw is ERC721, Ownable
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal virtual override
     {
-        uint256 amount = cashbackOfToken[tokenId];
+        if (from == address(0) || to == address(0))
+            return;
+        uint256 maxCashbackAmout = tokenPrice.mul(percentOfCashback).div(1000);
+        uint256 amount = tokenPrice.sub(maxCashbackAmout).add(cashbackOfToken[tokenId]);
         withdrawForUserWhenRefund[from] = withdrawForUserWhenRefund[from].sub(amount);
-        withdrawForUserWhenRefund[to] = withdrawForUserWhenRefund[to].sub(amount);
+        withdrawForUserWhenRefund[to] = withdrawForUserWhenRefund[to].add(amount);
     }
 }

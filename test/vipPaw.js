@@ -46,6 +46,9 @@ contract(
 
         beforeEach(async () => {
             // Init contracts
+            let timeNow = new BN((await web3.eth.getBlock("latest")).timestamp);
+            let openTime = timeNow;
+            let closeTime = openTime.add(new BN(60 * 60 * 24));
 
             vipPawInst = await vipPaw.new(
                 NAME,
@@ -54,8 +57,8 @@ contract(
                 SOFTCAP_IN_TOKENS,
                 MAX_SUPPLY,
                 PERCENT_OF_CASHBACK,
-                OPEN_CROWDSALE_TIME,
-                CLOSE_CROWDSALE_TIME,
+                openTime,
+                closeTime,
                 {from: vipPawOwner}
             );
         })
@@ -347,6 +350,8 @@ contract(
             expect(await vipPawInst.balanceOf(user1)).to.be.bignumber.that.equals(ZERO);
             expect(ethBalanceOfUser1After.sub(ethBalanceOfUser1Before)).to.be.bignumber.that.equals(tokenPrice.mul(numTokens).sub(defaultCashback));
 
+            expect(await vipPawInst.withdrawForUserWhenRefund(user1)).to.be.bignumber.that.equals(ZERO);
+
             expect(await vipPawInst.moneyCollectedAll()).to.be.bignumber.that.equals(ZERO);
             expect(await vipPawInst.moneyForCashback()).to.be.bignumber.that.equals(ZERO);
 
@@ -354,6 +359,26 @@ contract(
                 vipPawInst.burnTokensToRefund(ZERO, {from: user1}),
                 "vipPaw: Need to have vip paw cards to refund"
             );
+        })
+
+        it("#6 Test transfer", async () => {
+            let numTokens = TWO;
+            let tokenPrice = new BN(TOKEN_PRICE);
+            await vipPawInst.buyToken(numTokens, {from: user1, value: tokenPrice.mul(numTokens)});
+
+            expect(await vipPawInst.balanceOf(user1)).to.be.bignumber.that.equals(numTokens);
+
+            await vipPawInst.getCashback(ZERO);
+            await vipPawInst.transferFrom(user1, user2, ZERO, {from: user1});
+            await vipPawInst.transferFrom(user1, user2, ONE, {from: user1});
+
+            expect(await vipPawInst.balanceOf(user1)).to.be.bignumber.that.equals(ZERO);
+            expect(await vipPawInst.balanceOf(user2)).to.be.bignumber.that.equals(numTokens);
+
+            let percentOfCashback = new BN(PERCENT_OF_CASHBACK);
+            let defaultCashback = tokenPrice.mul(percentOfCashback).div(new BN(1000));
+            expect(await vipPawInst.withdrawForUserWhenRefund(user1)).to.be.bignumber.that.equals(ZERO);
+            expect(await vipPawInst.withdrawForUserWhenRefund(user2)).to.be.bignumber.that.equals(tokenPrice.mul(TWO).sub(defaultCashback));
         })
     }
 )
