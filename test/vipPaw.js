@@ -338,11 +338,11 @@ contract(
             expect(ethBalanceOfUser1After.sub(ethBalanceOfUser1Before)).to.be.bignumber.that.equals(defaultCashback);
 
             await expectRevert(
-                vipPawInst.withdraw({from: user2}),
+                vipPawInst.burnTokensToRefund(ZERO, {from: user2}),
                 "vipPaw: Need to have vip paw cards to refund"
             );
             ethBalanceOfUser1Before = new BN(await web3.eth.getBalance(user1));
-            await vipPawInst.withdraw({from: user1, gasPrice: ZERO});
+            await vipPawInst.burnTokensToRefund(ZERO, {from: user1, gasPrice: ZERO});
             ethBalanceOfUser1After = new BN(await web3.eth.getBalance(user1));
             expect(await vipPawInst.balanceOf(user1)).to.be.bignumber.that.equals(ZERO);
             expect(ethBalanceOfUser1After.sub(ethBalanceOfUser1Before)).to.be.bignumber.that.equals(tokenPrice.mul(numTokens).sub(defaultCashback));
@@ -351,7 +351,7 @@ contract(
             expect(await vipPawInst.moneyForCashback()).to.be.bignumber.that.equals(ZERO);
 
             await expectRevert(
-                vipPawInst.withdraw({from: user1}),
+                vipPawInst.burnTokensToRefund(ZERO, {from: user1}),
                 "vipPaw: Need to have vip paw cards to refund"
             );
         })

@@ -26,6 +26,8 @@ contract vipPaw is ERC721, Ownable
     uint256 public openCrowdsaleTime;
     uint256 public closeCrowdsaleTime;
 
+    string public defaultTokenURI;
+
     event TokensPurchased(
         address user,
         uint256 count,
@@ -79,6 +81,21 @@ contract vipPaw is ERC721, Ownable
         isFirstTime = false;
     } */
 
+    function setBaseUri(string memory newBaseUri) external onlyOwner
+    {
+        _setBaseURI(newBaseUri);
+    }
+
+    function setTokenURI(uint256 tokenId, string memory newTokenUri) external onlyOwner
+    {
+        _setTokenURI(tokenId, newTokenUri);
+    }
+
+    function setDefaultTokenURI(string memory newDefaultTokenUri) external onlyOwner
+    {
+        defaultTokenURI = newDefaultTokenUri;
+    }
+
     function buyToken(uint256 count) external payable
     {
         require(
@@ -105,6 +122,7 @@ contract vipPaw is ERC721, Ownable
             _mint(sender, lastTokenId);
             // add info about cashback
             cashbackOfToken[lastTokenId] = cashbackAmount;
+            _setTokenURI(lastTokenId, defaultTokenURI);
 
             lastTokenId = lastTokenId.add(1);
         }
@@ -123,49 +141,66 @@ contract vipPaw is ERC721, Ownable
             "vipPaw: Crowdsale is not closed"
         );
         address payable sender = _msgSender();
-        if (isRefund())
-        {
-            uint256 len = balanceOf(sender);
-            require(
-                len > 0,
-                "vipPaw: Need to have vip paw cards to refund"
-            );
-            uint256 amountToRefund;
-            uint256 amountToRefundAll;
-            uint256 maxCashbackAmout = tokenPrice.mul(percentOfCashback).div(1000);
-            uint256 tokenId;
-            for(uint256 ind = 0; ind < len; ind = ind.add(1))
-            {
-                tokenId = tokenOfOwnerByIndex(sender, 0);
-                amountToRefund = tokenPrice.sub(maxCashbackAmout).add(cashbackOfToken[tokenId]);
-                amountToRefundAll = amountToRefundAll.add(amountToRefund);
+        require(
+            sender == owner(),
+            "vipPaw: Sender must be owner of the contract"
+        );
+        uint256 amountToReturn = moneyCollectedAll.sub(moneyForCashback);
+        require(
+            amountToReturn > 0,
+            "vipPaw: Nothing to return"
+        );
+        sender.transfer(amountToReturn);
+        moneyCollectedAll = moneyForCashback;
+    }
 
-                moneyCollectedAll = moneyCollectedAll.sub(amountToRefund);
-                moneyForCashback = moneyForCashback.sub(cashbackOfToken[tokenId]);
+    function burnTokensToRefund(uint256 count) external
+    {
+        require(
+            isClosedCrowdsale() == true,
+            "vipPaw: Crowdsale is not closed"
+        );
+        require(
+            isRefund() == true,
+            "vipPaw: Can not refund"
+        );
+        address payable sender = _msgSender();
+        uint256 len = balanceOf(sender);
+        require(
+            len > 0,
+            "vipPaw: Need to have vip paw cards to refund"
+        );
 
-
-                cashbackOfToken[tokenId] = 0;
-
-                _burn(tokenId);
-            }
-
-            sender.transfer(amountToRefundAll);
-            withdrawForUserWhenRefund[sender] = withdrawForUserWhenRefund[sender].sub(amountToRefundAll);
-        }
+        uint256 amountToBurn;
+        if (count == 0)
+            amountToBurn = len;
         else
+            amountToBurn = count;
+        require(
+            len >= count,
+            "vipPaw: Does not have this much tokens"
+        );
+
+        uint256 amountToRefund;
+        uint256 amountToRefundAll;
+        uint256 maxCashbackAmout = tokenPrice.mul(percentOfCashback).div(1000);
+        uint256 tokenId;
+        for(uint256 ind = 0; ind < amountToBurn; ind = ind.add(1))
         {
-            require(
-                sender == owner(),
-                "vipPaw: Sender must be owner of the contract"
-            );
-            uint256 amountToReturn = moneyCollectedAll.sub(moneyForCashback);
-            require(
-                amountToReturn > 0,
-                "vipPaw: Nothing to return"
-            );
-            sender.transfer(amountToReturn);
-            moneyCollectedAll = moneyForCashback;
+            tokenId = tokenOfOwnerByIndex(sender, 0);
+            amountToRefund = tokenPrice.sub(maxCashbackAmout).add(cashbackOfToken[tokenId]);
+            amountToRefundAll = amountToRefundAll.add(amountToRefund);
+
+            moneyCollectedAll = moneyCollectedAll.sub(amountToRefund);
+            moneyForCashback = moneyForCashback.sub(cashbackOfToken[tokenId]);
+
+            cashbackOfToken[tokenId] = 0;
+
+            _burn(tokenId);
         }
+
+        sender.transfer(amountToRefundAll);
+        withdrawForUserWhenRefund[sender] = withdrawForUserWhenRefund[sender].sub(amountToRefundAll);
     }
 
     function getCashback(uint256 tokenId) external
@@ -217,5 +252,12 @@ contract vipPaw is ERC721, Ownable
             else
                 return true;
         }
+    }
+
+    function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal virtual override
+    {
+        uint256 amount = cashbackOfToken[tokenId];
+        withdrawForUserWhenRefund[from] = withdrawForUserWhenRefund[from].sub(amount);
+        withdrawForUserWhenRefund[to] = withdrawForUserWhenRefund[to].sub(amount);
     }
 }
