@@ -75,7 +75,7 @@ contract(
             expect(await vipPawInst.totalSupply()).to.be.bignumber.that.equals(ZERO)
             expect(await vipPawInst.owner()).to.be.equals(vipPawOwner);
 
-            let gasLimit = new BN((await web3.eth.getBlock("latest")).gasLimit);
+            /* let gasLimit = new BN((await web3.eth.getBlock("latest")).gasLimit);
             console.log("Gas limit = ", gasLimit.toString());
 
             let tokenPrice = new BN(TOKEN_PRICE);
@@ -92,7 +92,7 @@ contract(
             console.log("Gas cost of buyToken(", tokenNumber.toString() , ") = ", gasCost);
             tokenNumber = new BN(150);
             gasCost = await vipPawInst.buyToken.estimateGas(tokenNumber, {from: user1, value: tokenPrice.mul(tokenNumber)});
-            console.log("Gas cost of buyToken(", tokenNumber.toString() , ") = ", gasCost);
+            console.log("Gas cost of buyToken(", tokenNumber.toString() , ") = ", gasCost); */
         })
 
         it("#1 Test open and close time of crowdsale", async () => {
@@ -180,7 +180,7 @@ contract(
             expect(await vipPawInst.tokenOfOwnerByIndex(user1, ZERO)).to.be.bignumber.that.equals(ZERO);
             expect(await vipPawInst.cashbackOfToken(ZERO)).to.be.bignumber.that.equals(defaultCashback);
             let ethBalanceOfUser1Before = new BN(await web3.eth.getBalance(user1));
-            await vipPawInst.getCashback(ZERO);
+            await vipPawInst.getCashback(ZERO, {from: user1, gasPrice: ZERO});
             let ethBalanceOfUser1After = new BN(await web3.eth.getBalance(user1));
             expect(ethBalanceOfUser1After.sub(ethBalanceOfUser1Before)).to.be.bignumber.that.equals(defaultCashback);
             expect(await vipPawInst.moneyCollectedAll()).to.be.bignumber.that.equals(tokenPrice.mul(ONE).sub(defaultCashback));
@@ -353,7 +353,7 @@ contract(
             await helper.increase(closeTime.sub(timeNow));
 
             let ethBalanceOfUser1Before = new BN(await web3.eth.getBalance(user1));
-            await vipPawInst.getCashback(ZERO, {gasPrice: ZERO});
+            await vipPawInst.getCashback(ZERO, {from: user1, gasPrice: ZERO});
             expect(await vipPawInst.moneyCollectedAll()).to.be.bignumber.that.equals(tokenPrice.mul(numTokens).sub(defaultCashback));
             expect(await vipPawInst.moneyForCashback()).to.be.bignumber.that.equals(defaultCashback.mul(numTokens.sub(ONE)));
             let ethBalanceOfUser1After = new BN(await web3.eth.getBalance(user1));
@@ -387,7 +387,7 @@ contract(
 
             expect(await vipPawInst.balanceOf(user1)).to.be.bignumber.that.equals(numTokens);
 
-            await vipPawInst.getCashback(ZERO);
+            await vipPawInst.getCashback(ZERO, {from: user1});
             await vipPawInst.transferFrom(user1, user2, ZERO, {from: user1});
             await vipPawInst.transferFrom(user1, user2, ONE, {from: user1});
 
