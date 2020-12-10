@@ -13,15 +13,19 @@ const Web3 = require("web3");
 const web3 = new Web3();
 
 module.exports = {
-    plugins: [
-        'truffle-plugin-verify'
-    ],
+    plugins: ['truffle-plugin-verify'],
 
     api_keys: {
         etherscan: ETHERSCAN_API_KEY
     },
 
     networks: {
+        development: {
+            host: "127.0.0.1",
+            port: 7545,
+            network_id: "*",
+            gas: 30000000
+        },
         ropsten: {
             provider: () => new HDWalletProvider(MNEMONIC, "https://ropsten.infura.io/" + INFURA_ID_PROJECT),
             network_id: 3,
@@ -63,7 +67,7 @@ module.exports = {
             confirmations: 10,
             timeoutBlocks: 200,
             skipDryRun: true
-        },
+        }
 
     },
 

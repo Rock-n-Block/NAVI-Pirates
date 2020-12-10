@@ -14,7 +14,7 @@ const {
 const vipPaw = artifacts.require("vipPaw");
 
 module.exports = async function (deployer, network) {
-    if (network == "test")
+    if (network == "test" || network == "development")
         return;
 
     /* let vipPawInstArray = [];

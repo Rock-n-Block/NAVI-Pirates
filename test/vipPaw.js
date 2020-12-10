@@ -27,9 +27,9 @@ const FOUR = new BN(4);
 const FIVE = new BN(5);
 const SIX = new BN(6);
 const SEVEN = new BN(7);
-const EIGHT = new BN(7);
-const NINE = new BN(7);
-const TEN = new BN(7);
+const EIGHT = new BN(8);
+const NINE = new BN(9);
+const TEN = new BN(10);
 
 const ZERO_ADDRESS = "0x0000000000000000000000000000000000000000";
 
@@ -74,6 +74,25 @@ contract(
             expect(await vipPawInst.symbol()).to.be.equals(SYMBOL);
             expect(await vipPawInst.totalSupply()).to.be.bignumber.that.equals(ZERO)
             expect(await vipPawInst.owner()).to.be.equals(vipPawOwner);
+
+            let gasLimit = new BN((await web3.eth.getBlock("latest")).gasLimit);
+            console.log("Gas limit = ", gasLimit.toString());
+
+            let tokenPrice = new BN(TOKEN_PRICE);
+            let tokenNumber = ONE;
+            let gasCost = await vipPawInst.buyToken.estimateGas(tokenNumber, {from: user1, value: tokenPrice.mul(tokenNumber)});
+            console.log("Gas cost of buyToken(", tokenNumber.toString() , ") = ", gasCost);
+
+            tokenNumber = TEN;
+            gasCost = await vipPawInst.buyToken.estimateGas(tokenNumber, {from: user1, value: tokenPrice.mul(tokenNumber)});
+            console.log("Gas cost of buyToken(", tokenNumber.toString() , ") = ", gasCost);
+
+            tokenNumber = new BN(100);
+            gasCost = await vipPawInst.buyToken.estimateGas(tokenNumber, {from: user1, value: tokenPrice.mul(tokenNumber)});
+            console.log("Gas cost of buyToken(", tokenNumber.toString() , ") = ", gasCost);
+            tokenNumber = new BN(150);
+            gasCost = await vipPawInst.buyToken.estimateGas(tokenNumber, {from: user1, value: tokenPrice.mul(tokenNumber)});
+            console.log("Gas cost of buyToken(", tokenNumber.toString() , ") = ", gasCost);
         })
 
         it("#1 Test open and close time of crowdsale", async () => {
