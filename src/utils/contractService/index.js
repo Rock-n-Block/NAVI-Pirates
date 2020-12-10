@@ -19,4 +19,12 @@ export default class ContractService {
     isClosedCrowdsale = () => {
         return this.pawContract.methods.isClosedCrowdsale().call()
     }
+
+    isRefund = () => {
+        return this.pawContract.methods.isRefund().call()
+    }
+
+    balanceOf = (address) => {
+        return this.pawContract.methods.balanceOf(address).call()
+    }
 }

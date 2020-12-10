@@ -32,11 +32,9 @@ function Header() {
     const [isCrowdsaleClosed, setCrowdsaleClosed] = React.useState(false)
 
     const [cardPrice, setCardPrice] = React.useState(0)
-
+    const [balance, setBalance] = React.useState(0)
 
     const pawCardRef = useRef();
-
-    let count = 4;
 
     const reload = () => {
         window.location.reload();
@@ -80,6 +78,11 @@ function Header() {
         }
     }
 
+    const getBalance = async () => {
+        const balanceOf = await contractService.balanceOf(userAddress)
+        setBalance(balanceOf)
+    }
+
     React.useEffect(() => {
         document.body.addEventListener('click', outsidePawCardClick)
         return () => {
@@ -102,6 +105,12 @@ function Header() {
             getData()
         }
     }, [contractService])
+
+    React.useEffect(() => {
+        if (userAddress) {
+            getBalance()
+        }
+    }, [userAddress])
 
     return (
         <div className="header">
@@ -132,7 +141,7 @@ function Header() {
                             <div> My VIP NFT CARD </div>
                             <div className="count-component">
                                 <div className="count-value">
-                                    {count}
+                                    {balance}
                                 </div>
                             </div>
                         </button>) :
@@ -142,7 +151,7 @@ function Header() {
                                 <div> My VIP NFT CARD </div>
                                 <div className="count-component-active">
                                     <div className="count-value">
-                                        {count}
+                                        {balance}
                                     </div>
                                 </div>
                                 <div className="header__right-nftCard-button-active-img" />
