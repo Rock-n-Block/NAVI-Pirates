@@ -2,7 +2,8 @@ import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector, useDispatch } from 'react-redux';
-import BigNumber from "bignumber.js"
+import BigNumber from "bignumber.js";
+import TokenCardComponent from './TokenCardComponent';
 
 import { userActions } from '../../redux/actions';
 import { useContractContext } from '../../contexts/contractContext';
@@ -186,69 +187,25 @@ function Header() {
                     </div>
                     {isSlidesActive ? (
                         <div className="header__swiper" id="swiper">
+                            { balance !== 0 ?
                             <Swiper
-                                spaceBetween={30}
-                                slidesPerView={1}
-
-                                onSwiper={swiper => setSwipe(swiper)}
+                            spaceBetween={10}
+                            slidesPerView={2}
+                            onSwiper={swiper => setSwipe(swiper)}
                             //onSlideChangeTransitionEnd={handleSlideChange}
-
                             >
-                                <SwiperSlide>
-                                    <div className="swiper-slide-data">
-                                        <div className="swiper-slide-value">
-                                            count 1
-                                        </div>
-                                        <button className="swiper-slide-button">
-                                            WITH DRAW
-                                        </button>
-                                        <div className="swiper-slide-id">
-                                            #1
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide-data">
-                                        <div className="swiper-slide-value">
-                                            count 2
-                                        </div>
-                                        <button className="swiper-slide-button">
-                                            WITH DRAW
-                                        </button>
-                                        <div className="swiper-slide-id">
-                                            #2
-                                        </div>
-                                    </div>
-                                    <div className="swiper-slide-data">
-                                        <div className="swiper-slide-value">
-                                            count 3
-                                        </div>
-                                        <button className="swiper-slide-button">
-                                            WITH DRAW
-                                        </button>
-                                        <div className="swiper-slide-id">
-                                            #3
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="swiper-slide-data">
-                                        <div className="swiper-slide-value">
-                                            count 4
-                                        </div>
-                                        <button className="swiper-slide-button">
-                                            WITH DRAW
-                                        </button>
-                                        <div className="swiper-slide-id">
-                                            #4
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <div className="swiper-slide-data">
-                                        <div className="swiper-slide-value">
-                                            count 2
-                                        </div>
-                                    </div>
-                                </SwiperSlide>
+                                {[...new Array(balance)].map((token,it) => {
+                                    const index = it + 1;
+                                    return (
+                                    <SwiperSlide
+                                    key={`token-${index}`}
+                                    >
+                                        <TokenCardComponent
+                                        index={index}
+                                        />
+                                    </SwiperSlide>
+                                    )
+                                })}
                                 <div className="media__btn media__btn--prev" onClick={() => swipe.slidePrev()}>
                                     <img src={arrowPrevImg} alt="" />
                                 </div>
@@ -256,9 +213,11 @@ function Header() {
                                     <img src={arrowNextImg} alt="" />
                                 </div>
                             </Swiper>
-
-
-
+                            :
+                            <div className="swiper-empty">
+                                nothing yet
+                            </div>
+                            }
                         </div>) : null}
 
                 </div>

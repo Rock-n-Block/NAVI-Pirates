@@ -487,3 +487,10 @@
   left: 80px;
   text-align: center;
 }
+.swiper-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100% !important;
+  color: #ffffff;
+}

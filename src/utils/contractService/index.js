@@ -24,7 +24,19 @@ export default class ContractService {
         return this.pawContract.methods.isRefund().call()
     }
 
-    balanceOf = (address) => {
-        return this.pawContract.methods.balanceOf(address).call()
+    balanceOf = async (address) => {
+        return Number(await this.pawContract.methods.balanceOf(address).call())
+    }
+
+    tokenOfOwnerByIndex = (address, index) => {
+        return this.pawContract.methods.tokenOfOwnerByIndex(address,index).call()
+    }
+
+    cashbackOfToken = (id) => {
+        return this.pawContract.methods.cashbackOfToken(id).call()
+    }
+
+    getCashback = (tokenId) => {
+        return this.pawContract.methods.getCashback(tokenId).call()
     }
 }
