@@ -152,6 +152,10 @@ contract vipPaw is ERC721, Ownable
             sender == owner(),
             "vipPaw: Sender must be owner of the contract"
         );
+        require(
+            isRefund() == false,
+            "vipPaw: Owner can not withdraw when it is refund"
+        );
         uint256 amountToReturn = moneyCollectedAll.sub(moneyForCashback);
         require(
             amountToReturn > 0,
@@ -218,6 +222,10 @@ contract vipPaw is ERC721, Ownable
             "vipPaw: There is no cashback on this token id"
         );
         address payable ownerToken = payable(ownerOf(tokenId));
+        require(
+            _msgSender() == ownerToken,
+            "vipPaw: Sender is not owner of the token"
+        );
         ownerToken.transfer(amount);
         withdrawForUserWhenRefund[ownerToken] = withdrawForUserWhenRefund[ownerToken].sub(amount);
         cashbackOfToken[tokenId] = 0;
