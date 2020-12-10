@@ -8,7 +8,9 @@ const {
     MAX_SUPPLY,
     NAME,
     SYMBOL,
-    OWNER
+    OWNER,
+    BASE_URI,
+    DEFAULT_TOKEN_URI
 } = process.env;
 
 const vipPaw = artifacts.require("vipPaw");
@@ -53,4 +55,6 @@ module.exports = async function (deployer, network) {
     let vipPawInst = await vipPaw.deployed();
 
     await vipPawInst.transferOwnership(OWNER);
+    await vipPawInst.setBaseUri(BASE_URI);
+    await vipPawInst.setDefaultTokenURI(DEFAULT_TOKEN_URI);
 };

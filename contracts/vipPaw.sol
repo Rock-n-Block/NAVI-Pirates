@@ -28,6 +28,8 @@ contract vipPaw is ERC721, Ownable
 
     string public defaultTokenURI;
 
+    uint256 public maxTokensToBuyInTx = 200;
+
     event TokensPurchased(
         address user,
         uint256 count,
@@ -94,6 +96,11 @@ contract vipPaw is ERC721, Ownable
     function setDefaultTokenURI(string memory newDefaultTokenUri) external onlyOwner
     {
         defaultTokenURI = newDefaultTokenUri;
+    }
+
+    function setMaxTokensToBuyInTx(uint256 newMax) external onlyOwner
+    {
+        maxTokensToBuyInTx = newMax;
     }
 
     function buyToken(uint256 count) external payable
