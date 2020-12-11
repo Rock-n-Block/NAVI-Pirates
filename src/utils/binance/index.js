@@ -39,43 +39,47 @@ export default class BinanceService {
     }
 
     sendTx = async (methodName, addressFrom, data, amount) => {
-        const method = this.getMethodInterface(methodName, contractDetails.PAW.ABI);
-        const signature = this.encodeFunctionCall(method, data);
-        console.log('sendTx amount',amount)
-        console.log('sendTx amount typeOf',typeof amount)
-        const amountHex = this.Web3Provider.utils.toHex(amount);
-        console.log('sendTx amountHex',amountHex)
-        const params = {
-            from: addressFrom,
-            to: contractDetails.PAW.ADDRESS,
-            value: amountHex,
-            data: signature,
-        };
-        const txHash = await this.binance.request({
-            method: 'eth_sendTransaction',
-            params: [params],
-        })
-        const txReceipt = new Promise((resolve, reject) => {
-            const trxSubscription = setInterval(() => {
-                this.Web3Provider.eth.getTransactionReceipt(
-                txHash,
-                (error, transaction) => {
-                    if (transaction) {
-                        if (transaction.status) {
-                            resolve(transaction);
-                        } else {
-                            reject(error);
+        try {
+            const method = this.getMethodInterface(methodName, contractDetails.PAW.ABI);
+            const signature = this.encodeFunctionCall(method, data);
+            console.log('sendTx amount',amount)
+            console.log('sendTx amount typeOf',typeof amount)
+            const amountHex = this.Web3Provider.utils.toHex(amount);
+            console.log('sendTx amountHex',amountHex)
+            const params = {
+                from: addressFrom,
+                to: contractDetails.PAW.ADDRESS,
+                value: amount,
+                data: signature,
+            };
+            const txHash = await this.binance.request({
+                method: 'eth_sendTransaction',
+                params: [params],
+            })
+            const txReceipt = new Promise((resolve, reject) => {
+                const trxSubscription = setInterval(() => {
+                    this.Web3Provider.eth.getTransactionReceipt(
+                    txHash,
+                    (error, transaction) => {
+                        if (transaction) {
+                            if (transaction.status) {
+                                resolve(transaction);
+                            } else {
+                                reject(error);
+                            }
+                            clearInterval(trxSubscription);
                         }
-                        clearInterval(trxSubscription);
-                    }
-                    if (error) {
-                        clearInterval(trxSubscription);
-                    }
-                },
-                );
-            }, 1000);
-        })
-        return await txReceipt;
+                        if (error) {
+                            clearInterval(trxSubscription);
+                        }
+                    },
+                    );
+                }, 1000);
+            })
+            return await txReceipt;
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     encodeFunctionCall(abi, data) {
