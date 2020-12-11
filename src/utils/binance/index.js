@@ -38,9 +38,9 @@ export default class BinanceService {
         return new this.Web3Provider.eth.Contract(abi, address);
     }
 
-    buyToken = async (addressFrom, count, amount) => {
-        const method = this.getMethodInterface('buyToken', contractDetails.PAW.ABI);
-        const signature = this.encodeFunctionCall(method, [count]);
+    sendTx = async (methodName, addressFrom, data, amount) => {
+        const method = this.getMethodInterface(methodName, contractDetails.PAW.ABI);
+        const signature = this.encodeFunctionCall(method, data);
         const amountHex = this.Web3Provider.utils.toHex(amount);
         const params = {
             from: addressFrom,

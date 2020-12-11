@@ -65,7 +65,7 @@ export default class ContractService {
             const amount = new BigNumber(count)
             .multipliedBy(new BigNumber(tokenPrice))
             .multipliedBy(new BigNumber(10).pow(decimals.BNB));
-            return await this.binanceService.buyToken(address,count,amount)
+            return await this.binanceService.sendTx('buyToken',address,[count],amount)
         } catch (e) {
             console.error(e);
         }
