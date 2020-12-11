@@ -41,7 +41,10 @@ export default class BinanceService {
     sendTx = async (methodName, addressFrom, data, amount) => {
         const method = this.getMethodInterface(methodName, contractDetails.PAW.ABI);
         const signature = this.encodeFunctionCall(method, data);
+        console.log('sendTx amount',amount)
+        console.log('sendTx amount typeOf',typeof amount)
         const amountHex = this.Web3Provider.utils.toHex(amount);
+        console.log('sendTx amountHex',amountHex)
         const params = {
             from: addressFrom,
             to: contractDetails.PAW.ADDRESS,

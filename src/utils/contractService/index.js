@@ -41,7 +41,7 @@ export default class ContractService {
 
     buyManyTokens = async (address, count) => {
         try {
-            const maxTokensToBuyInTx = (await this.maxTokensToBuyInTx());
+            const maxTokensToBuyInTx = await this.maxTokensToBuyInTx();
             const remainderCount = count % maxTokensToBuyInTx; // остаток
             const iterations = (count / maxTokensToBuyInTx + 1).toFixed();
             if (iterations < 2)
