@@ -27,7 +27,7 @@ function Header() {
     const [isTabActive, setIsTabActive] = React.useState(false);
     const [isCounterActive, setCounterActive] = React.useState(false);
     const [isSlidesActive, setSlidesActive] = React.useState(false);
-    const [pawCardAmount, setPawCardAmount] = React.useState('');
+    const [pawCardAmount, setPawCardAmount] = React.useState(0);
     const [swipe, setSwipe] = React.useState(false);
 
     const [isCrowdsaleClosed, setCrowdsaleClosed] = React.useState(false)
@@ -70,7 +70,7 @@ function Header() {
 
     const handleBuyToken = async () => {
         try {
-            const bought = await contractService.buyManyTokens(userAddress,pawCardAmount)
+            const bought = await contractService.buyManyTokens(userAddress,Number(pawCardAmount))
             const balanceOf = await contractService.balanceOf(userAddress)
             setBalance(balanceOf)
         } catch (e) {
