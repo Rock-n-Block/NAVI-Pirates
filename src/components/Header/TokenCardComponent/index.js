@@ -9,15 +9,23 @@ function TokenCardComponent(props) {
 
     const { contractService } = useContractContext()
 
-    const [token, setToken] = React.useState(false);
+    const [cashback, setCashback] = React.useState(0);
+    const [tokenId, setTokenId] = React.useState('');
 
     const userAddress = useSelector(({ user }) => user.address);
 
     const getToken = async () => {
         if (!userAddress) return;
-        const token = await contractService.tokenOfOwnerByIndex(userAddress, index)
-        // console.log('getToken',token)
-        setToken(token)
+        const tokenId = await contractService.tokenOfOwnerByIndex(userAddress, index)
+        setTokenId(tokenId)
+        const cashback = await contractService.cashbackOfToken(tokenId)
+        setCashback(cashback)
+    }
+
+    const getCashback = async () => {
+        if (!userAddress) return;
+        await contractService.getCashback(userAddress, tokenId)
+        await getToken()
     }
 
     React.useEffect(() => {
@@ -29,10 +37,13 @@ function TokenCardComponent(props) {
     return (
     <div className="swiper-slide-data">
       <div className="swiper-slide-value">
-          count 1
+          DIVS {cashback} BNB
       </div>
-      <button className="swiper-slide-button">
-          WITH DRAW
+      <button
+      className="swiper-slide-button"
+      onClick={getCashback}
+      >
+          WITHDRAW
       </button>
       <div className="swiper-slide-id">
           #{index}

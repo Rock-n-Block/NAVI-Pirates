@@ -423,10 +423,10 @@
 }
 
 .swiper-slide-value {
-  width: 100px !important;
+  width: 200px !important;
   height: 29px !important;
   position: absolute;
-  left: 117px;
+  left: 57px;
   bottom: 159px;
   background: none;
   text-align: center;
@@ -437,8 +437,8 @@
   line-height: 150%;
   letter-spacing: 0.914247px;
   text-transform: uppercase;
-
   color: #ffffff;
+  text-shadow: 0px 0px 4px black;
 }
 .swiper-slide {
   display: flex;

@@ -39,12 +39,13 @@ export default class ContractService {
         return await this.binanceService.sendTx('burnTokensToRefund',address,[count],0)
     }
 
-    cashbackOfToken = (id) => {
-        return this.pawContract.methods.cashbackOfToken(id).call()
+    cashbackOfToken = async (id) => {
+        const cashback = await this.pawContract.methods.cashbackOfToken(id).call()
+        return new BigNumber(cashback).dividedBy(new BigNumber(10).pow(decimals.BNB)).toFixed()
     }
 
-    getCashback = (tokenId) => {
-        return this.pawContract.methods.getCashback(tokenId).call()
+    getCashback = (address,tokenId) => {
+        return this.binanceService.sendTx('getCashback',address,[tokenId],0)
     }
 
     buyManyTokens = async (address, count) => {
