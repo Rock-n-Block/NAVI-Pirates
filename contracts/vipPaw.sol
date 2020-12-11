@@ -28,7 +28,7 @@ contract vipPaw is ERC721, Ownable
 
     string public defaultTokenURI;
 
-    uint256 public maxTokensToBuyInTx = 200;
+    uint256 public maxTokensToBuyInTx = 100;
 
     event TokensPurchased(
         address user,
