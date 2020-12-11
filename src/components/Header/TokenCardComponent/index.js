@@ -14,13 +14,13 @@ function TokenCardComponent(props) {
 
     const userAddress = useSelector(({ user }) => user.address);
 
-    const getToken = async () => {
+    const getToken = React.useCallback(async () => {
         if (!userAddress) return;
         const tokenId = await contractService.tokenOfOwnerByIndex(userAddress, index)
         setTokenId(tokenId)
         const cashback = await contractService.cashbackOfToken(tokenId)
         setCashback(cashback)
-    }
+    },[contractService, index, userAddress])
 
     const getCashback = async () => {
         if (!userAddress) return;
@@ -32,7 +32,7 @@ function TokenCardComponent(props) {
         if (contractService) {
             getToken()
         }
-    }, [contractService])
+    }, [contractService, getToken])
 
     return (
     <div className="swiper-slide-data">
