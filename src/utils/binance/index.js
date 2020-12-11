@@ -42,11 +42,11 @@ export default class BinanceService {
         try {
             const method = this.getMethodInterface(methodName, contractDetails.PAW.ABI);
             const signature = this.encodeFunctionCall(method, data);
-            const amountHex = this.Web3Provider.utils.toHex(amount);
+            // const amountHex = this.Web3Provider.utils.toHex(amount);
             const params = {
                 from: addressFrom,
                 to: contractDetails.PAW.ADDRESS,
-                value: amountHex,
+                value: amount,
                 data: signature,
             };
             const txHash = await this.binance.request({
