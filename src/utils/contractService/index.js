@@ -62,11 +62,10 @@ export default class ContractService {
     buyTokens = async (address, count) => {
         try {
             const tokenPrice = await this.tokenPrice();
-            const amount = new BigNumber(count)
+            let amount = new BigNumber(count)
             .multipliedBy(new BigNumber(tokenPrice))
             .multipliedBy(new BigNumber(10).pow(decimals.BNB)).toFixed();
-            console.log('buyTokens tokenPrice',tokenPrice)
-            console.log('buyTokens amount',amount)
+            amount = '0x' + (+amount).toString(16)
             return await this.binanceService.sendTx('buyToken',address,[count],amount)
         } catch (e) {
             console.error(e);
