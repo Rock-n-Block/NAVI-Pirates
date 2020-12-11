@@ -16,7 +16,7 @@ function TokenCardComponent(props) {
     const getToken = async () => {
         if (!userAddress) return;
         const token = await contractService.tokenOfOwnerByIndex(userAddress, index)
-        console.log('getToken',token)
+        // console.log('getToken',token)
         setToken(token)
     }
 

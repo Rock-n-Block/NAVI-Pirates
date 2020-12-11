@@ -1,6 +1,6 @@
 export default {
     PAW: {
-        ADDRESS: '0x689aC6A32341974d2cf2F078DF3C1753B32900D5',
+        ADDRESS: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
         ABI: [
             {
                 "inputs": [
@@ -23,23 +23,19 @@ export default {
                         "internalType": "uint256",
                         "name": "_softCapInTokens",
                         "type": "uint256"
-                    },
-                    {
+                    }, {
                         "internalType": "uint256",
                         "name": "_maxSupply",
                         "type": "uint256"
-                    },
-                    {
+                    }, {
                         "internalType": "uint256",
                         "name": "_percentOfCashback",
                         "type": "uint256"
-                    },
-                    {
+                    }, {
                         "internalType": "uint256",
                         "name": "_openCrowdsaleTime",
                         "type": "uint256"
-                    },
-                    {
+                    }, {
                         "internalType": "uint256",
                         "name": "_closeCrowdsaleTime",
                         "type": "uint256"
@@ -56,14 +52,12 @@ export default {
                         "internalType": "address",
                         "name": "owner",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "indexed": true,
                         "internalType": "address",
                         "name": "approved",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "indexed": true,
                         "internalType": "uint256",
                         "name": "tokenId",
@@ -81,14 +75,12 @@ export default {
                         "internalType": "address",
                         "name": "owner",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "indexed": true,
                         "internalType": "address",
                         "name": "operator",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "indexed": false,
                         "internalType": "bool",
                         "name": "approved",
@@ -106,8 +98,7 @@ export default {
                         "internalType": "address",
                         "name": "previousOwner",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "indexed": true,
                         "internalType": "address",
                         "name": "newOwner",
@@ -116,8 +107,7 @@ export default {
                 ],
                 "name": "OwnershipTransferred",
                 "type": "event"
-            },
-            {
+            }, {
                 "anonymous": false,
                 "inputs": [
                     {
@@ -125,14 +115,12 @@ export default {
                         "internalType": "address",
                         "name": "user",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "indexed": false,
                         "internalType": "uint256",
                         "name": "count",
                         "type": "uint256"
-                    },
-                    {
+                    }, {
                         "indexed": false,
                         "internalType": "uint256",
                         "name": "timestamp",
@@ -141,8 +129,7 @@ export default {
                 ],
                 "name": "TokensPurchased",
                 "type": "event"
-            },
-            {
+            }, {
                 "anonymous": false,
                 "inputs": [
                     {
@@ -150,14 +137,12 @@ export default {
                         "internalType": "address",
                         "name": "from",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "indexed": true,
                         "internalType": "address",
                         "name": "to",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "indexed": true,
                         "internalType": "uint256",
                         "name": "tokenId",
@@ -166,28 +151,23 @@ export default {
                 ],
                 "name": "Transfer",
                 "type": "event"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",
                         "name": "to",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "uint256",
                         "name": "tokenId",
                         "type": "uint256"
                     }
                 ],
                 "name": "approve",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",
@@ -205,11 +185,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "baseURI",
                 "outputs": [
                     {
@@ -220,8 +197,19 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
+            }, {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "count",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "burnTokensToRefund",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }, {
                 "inputs": [
                     {
                         "internalType": "uint256",
@@ -230,13 +218,10 @@ export default {
                     }
                 ],
                 "name": "buyToken",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "payable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "uint256",
@@ -254,11 +239,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "closeCrowdsaleTime",
                 "outputs": [
                     {
@@ -269,8 +251,19 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
+            }, {
+                "inputs": [],
+                "name": "defaultTokenURI",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            }, {
                 "inputs": [
                     {
                         "internalType": "uint256",
@@ -288,8 +281,7 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "uint256",
@@ -298,20 +290,16 @@ export default {
                     }
                 ],
                 "name": "getCashback",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",
                         "name": "owner",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "address",
                         "name": "operator",
                         "type": "address"
@@ -327,11 +315,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "isClosedCrowdsale",
                 "outputs": [
                     {
@@ -342,11 +327,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "isRefund",
                 "outputs": [
                     {
@@ -357,11 +339,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "maxSupply",
                 "outputs": [
                     {
@@ -372,11 +351,20 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
+            }, {
+                "inputs": [],
+                "name": "maxTokensToBuyInTx",
+                "outputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "",
+                        "type": "uint256"
+                    }
                 ],
+                "stateMutability": "view",
+                "type": "function"
+            }, {
+                "inputs": [],
                 "name": "moneyCollectedAll",
                 "outputs": [
                     {
@@ -387,11 +375,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "moneyForCashback",
                 "outputs": [
                     {
@@ -402,11 +387,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "name",
                 "outputs": [
                     {
@@ -417,11 +399,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "openCrowdsaleTime",
                 "outputs": [
                     {
@@ -432,11 +411,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "owner",
                 "outputs": [
                     {
@@ -447,8 +423,7 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "uint256",
@@ -466,11 +441,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "percentOfCashback",
                 "outputs": [
                     {
@@ -481,97 +453,126 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "renounceOwnership",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",
                         "name": "from",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "address",
                         "name": "to",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "uint256",
                         "name": "tokenId",
                         "type": "uint256"
                     }
                 ],
                 "name": "safeTransferFrom",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",
                         "name": "from",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "address",
                         "name": "to",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "uint256",
                         "name": "tokenId",
                         "type": "uint256"
-                    },
-                    {
+                    }, {
                         "internalType": "bytes",
                         "name": "_data",
                         "type": "bytes"
                     }
                 ],
                 "name": "safeTransferFrom",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",
                         "name": "operator",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "bool",
                         "name": "approved",
                         "type": "bool"
                     }
                 ],
                 "name": "setApprovalForAll",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
-
+                    {
+                        "internalType": "string",
+                        "name": "newBaseUri",
+                        "type": "string"
+                    }
                 ],
+                "name": "setBaseUri",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }, {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "newDefaultTokenUri",
+                        "type": "string"
+                    }
+                ],
+                "name": "setDefaultTokenURI",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }, {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "newMax",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "setMaxTokensToBuyInTx",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }, {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "tokenId",
+                        "type": "uint256"
+                    }, {
+                        "internalType": "string",
+                        "name": "newTokenUri",
+                        "type": "string"
+                    }
+                ],
+                "name": "setTokenURI",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }, {
+                "inputs": [],
                 "name": "softCapInTokens",
                 "outputs": [
                     {
@@ -582,19 +583,13 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "startCrowdsale",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "bytes4",
@@ -612,11 +607,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "symbol",
                 "outputs": [
                     {
@@ -627,8 +619,7 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "uint256",
@@ -646,15 +637,13 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",
                         "name": "owner",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "uint256",
                         "name": "index",
                         "type": "uint256"
@@ -670,11 +659,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "tokenPrice",
                 "outputs": [
                     {
@@ -685,8 +671,7 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "uint256",
@@ -704,11 +689,8 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "totalSupply",
                 "outputs": [
                     {
@@ -719,33 +701,27 @@ export default {
                 ],
                 "stateMutability": "view",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",
                         "name": "from",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "address",
                         "name": "to",
                         "type": "address"
-                    },
-                    {
+                    }, {
                         "internalType": "uint256",
                         "name": "tokenId",
                         "type": "uint256"
                     }
                 ],
                 "name": "transferFrom",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",
@@ -754,24 +730,16 @@ export default {
                     }
                 ],
                 "name": "transferOwnership",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
-                "inputs": [
-
-                ],
+            }, {
+                "inputs": [],
                 "name": "withdraw",
-                "outputs": [
-
-                ],
+                "outputs": [],
                 "stateMutability": "nonpayable",
                 "type": "function"
-            },
-            {
+            }, {
                 "inputs": [
                     {
                         "internalType": "address",

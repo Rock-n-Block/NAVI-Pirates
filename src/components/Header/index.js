@@ -68,6 +68,16 @@ function Header() {
         }
     }
 
+    const handleBuyToken = async () => {
+        try {
+            const bought = await contractService.buyManyTokens(userAddress,pawCardAmount)
+            const balanceOf = await contractService.balanceOf(userAddress)
+            setBalance(balanceOf)
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     const getData = async () => {
         const isClosed = await contractService.isClosedCrowdsale()
         setCrowdsaleClosed(isClosed)
@@ -180,7 +190,7 @@ function Header() {
                                 <div className="header__right-pawCard-panel-cost">
                                     {cardPrice && pawCardAmount ? new BigNumber(cardPrice).multipliedBy(pawCardAmount).toFixed() : 0} BNB
                                 </div>
-                                <button className="header__right-pawCard-panel-buy-button">BUY CARD</button>
+                                <button className="header__right-pawCard-panel-buy-button" onClick={handleBuyToken}>BUY CARD</button>
                             </div>) : (null)}
                         </div>
 
