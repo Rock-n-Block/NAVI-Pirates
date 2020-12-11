@@ -31,6 +31,14 @@ export default class ContractService {
         return this.pawContract.methods.tokenOfOwnerByIndex(address,index).call()
     }
 
+    withdrawForUserWhenRefund = async (address) => {
+        return this.pawContract.methods.withdrawForUserWhenRefund(address).call()
+    }
+
+    burnTokensToRefund = async (address, count) => {
+        return await this.binanceService.sendTx('burnTokensToRefund',address,[count],0)
+    }
+
     cashbackOfToken = (id) => {
         return this.pawContract.methods.cashbackOfToken(id).call()
     }

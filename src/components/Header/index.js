@@ -29,9 +29,9 @@ function Header() {
     const [isSlidesActive, setSlidesActive] = React.useState(false);
     const [pawCardAmount, setPawCardAmount] = React.useState(0);
     const [swipe, setSwipe] = React.useState(false);
-
     const [isCrowdsaleClosed, setCrowdsaleClosed] = React.useState(false)
-
+    const [isRefund, setIsRefund] = React.useState(false)
+    const [withdrawForUserWhenRefund, setWithdrawForUserWhenRefund] = React.useState(0)
     const [cardPrice, setCardPrice] = React.useState(0)
     const [balance, setBalance] = React.useState(0)
 
@@ -61,16 +61,33 @@ function Header() {
     }
 
     const handleCountCardsChange = (amount) => {
-        if (pawCardAmount + amount <= 0) {
+        const newAmount = +pawCardAmount + amount;
+        if (newAmount <= 0) {
             setPawCardAmount(0)
         } else {
-            setPawCardAmount(+pawCardAmount + amount)
+            if (isCrowdsaleClosed && isRefund) {
+                if (newAmount > withdrawForUserWhenRefund) return;
+            } else {
+                setPawCardAmount(newAmount)
+            }
         }
     }
 
     const handleBuyToken = async () => {
         try {
-            const bought = await contractService.buyManyTokens(userAddress,Number(pawCardAmount))
+            const bought = await contractService.buyManyTokens(userAddress,pawCardAmount)
+            const balanceOf = await contractService.balanceOf(userAddress)
+            setBalance(balanceOf)
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    const handleRefund = async () => {
+        try {
+            const burn = await contractService.burnTokensToRefund(userAddress,pawCardAmount)
+            console.log('handleRefund isRefund',isRefund)
+            console.log('handleRefund burn',burn)
             const balanceOf = await contractService.balanceOf(userAddress)
             setBalance(balanceOf)
         } catch (e) {
@@ -79,12 +96,16 @@ function Header() {
     }
 
     const getData = async () => {
+        if (userAddress) {
+            const count = await contractService.withdrawForUserWhenRefund(userAddress)
+            setWithdrawForUserWhenRefund(count)
+        }
+        const isRefund = await contractService.isRefund()
+        setIsRefund(isRefund)
         const isClosed = await contractService.isClosedCrowdsale()
         setCrowdsaleClosed(isClosed)
-
         if (!isClosed) {
             const price = await contractService.tokenPrice()
-
             setCardPrice(price)
         }
     }
@@ -170,8 +191,13 @@ function Header() {
 
 
                         <div className="header__right-pawCard-wrapper" ref={pawCardRef}>
-                            <button className="header__right-pawCard-button" onClick={() => setCounterActive(!isCounterActive)}>
-                                BUY VIP PAW CARD
+                            <button
+                            className="header__right-pawCard-button"
+                            onClick={() => setCounterActive(!isCounterActive)}
+                            >
+                                {isCrowdsaleClosed && isRefund ?
+                                'WITHDRAW' : 'BUY VIP PAW CARD'
+                                }
 
                                 {isCounterActive ? (
                                     <div className="pawCard-count-component-up" />
@@ -179,19 +205,43 @@ function Header() {
                                     (<div className="pawCard-count-component-down" />)}
 
                             </button>
-                            {isCounterActive ? (<div className="header__right-pawCard-panel" id="pawCard-panel">
+                            {isCounterActive ?
+                            (<div className="header__right-pawCard-panel" id="pawCard-panel">
                                 <div className="header__right-pawCard-panel-counter">
                                     <button onClick={() => handleCountCardsChange(-1)}></button>
                                     <div className="header__right-pawCard-panel-value">
-                                        <input placeholder="0" type="number" value={pawCardAmount} onChange={({ target }) => setPawCardAmount(target.value)} />
+                                        <input
+                                        placeholder="0"
+                                        type="number"
+                                        value={pawCardAmount}
+                                        onChange={({ target }) => setPawCardAmount(target.value)}
+                                        />
                                     </div>
                                     <button onClick={() => handleCountCardsChange(1)}></button>
                                 </div>
-                                <div className="header__right-pawCard-panel-cost">
-                                    {cardPrice && pawCardAmount ? new BigNumber(cardPrice).multipliedBy(pawCardAmount).toFixed() : 0} BNB
+                                <div
+                                className="header__right-pawCard-panel-cost"
+                                >
+                                    {cardPrice && pawCardAmount ?
+                                    new BigNumber(cardPrice).multipliedBy(pawCardAmount).toFixed() :
+                                    0
+                                    } BNB
                                 </div>
-                                <button className="header__right-pawCard-panel-buy-button" onClick={handleBuyToken}>BUY CARD</button>
-                            </div>) : (null)}
+                                { isCrowdsaleClosed && isRefund ?
+                                <button
+                                className="header__right-pawCard-panel-buy-button"
+                                onClick={handleRefund}>
+                                    REFUND
+                                </button>:
+                                <button
+                                className="header__right-pawCard-panel-buy-button"
+                                onClick={handleBuyToken}>
+                                    BUY CARD
+                                </button>
+                                }
+                            </div>) :
+                            (null)
+                            }
                         </div>
 
                     </div>
