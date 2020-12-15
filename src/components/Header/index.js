@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import BigNumber from "bignumber.js";
 import TokenCardComponent from './TokenCardComponent';
 
-import { userActions } from '../../redux/actions';
+import {userActions, walletActions} from '../../redux/actions';
 import { useContractContext } from '../../contexts/contractContext';
 
 import 'swiper/swiper.scss';
@@ -45,10 +45,20 @@ function Header() {
         document.documentElement.scrollTop = 0;
     };
 
-    const handleLogin = () => {
-        walletService.getAccount()
-            .then(res => dispatch(userActions.setUserData(res)))
-            .catch(err => dispatch(userActions.setUserData(err)))
+    const handleLoginBinance = () => {
+        try {
+            dispatch(walletActions.setWalletType({type:'binance'}))
+        } catch (e) {
+            console.error(e);
+        }
+    };
+
+    const handleLoginMetamask = () => {
+        try {
+            dispatch(walletActions.setWalletType({type:'metamask'}))
+        } catch (e) {
+            console.error(e);
+        }
     };
 
     const userAddress = useSelector(({ user }) => user.address);
@@ -164,7 +174,7 @@ function Header() {
                         {!userAddress &&
                         <button
                         className="header__right-login-button"
-                        onClick={handleLogin}
+                        onClick={handleLoginBinance}
                         >
                             <img src={login_img} />
                             <div>Login to Binance</div>
@@ -172,7 +182,10 @@ function Header() {
                         }
 
                         {!userAddress &&
-                        <button className="header__right-login-button">
+                        <button
+                        className="header__right-login-button"
+                        onClick={handleLoginMetamask}
+                        >
                             <img src={trust_img}/>
                             <div>Login to Metamask</div>
                         </button>

@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { useDispatch } from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import { BinanceService, ContractService, MetamaskService } from '../../utils';
 import { userActions } from '../../redux/actions';
@@ -15,6 +15,8 @@ const ContractProvider = ({ children }) => {
     const [contractService, setContractService] = React.useState(null)
 
     const dispatch = useDispatch();
+
+    const walletType = useSelector(({ wallet }) => wallet.type);
 
     const loginOneOf = async () => {
         try {
@@ -62,6 +64,14 @@ const ContractProvider = ({ children }) => {
             console.error(e);
         }
     }
+
+    React.useEffect(() => {
+        if (walletType==='binance') {
+            loginBinance()
+        } else if (walletType==='metamask') {
+            loginMetamask()
+        }
+    }, [walletType])
 
     React.useEffect(() => {
         let counter = 0;
