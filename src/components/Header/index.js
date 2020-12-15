@@ -22,7 +22,7 @@ import arrowNextImg from '../../assets/img/next.png'
 function Header() {
     const dispatch = useDispatch();
 
-    const { binanceService, contractService } = useContractContext()
+    const { walletService, contractService } = useContractContext()
 
     const [isTabActive, setIsTabActive] = React.useState(false);
     const [isCounterActive, setCounterActive] = React.useState(false);
@@ -46,7 +46,7 @@ function Header() {
     };
 
     const handleLogin = () => {
-        binanceService.getAccount()
+        walletService.getAccount()
             .then(res => dispatch(userActions.setUserData(res)))
             .catch(err => dispatch(userActions.setUserData(err)))
     };
@@ -158,37 +158,56 @@ function Header() {
                         </NavLink>
 
                     </div>
-                    <div className="header__right">
-                        {!userAddress && <button className="header__right-login-button" onClick={handleLogin}>
+                    <div
+                    className="header__right">
+
+                        {!userAddress &&
+                        <button
+                        className="header__right-login-button"
+                        onClick={handleLogin}
+                        >
                             <img src={login_img} />
-                            <div>Login to Binance Smart Chain Wallet</div>
-                        </button>}
-                        <button className="header__right-login-1-button">
-                            <img src={trust_img} />
-                            <div>Trust Wallet</div>
+                            <div>Login to Binance</div>
                         </button>
-                        {!isSlidesActive ? (<button className="header__right-nftCard-button" onClick={() => {
+                        }
+
+                        {!userAddress &&
+                        <button className="header__right-login-button">
+                            <img src={trust_img}/>
+                            <div>Login to Metamask</div>
+                        </button>
+                        }
+
+                        {!isSlidesActive ? (
+                        <button
+                        className="header__right-nftCard-button"
+                        onClick={() => {
                             setSlidesActive(!isSlidesActive)
-                        }}>
+                        }}
+                        >
                             <div> My VIP NFT CARD </div>
                             <div className="count-component">
                                 <div className="count-value">
                                     {balance}
                                 </div>
                             </div>
-                        </button>) :
-                            (<button className="header__right-nftCard-button-active" onClick={() => {
-                                setSlidesActive(!isSlidesActive)
-                            }}>
-                                <div> My VIP NFT CARD </div>
-                                <div className="count-component-active">
-                                    <div className="count-value">
-                                        {balance}
-                                    </div>
+                        </button>
+                        ) : (
+                        <button
+                        className="header__right-nftCard-button-active"
+                        onClick={() => {
+                            setSlidesActive(!isSlidesActive)
+                        }}
+                        >
+                            <div> My VIP NFT CARD </div>
+                            <div className="count-component-active">
+                                <div className="count-value">
+                                    {balance}
                                 </div>
-                                <div className="header__right-nftCard-button-active-img" />
-                            </button>)}
-
+                            </div>
+                            <div className="header__right-nftCard-button-active-img" />
+                        </button>
+                        )}
 
                         <div className="header__right-pawCard-wrapper" ref={pawCardRef}>
                             <button
@@ -200,9 +219,10 @@ function Header() {
                                 }
 
                                 {isCounterActive ? (
-                                    <div className="pawCard-count-component-up" />
-                                ) :
-                                    (<div className="pawCard-count-component-down" />)}
+                                <div className="pawCard-count-component-up" />
+                                ) : (
+                                <div className="pawCard-count-component-down" />
+                                )}
 
                             </button>
                             {isCounterActive ?

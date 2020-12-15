@@ -1,6 +1,15 @@
 export default {
     PAW: {
-        ADDRESS: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
+        ADDRESS: {
+            metamask: {
+                mainnet: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
+                testnet: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
+            },
+            binance: {
+                mainnet: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
+                testnet: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
+            },
+        },
         ABI: [
             {
                 "inputs": [

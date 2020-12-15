@@ -2,12 +2,17 @@ import contractDetails from './contractDetails';
 import decimals from './decimals';
 import BigNumber from "bignumber.js";
 
+const IS_PRODUCTION = false;
+
 export default class ContractService {
 
-    constructor(BinanceService) {
-        this.binanceService = BinanceService
-
-        this.pawContract = this.binanceService.getContract(contractDetails.PAW.ABI, contractDetails.PAW.ADDRESS)
+    constructor(wallet) {
+        this.wallet = wallet
+        this.net = IS_PRODUCTION ? 'mainnet' : 'testnet'
+        this.pawContract = this.wallet.getContract(
+        contractDetails.PAW.ABI,
+        contractDetails.PAW.ADDRESS[wallet.name][this.net]
+        )
     }
 
     tokenPrice = async () => {
@@ -36,7 +41,7 @@ export default class ContractService {
     }
 
     burnTokensToRefund = async (address, count) => {
-        return await this.binanceService.sendTx('burnTokensToRefund',address,[count],0)
+        return await this.wallet.sendTx('burnTokensToRefund',address,[count],0)
     }
 
     cashbackOfToken = async (id) => {
@@ -45,7 +50,7 @@ export default class ContractService {
     }
 
     getCashback = (address,tokenId) => {
-        return this.binanceService.sendTx('getCashback',address,[tokenId],0)
+        return this.wallet.sendTx('getCashback',address,[tokenId],0)
     }
 
     buyManyTokens = async (address, count) => {
@@ -75,7 +80,7 @@ export default class ContractService {
             .multipliedBy(new BigNumber(tokenPrice))
             .multipliedBy(new BigNumber(10).pow(decimals.BNB)).toFixed();
             amount = '0x' + (+amount).toString(16)
-            return await this.binanceService.sendTx('buyToken',address,[count],amount)
+            return await this.wallet.sendTx('buyToken',address,[count],amount)
         } catch (e) {
             console.error(e);
         }

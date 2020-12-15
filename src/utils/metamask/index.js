@@ -3,12 +3,14 @@ import contractDetails from "../contractService/contractDetails";
 
 const IS_PRODUCTION = false;
 
-export default class BinanceService {
+export default class MetamaskService {
     constructor() {
-        this.name = 'binance'
-        this.wallet = window['BinanceChain']
+        this.name = 'metamask'
+        this.wallet = window.ethereum;
         this.net = IS_PRODUCTION ? 'mainnet' : 'testnet'
-        this.Web3Provider = new Web3('https://data-seed-prebsc-1-s1.binance.org:8545');
+        this.providers = {};
+        this.providers.metamask = Web3.givenProvider;
+        this.Web3Provider = new Web3(this.providers.metamask);
         this.wallet && this.wallet.on('chainChanged', () => window.location.reload());
         this.wallet && this.wallet.on('accountsChanged', () => window.location.reload());
     }
@@ -21,16 +23,15 @@ export default class BinanceService {
             const netVersion = this.wallet.chainId
             if (netVersion === usedNet) {
                 this.wallet.request({ method: 'eth_requestAccounts' })
-                    .then(account => resolve({
-                        address: account[0]
-                    }))
-                    .catch(_ => reject({ errorMsg: 'Not authorized' }))
+                .then(account => resolve({
+                    address: account[0]
+                }))
+                .catch(_ => reject({ errorMsg: 'Not authorized' }))
             } else {
                 reject({
                     errorMsg: `Please choose ${net} network in ${this.name} wallet.`
                 })
             }
-
         })
     }
 
@@ -40,6 +41,7 @@ export default class BinanceService {
 
     sendTx = async (methodName, addressFrom, data, amount) => {
         try {
+            console.log('sendTx')
             const method = this.getMethodInterface(methodName, contractDetails.PAW.ABI);
             const signature = this.encodeFunctionCall(method, data);
             const params = {
@@ -51,7 +53,7 @@ export default class BinanceService {
             const txHash = await this.wallet.request({
                 method: 'eth_sendTransaction',
                 params: [params],
-            })
+            });
             const txReceipt = new Promise((resolve, reject) => {
                 const trxSubscription = setInterval(() => {
                     this.Web3Provider.eth.getTransactionReceipt(
@@ -87,5 +89,6 @@ export default class BinanceService {
             return m.name === methodName;
         })[0];
     }
+
 
 }
