@@ -17,16 +17,17 @@ function TokenCardComponent(props) {
     const getToken = React.useCallback(async () => {
         if (!userAddress) return;
         const tokenId = await contractService.tokenOfOwnerByIndex(userAddress, index)
+        console.log('getToken',tokenId)
         setTokenId(tokenId)
         const cashback = await contractService.cashbackOfToken(tokenId)
         setCashback(cashback)
     },[contractService, index, userAddress])
 
-    const getCashback = async () => {
-        if (!userAddress) return;
-        await contractService.getCashback(userAddress, tokenId)
-        await getToken()
-    }
+    // const getCashback = async () => {
+    //     if (!userAddress) return;
+    //     await contractService.getCashback(userAddress, tokenId)
+    //     await getToken()
+    // }
 
     React.useEffect(() => {
         if (contractService) {
@@ -41,12 +42,12 @@ function TokenCardComponent(props) {
       </div>
       <button
       className="swiper-slide-button"
-      onClick={getCashback}
+      // onClick={getCashback}
       >
           WITHDRAW
       </button>
       <div className="swiper-slide-id">
-          #{index}
+          #{tokenId}
       </div>
     </div>
     );
