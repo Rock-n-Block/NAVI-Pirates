@@ -2,12 +2,12 @@ export default {
     PAW: {
         ADDRESS: {
             metamask: {
-                mainnet: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
-                testnet: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
+                mainnet: '0x65855cDfFD860953739F11213b2395CD01642806',
+                testnet: '0x65855cDfFD860953739F11213b2395CD01642806',
             },
             binance: {
-                mainnet: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
-                testnet: '0xFd2b9c3Ffa9AD0d514c9cE5F9E7D0d69cd9fE9fe',
+                mainnet: '0x65855cDfFD860953739F11213b2395CD01642806',
+                testnet: '0x65855cDfFD860953739F11213b2395CD01642806',
             },
         },
         ABI: [
