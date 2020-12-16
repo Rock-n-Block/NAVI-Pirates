@@ -2,7 +2,6 @@ require('dotenv').config();
 const {
     TOKEN_PRICE,
     SOFTCAP_IN_TOKENS,
-    PERCENT_OF_CASHBACK,
     OPEN_CROWDSALE_TIME,
     CLOSE_CROWDSALE_TIME,
     MAX_SUPPLY,
@@ -32,7 +31,6 @@ module.exports = async function (deployer, network) {
                 TOKEN_PRICE,
                 SOFTCAP_IN_TOKENS,
                 MAX_SUPPLY,
-                PERCENT_OF_CASHBACK,
                 OPEN_CROWDSALE_TIME,
                 CLOSE_CROWDSALE_TIME
             );

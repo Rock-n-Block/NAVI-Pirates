@@ -12,16 +12,10 @@ contract vipPaw is ERC721, Ownable
 
     uint256 public tokenPrice;
     uint256 public softCapInTokens;
-    uint256 public moneyCollectedAll;
-    uint256 public moneyForCashback;
+    uint256 public moneyCollected;
 
     uint256 private lastTokenId;
     uint256 public maxSupply = 10000;
-    // mapping id of token to the number of cashback that is available to this token
-    // 1 is 0.1%
-    uint256 public percentOfCashback;
-    mapping (uint256 => uint256) public cashbackOfToken;
-    mapping (address => uint256) public withdrawForUserWhenRefund;
 
     uint256 public openCrowdsaleTime;
     uint256 public closeCrowdsaleTime;
@@ -29,6 +23,8 @@ contract vipPaw is ERC721, Ownable
     string public defaultTokenURI;
 
     uint256 public maxTokensToBuyInTx = 100;
+
+    bool public isOpenTransfers = false;
 
     event TokensPurchased(
         address user,
@@ -42,7 +38,6 @@ contract vipPaw is ERC721, Ownable
         uint256 _tokenPrice,
         uint256 _softCapInTokens,
         uint256 _maxSupply,
-        uint256 _percentOfCashback,
         uint256 _openCrowdsaleTime,
         uint256 _closeCrowdsaleTime
     )
@@ -50,28 +45,23 @@ contract vipPaw is ERC721, Ownable
         ERC721(name, symbol)
     {
         require(
-            _percentOfCashback >= 0 && _percentOfCashback <= 1000,
-            "vipPaw: Wrong percent of cashback"
-        );
-        require(
             _softCapInTokens <= _maxSupply,
             "vipPaw: Wrong soft cap"
         );
-        require(
+        /* require(
             _closeCrowdsaleTime > now &&
             _openCrowdsaleTime <= _closeCrowdsaleTime,
             "vipPaw: Wrong open and close time of crowdsale"
-        );
+        ); */
 
         tokenPrice = _tokenPrice;
         softCapInTokens = _softCapInTokens;
         maxSupply = _maxSupply;
-        percentOfCashback = _percentOfCashback;
         openCrowdsaleTime = _openCrowdsaleTime;
         closeCrowdsaleTime = _closeCrowdsaleTime;
     }
 
-    /* bool isFirstTime = true;
+    bool isFirstTime = true;
     function startCrowdsale() external onlyOwner
     {
         require(
@@ -81,7 +71,7 @@ contract vipPaw is ERC721, Ownable
         openCrowdsaleTime = now;
         closeCrowdsaleTime = now + 10 minutes;
         isFirstTime = false;
-    } */
+    }
 
     function setBaseUri(string memory newBaseUri) external onlyOwner
     {
@@ -103,6 +93,15 @@ contract vipPaw is ERC721, Ownable
         maxTokensToBuyInTx = newMax;
     }
 
+    function openTransfers() external onlyOwner
+    {
+        require(
+            isOpenTransfers == false,
+            "vipPaw: Transfers is already opened"
+        );
+        isOpenTransfers = true;
+    }
+
     function buyToken(uint256 count) external payable
     {
         require(
@@ -122,21 +121,17 @@ contract vipPaw is ERC721, Ownable
             "vipPaw: Wrong amount of money"
         );
 
-        uint256 cashbackAmount = tokenPrice.mul(percentOfCashback).div(1000);
         for(uint256 token = 0; token < count; token = token.add(1))
         {
             // mint token
             _mint(sender, lastTokenId);
-            // add info about cashback
-            cashbackOfToken[lastTokenId] = cashbackAmount;
+
             _setTokenURI(lastTokenId, defaultTokenURI);
 
             lastTokenId = lastTokenId.add(1);
         }
 
-        moneyForCashback = moneyForCashback.add(cashbackAmount.mul(count));
-        moneyCollectedAll = moneyCollectedAll.add(rawAmount);
-        withdrawForUserWhenRefund[sender] = withdrawForUserWhenRefund[sender].add(rawAmount);
+        moneyCollected = moneyCollected.add(rawAmount);
 
         emit TokensPurchased(sender, count, now);
     }
@@ -156,13 +151,13 @@ contract vipPaw is ERC721, Ownable
             isRefund() == false,
             "vipPaw: Owner can not withdraw when it is refund"
         );
-        uint256 amountToReturn = moneyCollectedAll.sub(moneyForCashback);
+        uint256 amountToReturn = moneyCollected;
         require(
             amountToReturn > 0,
             "vipPaw: Nothing to return"
         );
         sender.transfer(amountToReturn);
-        moneyCollectedAll = moneyForCashback;
+        moneyCollected = 0;
     }
 
     function burnTokensToRefund(uint256 count) external
@@ -193,44 +188,18 @@ contract vipPaw is ERC721, Ownable
         );
 
         uint256 amountToRefund;
-        uint256 amountToRefundAll;
-        uint256 maxCashbackAmout = tokenPrice.mul(percentOfCashback).div(1000);
         uint256 tokenId;
         for(uint256 ind = 0; ind < amountToBurn; ind = ind.add(1))
         {
             tokenId = tokenOfOwnerByIndex(sender, 0);
-            amountToRefund = tokenPrice.sub(maxCashbackAmout).add(cashbackOfToken[tokenId]);
-            amountToRefundAll = amountToRefundAll.add(amountToRefund);
-
-            moneyCollectedAll = moneyCollectedAll.sub(amountToRefund);
-            moneyForCashback = moneyForCashback.sub(cashbackOfToken[tokenId]);
-
-            cashbackOfToken[tokenId] = 0;
 
             _burn(tokenId);
         }
 
-        sender.transfer(amountToRefundAll);
-        withdrawForUserWhenRefund[sender] = withdrawForUserWhenRefund[sender].sub(amountToRefundAll);
-    }
+        amountToRefund = tokenPrice.mul(amountToBurn);
+        moneyCollected = moneyCollected.sub(amountToRefund);
 
-    function getCashback(uint256 tokenId) external
-    {
-        uint256 amount = cashbackOfToken[tokenId];
-        require(
-            amount > 0,
-            "vipPaw: There is no cashback on this token id"
-        );
-        address payable ownerToken = payable(ownerOf(tokenId));
-        require(
-            _msgSender() == ownerToken,
-            "vipPaw: Sender is not owner of the token"
-        );
-        ownerToken.transfer(amount);
-        withdrawForUserWhenRefund[ownerToken] = withdrawForUserWhenRefund[ownerToken].sub(amount);
-        cashbackOfToken[tokenId] = 0;
-        moneyCollectedAll = moneyCollectedAll.sub(amount);
-        moneyForCashback = moneyForCashback.sub(amount);
+        sender.transfer(amountToRefund);
     }
 
     function isClosedCrowdsale() public view returns(bool)
@@ -273,9 +242,9 @@ contract vipPaw is ERC721, Ownable
     {
         if (from == address(0) || to == address(0))
             return;
-        uint256 maxCashbackAmout = tokenPrice.mul(percentOfCashback).div(1000);
-        uint256 amount = tokenPrice.sub(maxCashbackAmout).add(cashbackOfToken[tokenId]);
-        withdrawForUserWhenRefund[from] = withdrawForUserWhenRefund[from].sub(amount);
-        withdrawForUserWhenRefund[to] = withdrawForUserWhenRefund[to].add(amount);
+        require(
+            isOpenTransfers == true,
+            "vipPaw: Transfers is not opened yet"
+        );
     }
 }
