@@ -15,7 +15,7 @@ contract vipPaw is ERC721, Ownable
     uint256 public moneyCollected;
 
     uint256 private lastTokenId;
-    uint256 public maxSupply = 10000;
+    uint256 public maxSupply;
 
     uint256 public openCrowdsaleTime;
     uint256 public closeCrowdsaleTime;
@@ -39,7 +39,9 @@ contract vipPaw is ERC721, Ownable
         uint256 _softCapInTokens,
         uint256 _maxSupply,
         uint256 _openCrowdsaleTime,
-        uint256 _closeCrowdsaleTime
+        uint256 _closeCrowdsaleTime,
+        uint256 _maxTokensToBuyInTx,
+        bool _isFirstTime
     )
         public
         ERC721(name, symbol)
@@ -48,20 +50,21 @@ contract vipPaw is ERC721, Ownable
             _softCapInTokens <= _maxSupply,
             "vipPaw: Wrong soft cap"
         );
-        /* require(
-            _closeCrowdsaleTime > now &&
+        require(
             _openCrowdsaleTime <= _closeCrowdsaleTime,
             "vipPaw: Wrong open and close time of crowdsale"
-        ); */
+        );
 
         tokenPrice = _tokenPrice;
         softCapInTokens = _softCapInTokens;
         maxSupply = _maxSupply;
         openCrowdsaleTime = _openCrowdsaleTime;
         closeCrowdsaleTime = _closeCrowdsaleTime;
+        maxTokensToBuyInTx = _maxTokensToBuyInTx;
+        isFirstTime = _isFirstTime;
     }
 
-    bool isFirstTime = true;
+    bool isFirstTime;
     function startCrowdsale() external onlyOwner
     {
         require(
