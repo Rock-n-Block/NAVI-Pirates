@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector, useDispatch } from 'react-redux';
+import classNames from 'classnames';
 import BigNumber from "bignumber.js";
 import TokenCardComponent from './TokenCardComponent';
 
@@ -13,11 +14,16 @@ import './header.scss';
 
 
 import logo from '../../assets/img/logo.svg'
-import tab from '../../assets/img/tab.png'
+import scrollUpImg from '../../assets/img/scroll-up.svg'
 import login_img from '../../assets/img/login_image.png'
 import trust_img from '../../assets/img/trust.png'
 import arrowPrevImg from '../../assets/img/prev.png'
 import arrowNextImg from '../../assets/img/next.png'
+import github from "../../assets/img/socials/Github.svg";
+import twitter from "../../assets/img/socials/Twitter.svg";
+import telegram from "../../assets/img/socials/Telegram.svg";
+import youtube from "../../assets/img/socials/Youtube.svg";
+import { github_url, telegram_url, twitter_url, youtube_url } from "../Footer";
 
 function Header() {
     const dispatch = useDispatch();
@@ -41,7 +47,7 @@ function Header() {
         window.location.reload();
     };
 
-    const up = () => {
+    const scrollUp = () => {
         document.documentElement.scrollTop = 0;
     };
 
@@ -155,167 +161,160 @@ function Header() {
     }, [userAddress])
 
     return (
-        <div className="header">
-            <div className="row">
+        <header className="header">
+            <div className="container">
                 <div className="header__content">
-                    <div className="header__left">
+                    {isTabActive &&
+                        <img className="scroll-up-btn" src={scrollUpImg} alt="" onClick={scrollUp} />
+                    }
+
+                    <div className="header__logo">
                         <NavLink to="/">
                             <img src={logo} alt="" onClick={reload} />
-                            {isTabActive ? (
-                                <img className="tab" src={tab} alt="" onClick={up} />
-                            ) :
-                                (null)}
                         </NavLink>
-
                     </div>
-                    <div
-                    className="header__right">
 
-                        {!userAddress &&
-                        <button
-                        className="header__right-login-button"
-                        onClick={handleLoginBinance}
-                        >
-                            <img src={login_img} />
-                            <div>Login to Binance</div>
-                        </button>
-                        }
-
-                        {!userAddress &&
-                        <button
-                        className="header__right-login-button"
-                        onClick={handleLoginMetamask}
-                        >
-                            <img src={trust_img}/>
-                            <div>Login to Metamask</div>
-                        </button>
-                        }
-
-                        {!isSlidesActive ? (
-                        <button
-                        className="header__right-nftCard-button"
-                        onClick={() => {
-                            setSlidesActive(!isSlidesActive)
-                        }}
-                        >
-                            <div> My VIP NFT CARD </div>
-                            <div className="count-component">
-                                <div className="count-value">
-                                    {balance}
-                                </div>
-                            </div>
-                        </button>
-                        ) : (
-                        <button
-                        className="header__right-nftCard-button-active"
-                        onClick={() => {
-                            setSlidesActive(!isSlidesActive)
-                        }}
-                        >
-                            <div> My VIP NFT CARD </div>
-                            <div className="count-component-active">
-                                <div className="count-value">
-                                    {balance}
-                                </div>
-                            </div>
-                            <div className="header__right-nftCard-button-active-img" />
-                        </button>
-                        )}
-
-                        <div className="header__right-pawCard-wrapper" ref={pawCardRef}>
-                            <button
-                            className="header__right-pawCard-button"
-                            onClick={() => setCounterActive(!isCounterActive)}
+                    <div className="header__menu">
+                        <div className="header__controls">
+                            {!userAddress &&
+                            <div
+                              className="header__btn header__btn--bg"
+                              onClick={handleLoginBinance}
                             >
-                                {isCrowdsaleClosed && isRefund ?
-                                'WITHDRAW' : 'BUY VIP PAW CARD'
-                                }
-
-                                {isCounterActive ? (
-                                <div className="pawCard-count-component-up" />
-                                ) : (
-                                <div className="pawCard-count-component-down" />
-                                )}
-
-                            </button>
-                            {isCounterActive ?
-                            (<div className="header__right-pawCard-panel" id="pawCard-panel">
-                                <div className="header__right-pawCard-panel-counter">
-                                    <button onClick={() => handleCountCardsChange(-1)}></button>
-                                    <div className="header__right-pawCard-panel-value">
-                                        <input
-                                        placeholder="0"
-                                        type="number"
-                                        value={pawCardAmount}
-                                        onChange={({ target }) => setPawCardAmount(target.value)}
-                                        />
-                                    </div>
-                                    <button onClick={() => handleCountCardsChange(1)}></button>
-                                </div>
-                                <div
-                                className="header__right-pawCard-panel-cost"
-                                >
-                                    {cardPrice && pawCardAmount ?
-                                    new BigNumber(cardPrice).multipliedBy(pawCardAmount).toFixed() :
-                                    0
-                                    } BNB
-                                </div>
-                                { isCrowdsaleClosed && isRefund ?
-                                <button
-                                className="header__right-pawCard-panel-buy-button"
-                                onClick={handleRefund}>
-                                    REFUND
-                                </button>:
-                                <button
-                                className="header__right-pawCard-panel-buy-button"
-                                onClick={handleBuyToken}>
-                                    BUY CARD
-                                </button>
-                                }
-                            </div>) :
-                            (null)
+                                <img src={login_img} />
+                                <div>Login to Binance</div>
+                            </div>
                             }
+
+                            {!userAddress &&
+                            <div
+                              className="header__btn header__btn--bg"
+                              onClick={handleLoginMetamask}
+                            >
+                                <img src={trust_img}/>
+                                <div>Login to Metamask</div>
+                            </div>
+                            }
+
+                            <div
+                              className={classNames('header__btn header__nft-card-btn', {
+                                  'header__nft-card-btn--active': isSlidesActive
+                              })}
+                              onClick={() => {
+                                  setSlidesActive(!isSlidesActive)
+                              }}
+                            >
+                                <div> My VIP NFT CARD </div>
+                                <div className="count-component">
+                                    <div className="count-value">
+                                        {balance}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="header__paw-card-wrapper" ref={pawCardRef}>
+                                <div
+                                  className="header__btn header__paw-card-btn"
+                                  onClick={() => setCounterActive(!isCounterActive)}
+                                >
+                                    {isCrowdsaleClosed && isRefund ?
+                                      'WITHDRAW' : 'BUY VIP PAW CARD'
+                                    }
+
+                                    <div className={classNames('count-component-arrow', {
+                                        'count-component-arrow--up': isCounterActive,
+                                        'count-component-arrow--down': !isCounterActive
+                                    })}/>
+                                </div>
+                                {isCounterActive &&
+                                    <div className="header__paw-card paw-card">
+                                    <div className="paw-card__counter">
+                                      <div className="paw-card__counter-btn paw-card__counter-btn--minus" onClick={() => handleCountCardsChange(-1)}></div>
+                                      <div className="paw-card__counter-value">
+                                          <input
+                                            placeholder="0"
+                                            type="number"
+                                            value={pawCardAmount}
+                                            onChange={({ target }) => setPawCardAmount(target.value)}
+                                          />
+                                      </div>
+                                      <div className="paw-card__counter-btn paw-card__counter-btn--plus" onClick={() => handleCountCardsChange(1)}></div>
+                                    </div>
+                                    <div
+                                    className="paw-card__price"
+                                    >
+                                      {cardPrice && pawCardAmount ?
+                                        new BigNumber(cardPrice).multipliedBy(pawCardAmount).toFixed() :
+                                        0
+                                      } BNB
+                                    </div>
+                                    {isCrowdsaleClosed && isRefund ?
+                                    <div
+                                      className="paw-card__buy-btn"
+                                      onClick={handleRefund}>
+                                        REFUND
+                                    </div> :
+                                    <div
+                                      className="paw-card__buy-btn"
+                                      onClick={handleBuyToken}>
+                                        BUY CARD
+                                    </div>
+                                    }
+                                    </div>
+                                }
+                            </div>
                         </div>
 
-                    </div>
-                    {isSlidesActive ? (
-                        <div className="header__swiper" id="swiper">
-                            { balance !== 0 ?
-                            <Swiper
-                            spaceBetween={10}
-                            slidesPerView={2}
-                            onSwiper={swiper => setSwipe(swiper)}
-                            //onSlideChangeTransitionEnd={handleSlideChange}
-                            >
-                                {[...new Array(balance)].map((token,it) => {
-                                    const index = it + 1;
-                                    return (
-                                    <SwiperSlide
-                                    key={`token-${index}`}
-                                    >
-                                        <TokenCardComponent
-                                        index={index}
-                                        />
-                                    </SwiperSlide>
-                                    )
-                                })}
-                                <div className="media__btn media__btn--prev" onClick={() => swipe.slidePrev()}>
-                                    <img src={arrowPrevImg} alt="" />
-                                </div>
-                                <div className="media__btn media__btn--next" onClick={() => swipe.slideNext()}>
-                                    <img src={arrowNextImg} alt="" />
-                                </div>
-                            </Swiper>
-                            :
-                            <div className="swiper-empty">
-                                nothing yet
+                        <div className="header__menu-footer">
+                            <div className="header__maintenance">Maintained by RocknBlock.io</div>
+                            <div className="header__copyright">© 2020 BEAR Games. All rights reserved</div>
+                            <div className="header__socials">
+                                <NavLink to={github_url}><img src={github} alt=""/></NavLink>
+                                <NavLink to={twitter_url}><img src={twitter} alt=""/></NavLink>
+                                <NavLink to={telegram_url}><img src={telegram} alt=""/></NavLink>
+                                <NavLink to={youtube_url}><img src={youtube} alt=""/></NavLink>
                             </div>
-                            }
-                        </div>) : null}
+                        </div>
+                    </div>
 
+                    {isSlidesActive &&
+                        <div className="header__swiper" id="swiper">
+                            {balance !== 0 ?
+                              <Swiper
+                                spaceBetween={40}
+                                slidesPerView={3}
+                                onSwiper={swiper => setSwipe(swiper)}
+                                //onSlideChangeTransitionEnd={handleSlideChange}
+                              >
+                                  {[...new Array(balance)].map((token, it) => {
+                                      const index = it + 1;
+                                      return (
+                                        <SwiperSlide
+                                          key={`token-${index}`}
+                                        >
+                                            <TokenCardComponent
+                                              index={index}
+                                            />
+                                        </SwiperSlide>
+                                      )
+                                  })}
+                                  <div className="media__btn media__btn--prev" onClick={() => swipe.slidePrev()}>
+                                      <img src={arrowPrevImg} alt=""/>
+                                  </div>
+                                  <div className="media__btn media__btn--next" onClick={() => swipe.slideNext()}>
+                                      <img src={arrowNextImg} alt=""/>
+                                  </div>
+                              </Swiper>
+                              :
+                              <div className="swiper-empty">
+                                  nothing yet
+                              </div>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
-        </div>
+        </header>
     );
 }
 

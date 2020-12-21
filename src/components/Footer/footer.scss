@@ -1,34 +1,39 @@
 @import '../../styles/fonts';
 
-.footer{
-  background-color: black;
-  box-sizing: border-box;
- // font-family: MM;
-&__content {
-  display: flex;
-  justify-content: space-around;
-  color: white;
-  //height:80px
-}
-  &__left, &__center, &__right{
-    margin: auto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 24px;
-    font-feature-settings: 'liga' off;
-    color: #D9DBE1;
-  }
-  &__right{
-    &-contacts{
+.footer {
+  margin-top: 70px;
+  background-color: #0B0D17;
+
+  &__content {
     display: flex;
     align-items: center;
-      a{
-        display: block;
-        margin: 12px;
-        width: 32px;
-        height: 32px;
-      }
+    height: 80px;
+    padding: 0 50px;
   }
-}
+
+  &__content-col {
+    width: calc(100% / 3);
+  }
+
+  &__maintenance,
+  &__copyright {
+    font-size: 14px;
+    line-height: 24px;
+    color: #D9DBE1;
+  }
+
+  &__copyright {
+    text-align: center;
+  }
+
+  &__socials {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__socials-item {
+    & + & {
+      margin-left: 24px;
+    }
+  }
 }

@@ -6,43 +6,43 @@ import money from '../../../assets/img/Money.png'
 import points from '../../../assets/img/points.png'
 import waves from '../../../assets/img/waves.png'
 import strs from '../../../assets/img/strs.png'
+import pawcard from "../../../assets/img/Paw Card.png";
+import img1 from "../../../assets/img/P1.png";
+import img2 from "../../../assets/img/P2.png";
+import img3 from "../../../assets/img/P3.png";
+import img4 from "../../../assets/img/p4.png";
+import { Scrollbars } from "react-custom-scrollbars";
 
 function GOLDTokensComponent() {
   return (
-      <div className = "gold-tokens">
-      <div className = "row">
-          <div className = "gold-tokens__content">
-              <div className = "gold-tokens__left-content">
-                  <img src={waves} alt=""/>
-                  <img src={strs} alt=""/>
-                  <div className = "gold-tokens__left-content-title">
-                      GOLD tokens
-                  </div>
-                  <div className = "gold-tokens__left-content-body">
-                  <div className = "gold-tokens__left-content-body-frame">
-                      <div className = "gold-tokens__left-content-body-frame-text">
-                          GOLD tokens have an unlimited supply; the GOLD tokens token current circulating supply at
-                          any time can be seen from any Binance Smart Chain explorer.
-                          The GOLD tokens token has a precision of 10, which means when you own 1 GOLD tokens,
-                          you are holding 10^10, the smallest unit of GOLD tokens.
-                          <span className="gold-tokens__left-content-body-frame-text-special">
-                              The starting price of GOLD tokens on Pancake Swap will be 0.001 BNB, with no premine
-                          for admins. Gold tokens is designed to always have enough BNB backing on PanCakeSwap
-                          and liquidity provided is locked forever and hence has a built in gamified pumpamentals.
-                          </span>
+      <section className="section tokens-section">
+          <div className="container">
+              <div className="section__content tokens-section__content">
+                  <div className="section__left-content section__text-content tokens-section__left-content">
+                      <h1 className="section__title tokens-section__title">GOLD tokens</h1>
+
+                      <img src={waves} alt="" className="tokens-section__decorator tokens-section__decorator-1"/>
+                      <img src={strs} alt="" className="tokens-section__decorator tokens-section__decorator-2"/>
+
+                      <div className="section__right-content tokens-section__right-content">
+                          <img src={money} alt=""/>
+                          <img src={points} alt=""/>
+                      </div>
+
+                      <div className="section__scroll-content">
+                          <div className="section__text">
+                              GOLD tokens have an unlimited supply; the GOLD tokens token current circulating supply at any time can be seen from any Ethereum explorer.
+                              The GOLD tokens token has a precision of 10, which means when you own 1 GOLD tokens, you are holding 10^10, the smallest unit of GOLD tokens.
+                              <span className="text-decorator text-decorator--orange">
+                                  The starting price of GOLD tokens on Uniswap can 0.000001 ETH, with no premine for admins.
+                                  Gold tokens can designed always to have enough ETH backing on Uniswap and liquidity provided can locked forever and hence has a built in gamified pumpamentals.
+                            </span>
+                          </div>
                       </div>
                   </div>
-                  </div>
               </div>
-              <div className = "gold-tokens__right-content">
-              <div className="gold-tokens__right-content-img">
-                  <img src={money} alt=""/>
-                  <img src={points} alt=""/>
-              </div>
-              </div>
-      </div>
-      </div>
-      </div>
+          </div>
+      </section>
   );
 }
 

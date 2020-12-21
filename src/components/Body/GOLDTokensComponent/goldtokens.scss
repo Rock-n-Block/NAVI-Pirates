@@ -1,124 +1,33 @@
 @import '../../../styles/fonts';
 
-
-.gold-tokens {
-
-  box-sizing: border-box;
-  margin-top: 100px;
-  @media (max-width: 376px) {
-    background: #FCE6A1;
-    border-radius: 30px;
-    padding-top: 40px;
-  }
-  //font-family: MM;
+.tokens-section {
   &__content {
-    display: flex;
-    flex-direction: row;
+    height: 600px;
   }
+
   &__left-content {
     background-color: #FCE6A1;
-    border-radius: 30px 0 0 30px;
-    width:50%;
-    padding-top:60px;
-    padding-left: 60px;
-    padding-bottom:60px;
-    position: relative;
-    img{
-      &:first-child{
-        position: absolute;
-        top:6em;
-        right:20px;
-      }
-      &:nth-child(2n){
-        position: absolute;
-        bottom: 44px;
-        left: -18px;
-      }
-    }
-    &-title {
-      position: relative;
-      font-style: normal;
-      font-weight: 800;
-      font-size: 48px;
-      line-height: 66px;
-      font-feature-settings: 'liga' off;
-      color: #A0730A;
-      margin-bottom:47px;
-      @media (max-width: 376px) {
-        top: 0;
-        left: 0;
-        text-align: center;
-        font-size: 40px;
-        line-height: 55px;
-      }
-    }
-    &-body {
-      position: relative;
-      width: fit-content;
-      overflow-y: auto;
-      overflow-x: hidden;
-      @media (max-width: 376px) {
-        top: 0;
-        left: 0;
-        padding: 20px 17px 20px 18px;
-        width: inherit;
-      }
-      &-frame {
-        background-color: white;
-        width: 447px;
-        padding: 30px;
-        box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
-        border-radius: 16px;
-        @media (max-width: 376px) {
-          width: inherit;
-        }
-        &-text {
-          font-style: normal;
-          font-weight: normal;
-          font-size: 16px;
-          line-height: 28px;
-          font-feature-settings: 'liga' off;
-          color: #18191F;
-          flex: none;
-          order: 0;
-          flex-grow: 0;
-          margin: 10px 0;
-          &-special {
-            font-weight: bold;
-            color: #ce8500;
-          }
-        }
-      }
-
-    }
-    &-img {
-      display: none;
-      @media (max-width: 376px) {
-        display: block;
-        margin-top: 35px;
-        background: #FFF0BF;
-        border-radius: 30px;
-      }
-    }
   }
-  &__right-content{
-    position: relative;
-    background-color: #FFF0BF;
-    border-radius: 0 30px 30px 0;
-    width:50%;
-    &-img{
-      position: relative;
-    img{
-      position: absolute;
-      left: 64px;
-      top: 48px;
 
-      &:nth-child(2n) {
-        position: absolute;
-        left: 27em;
-        top: 34em;
-      }
+  &__right-content {
+    background-color: #FFF0BF;
+  }
+
+  &__title {
+    color: #A0730A;
+  }
+
+  &__decorator {
+    position: absolute;
+
+    &-1 {
+      top: 90px;
+      right: 35px;
     }
+
+    &-2 {
+      bottom: 80px;
+      left: -15px;
     }
   }
 }

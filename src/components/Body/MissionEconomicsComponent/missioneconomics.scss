@@ -1,6 +1,53 @@
 @import '../../../styles/fonts';
 
+.economics-section {
+  &__content {
+    height: 800px;
+  }
 
+  &__left-content {
+    background-color: #F7F9FF;
+  }
+
+  &__right-content {
+    background-color: #CAC6EA;
+  }
+
+  &__title {
+    color: #6C5CE7;
+  }
+  
+  &__distribution-title {
+    margin-bottom: 40px;
+    font-family: 'MB', sans-serif;
+    color: #6C5CE7;
+  }
+
+  &__distribution-row {
+    display: flex;
+
+    & + & {
+      margin-top: 30px;
+    }
+
+    &:last-child {
+      font-family: 'MB', sans-serif;
+      color: #6C5CE7;
+    }
+  }
+
+  &__distribution-num {
+    flex-shrink: 0;
+    width: 55px;
+    font-family: 'MB', sans-serif;
+    font-size: 24px;
+    color: #6C5CE7;
+  }
+
+  &__distribution-descr {
+    margin-left: 25px;
+  }
+}
 
 .mission-economics{
 

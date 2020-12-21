@@ -1,23 +1,18 @@
-.info{
-  box-sizing: border-box;
-  margin-top:150px;
+.info-section {
   &__content{
-    position: relative;
-    margin: auto;
-    padding: 40px;
+    padding: 0 100px;
+  }
 
-   // font-family: Manrope;
-    font-style: normal;
-    font-weight: bold;
+  &__text {
+    font-family: 'MB', sans-serif;
     font-size: 18px;
     line-height: 28px;
     text-align: center;
     text-transform: uppercase;
-    font-feature-settings: 'liga' off;
     color: #CB5322;
-    &-text{
-      margin-bottom: 2em;
-    }
-    }
 
+    & + & {
+      margin-top: 30px;
+    }
+  }
 }

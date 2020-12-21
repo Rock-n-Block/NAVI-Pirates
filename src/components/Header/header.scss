@@ -1,406 +1,300 @@
 @import '../../styles/fonts';
+@import '../../styles/settings';
 
 .header {
-  position: fixed;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  background: #ffffff;
-  box-sizing: border-box;
-  box-shadow: 0 1px 0 #e5e9f2;
-  width: 100%;
+  position: sticky;
   top: 0;
-  font-weight: 700;
-  z-index: 100;
+  background-color: #ffffff;
+  box-shadow: 0 1px 0 #e5e9f2;
+  z-index: 2;
 
-  &__swiper {
-    position: fixed;
-    top: 85px;
-    left: 0;
-    width: 100%;
-    background-image: url('../../assets/img/swiper-back.png');
-    background-color: #727285;
-    box-shadow: 0px 10px 22px rgba(0, 0, 0, 0.15);
-    border-radius: 0px 0px 40px 40px;
-    .swiper-wrapper {
-    }
-    div {
-      width: 68em;
-      height: 500px;
-    }
-    .swiper-slide-data {
-      background: url('../../assets/img/card1.png') no-repeat;
-      position: relative;
-      top: 20px;
-    }
-  }
-
-  @media (max-width: 376px) {
-    position: relative;
-    height: max-content;
-  }
-
-  &__content,
-  &__left,
-  &__right,
-  &__right-login-button,
-  &__right-nftCard-button,
-  &__right-nftCard-button-active,
-  &__right-pawCard-button,
-  &__right-pawCard-button div,
-  &__right-nftCard-button div,
-  &__right-nftCard-button-active div {
+  &__content {
     display: flex;
-  }
-
-  &__content {
-    align-items: center;
-  }
-  &__content {
-    @media (max-width: 376px) {
-      display: block;
-    }
-  }
-  &__content {
-    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    height: 72px;
   }
-  &__right-login-button,
-  &__right-nftCard-button,
-  &__right-nftCard-button-active,
-  &__right-pawCard-button,
-  &__right-login-1-button {
+
+  &__logo {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    padding: 9px;
+  }
+
+  &__controls {
+    display: flex;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
     height: 40px;
-    border: none;
+    padding: 10px;
     border-radius: 8px;
-    outline: none !important;
-    cursor: pointer;
-  }
-  &__left {
-    a {
-      @media (max-width: 376px) {
-        margin: auto;
-      }
-    }
-  }
-  &__right {
-    height: fit-content;
-    &-login-1-button {
-      display: none;
-      background: #005dc4;
-    }
-    @media (max-width: 376px) {
-      margin-top: 20px;
-      display: grid;
-      grid-template-rows: 50% 95%;
-      grid-template-columns: 50% 50%;
-      padding-bottom: 20px;
-      &-login-button {
-        display: none;
-      }
-      &-login-1-button {
-        display: flex;
-        margin: auto;
-        height: 40px;
-        width: 80%;
-        grid-column-start: 1;
-        grid-column-end: 3;
-        div {
-          font-size: 80%;
-        }
-      }
-    }
-  }
-  &__right-login-button {
-    background: #3f3f47;
-  }
-  &__right-login-1-button {
-    background: #005dc4;
-  }
-
-  &__right-login-button,
-  &__right-login-1-button {
-    left: calc(50% - 246px / 2 + 87px);
-    top: calc(50% - 20px / 2 - 5191px);
+    font-family: 'MB', sans-serif;
     font-size: 14px;
-    font-style: normal;
     line-height: 20px;
-    text-align: center;
-    font-feature-settings: 'liga' off;
-    color: #ffffff;
+    color: #fff;
+    cursor: pointer;
 
-    @media (max-width: 376px) {
-      margin: auto;
-      height: 40px;
-      width: inherit;
-      grid-column-start: 1;
-      grid-column-end: 3;
-    }
     img {
       margin-right: 10px;
-      width: 26px;
-      height: 26px;
     }
-    div {
-      width: inherit;
+
+    & + & {
+      margin-left: 15px;
+    }
+
+    &--bg {
+      background-color: $gray;
     }
   }
-  &__right-nftCard-button-active,
-  &__right-nftCard-button {
-    padding: 9px;
-    border: 2px solid;
-    border-color: #005dc4;
-    text-align: center;
-    height: 40px;
-    color: #005dc4;
-    font-size: 14px;
-    line-height: 20px;
-    font-feature-settings: 'liga' off;
-    color: #005dc4;
-    @media (max-width: 376px) {
-      margin: auto 3% auto auto;
-      width: 84%;
+
+  &__nft-card-btn {
+    position: relative;
+    border: 2px solid $blue;
+    color: $blue;
+
+    .count-component {
       display: flex;
       justify-content: center;
-      padding: 6px;
-      font-size: 70%;
-    }
-    .count-component,
-    .count-component-active {
+      align-items: center;
       width: 28px;
       height: 28px;
-      background: #005dc4;
+      background: $blue;
       border-radius: 8px;
-      margin-left: 13px;
+      margin-left: 10px;
+      color: #fff;
     }
-    .count-component-active {
-      background: white;
-      border-color: white;
-      .count-value {
-        color: #717182 !important;
+
+    &--active {
+      background-color: #717182;
+      border-color: #717182;
+      color: #fff;
+
+      &:before {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        width: 16px;
+        height: 16px;
+        background-color: #717182;
+        transform: rotate(135deg);
+      }
+
+      .count-component {
+        background-color: #fff;
+        color: #717182;
       }
     }
-    .count-value {
-      left: 76.88%;
-      right: 22.5%;
-      top: 0.25%;
-      bottom: 99.56%;
-      font-size: 14px;
-      line-height: 20px;
-      margin: auto;
-      /* identical to box height, or 143% */
+  }
 
-      text-align: center;
-      font-feature-settings: 'liga' off;
-
-      color: #ffffff;
-    }
-  }
-  &__right-nftCard-button-active {
-    border-color: white !important;
-    background: #717182;
-    color: white;
-    &-img {
-      width: 17px;
-      height: 17px;
-      background: #717182;
-      transform: rotate(135deg);
-      position: absolute;
-      top: 53px;
-    }
-  }
-  .pawCard-count-component-down {
-    display: block;
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    margin-left: 10px;
-    background-image: url('../../assets/img/button_a.png');
-  }
-  .pawCard-count-component-up {
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
-    margin-left: 10px;
-    background-image: url('../../assets/img/button_a.png');
-    transform: rotate(180deg);
-  }
-  &__right-pawCard-wrapper {
+  &__paw-card-wrapper {
     position: relative;
-    height: fit-content;
+    margin-left: 15px;
   }
-  &__right-pawCard-panel {
-    position: absolute;
-    right: 0;
-    top: calc(100% + 2px);
-    z-index: 1;
-    background: #005dc4;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    width: 196px;
-    padding: 15px 20px 20px 15px;
 
-    &-buy-button {
-      height: 34px;
-      background: #ffffff;
+  &__paw-card-btn {
+    background-color: $blue;
+
+    .count-component-arrow {
+      width: 28px;
+      height: 28px;
+      margin-left: 10px;
       border-radius: 8px;
-      width: 100%;
-      margin-top: 20px;
-      font-style: normal;
-      font-weight: bold;
-      cursor: pointer;
-      outline: none !important;
-      border: none;
-      font-size: 14px;
-      line-height: 20px;
-      text-align: center;
-      font-feature-settings: 'liga' off;
+      background-image: url('../../assets/img/button_a.png');
 
-      color: #005dc4;
+      &--up {
+        transform: rotate(180deg);
+      }
     }
-    &-value {
-      padding: 16px;
+  }
+
+  &__paw-card {
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .paw-card {
+    padding: 15px 15px 20px;
+    background-color: $blue;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+
+    &__counter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__counter-value {
+      width: 60px;
+      height: 48px;
+      padding: 10px 5px;
       background-color: rgba(255, 255, 255, 0.25);
       border-radius: 12px;
-      width: 60px;
-      line-height: 20px;
-      /* identical to box height, or 91% */
-
-      text-align: center;
-      font-feature-settings: 'liga' off;
       input {
-        font-style: normal;
-        font-weight: bold;
-        font-size: 22px;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
         border: none;
         outline: none !important;
-        width: 100%;
-        background: transparent;
+        font-family: 'MB', sans-serif;
+        font-size: 22px;
         text-align: center;
-        color: white;
+        color: #fff;
         &::placeholder {
           color: rgba(255, 255, 255, 0.5);
         }
       }
     }
 
-    &-cost {
-      margin-top: 20px;
-      text-align: center;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 22px;
-      line-height: 20px;
-      /* identical to box height, or 91% */
+    &__counter-btn {
+      width: 28px;
+      height: 28px;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
 
-      text-align: center;
-      font-feature-settings: 'liga' off;
+      &--minus {
+        margin-right: 15px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='none' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23fff' opacity='.25' rx='14'/%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 14h12'/%3E%3C/svg%3E");
+      }
 
-      color: #ffffff;
-    }
-    &-counter {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      button {
-        background-color: rgba(255, 255, 255, 0.25);
-        border-radius: 50%;
-        width: 28px;
-        color: white;
-        border: none;
-        position: relative;
-        outline: none !important;
-        height: 28px;
-        cursor: pointer;
-        &:first-child {
-          margin-right: 14px;
-          &::before {
-            content: '';
-            display: block;
-            width: 12px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            height: 2px;
-            background: white;
-            border-radius: 5px;
-          }
-        }
-        &:last-child {
-          margin-left: 14px;
-          &::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: block;
-            width: 12px;
-            height: 2px;
-            background: white;
-            border-radius: 5px;
-          }
-          &::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(90deg);
-            display: block;
-            width: 12px;
-            height: 2px;
-            background: white;
-            border-radius: 5px;
-          }
-        }
+      &--plus {
+        margin-left: 15px;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='none' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23fff' opacity='.25' rx='14'/%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 14h12M14 20V8'/%3E%3C/svg%3E");
       }
     }
-  }
-  &__right-pawCard-button {
-    width: 196px;
-    align-items: center;
-    left: 79.58%;
-    right: 8.33%;
-    margin: 0;
-    top: 0.15%;
-    bottom: 99.46%;
 
-    background: #005dc4;
-    position: static;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-    font-feature-settings: 'liga' off;
-    color: #ffffff;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    @media (max-width: 376px) {
-      margin: auto auto auto 3%;
-      width: 84%;
-      padding: 7px;
-      font-size: 70%;
+    &__price {
+      margin-top: 20px;
+      font-family: 'MB', sans-serif;
+      font-size: 20px;
+      line-height: 20px;
+      text-align: center;
+      color: #fff;
+    }
+
+    &__buy-btn {
       display: flex;
-      flex-direction: row;
       justify-content: center;
+      align-items: center;
+      height: 34px;
+      margin-top: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      font-family: 'MB', sans-serif;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      color: $blue;
+      cursor: pointer;
     }
   }
-}
-.icon {
-  position: relative;
-  top: 12px;
-  left: 5px;
-}
-.tab {
-  display: block;
-  position: fixed;
-  left: 20px;
-  top: 90px;
+
+  &__menu-footer {
+    display: none;
+  }
+
+  &__swiper {
+    position: fixed;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    height: 500px;
+    padding: 20px 0;
+    background-image: url('../../assets/img/swiper-back.png');
+    background-color: #727285;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+    border-radius: 0 0 40px 40px;
+
+    .swiper-container {
+      height: 100%;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 120px;
+    }
+
+    .swiper-slide-data {
+      background: url('../../assets/img/card1.png') no-repeat;
+    }
+
+    .swiper-slide-value {
+      width: 200px !important;
+      height: 29px !important;
+      position: absolute;
+      left: 57px;
+      bottom: 159px;
+      background: none;
+      text-align: center;
+      font-family: Fredoka One;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 19.7477px;
+      line-height: 150%;
+      letter-spacing: 0.914247px;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-shadow: 0px 0px 4px black;
+    }
+
+    .swiper-slide-button {
+      position: absolute;
+      bottom: 105px;
+      left: 101px;
+      height: 45px;
+      width: 130px;
+      background: linear-gradient(
+                      180deg,
+                      rgba(255, 255, 255, 0.1) 3.08%,
+                      rgba(255, 255, 255, 0) 100%
+      ),
+      #ad9152;
+      box-shadow: 0px 1.60609px 0px rgba(173, 145, 82, 0.5),
+      inset 0px 1.60609px 0px rgba(255, 255, 255, 0.6),
+      inset 0px -1.60609px 0px rgba(255, 255, 255, 0.7);
+      border-radius: 16.9013px;
+      background-color: #b19659;
+      border: none;
+      font-family: Fredoka One;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 19.273px;
+      line-height: 150%;
+      /* identical to box height, or 29px */
+
+      text-align: center;
+      letter-spacing: 0.89227px;
+      text-transform: uppercase;
+
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .swiper-slide-id {
+      width: 10em !important;
+      height: 20px !important;
+      color: #ffffff;
+      opacity: 0.5;
+      position: absolute;
+      bottom: 32px;
+      left: 80px;
+      text-align: center;
+    }
+
+    .swiper-empty {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      color: #fff;
+    }
+  }
 }
 
 .media__btn--prev,
@@ -422,75 +316,10 @@
   margin-right: 20px;
 }
 
-.swiper-slide-value {
-  width: 200px !important;
-  height: 29px !important;
-  position: absolute;
-  left: 57px;
-  bottom: 159px;
-  background: none;
-  text-align: center;
-  font-family: Fredoka One;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 19.7477px;
-  line-height: 150%;
-  letter-spacing: 0.914247px;
-  text-transform: uppercase;
-  color: #ffffff;
-  text-shadow: 0px 0px 4px black;
-}
-.swiper-slide {
-  display: flex;
-  padding-left: 56px;
-  padding-right: 56px;
-}
-.swiper-slide-button {
-  position: absolute;
-  bottom: 105px;
-  left: 101px;
-  height: 45px;
-  width: 130px;
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.1) 3.08%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    #ad9152;
-  box-shadow: 0px 1.60609px 0px rgba(173, 145, 82, 0.5),
-    inset 0px 1.60609px 0px rgba(255, 255, 255, 0.6),
-    inset 0px -1.60609px 0px rgba(255, 255, 255, 0.7);
-  border-radius: 16.9013px;
-  background-color: #b19659;
-  border: none;
-  font-family: Fredoka One;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 19.273px;
-  line-height: 150%;
-  /* identical to box height, or 29px */
-
-  text-align: center;
-  letter-spacing: 0.89227px;
-  text-transform: uppercase;
-
-  color: #ffffff;
+.scroll-up-btn {
+  display: block;
+  position: fixed;
+  left: 20px;
+  top: 90px;
   cursor: pointer;
-}
-.swiper-slide-id {
-  width: 10em !important;
-  height: 20px !important;
-  color: #ffffff;
-  opacity: 0.5;
-  position: absolute;
-  bottom: 32px;
-  left: 80px;
-  text-align: center;
-}
-.swiper-empty {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100% !important;
-  color: #ffffff;
 }

@@ -15,11 +15,9 @@ import {BearVSNavyComponent,
 
 import './body.scss';
 
-
-
 function Body() {
   return (
-      <div className = "body">
+      <main className="main">
           <GamesComponent/>
           <OfferingComponent/>
           <BearVSNavyComponent/>
@@ -31,7 +29,7 @@ function Body() {
           <RegEconomicsComponent/>
           <PAWAuctionComponent/>
           <InfoComponent/>
-      </div>
+      </main>
   );
 }
 

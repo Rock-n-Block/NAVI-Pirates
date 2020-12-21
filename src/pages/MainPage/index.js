@@ -5,7 +5,7 @@ import { Header, Body, Footer } from '../../components'
 const MainPage = () => {
 
     return (
-        <div className="container">
+        <div className="page-wrapper">
             <Header />
             <Body />
             <Footer />

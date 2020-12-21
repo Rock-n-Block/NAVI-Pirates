@@ -1,5 +1,39 @@
 @import '../../../styles/fonts';
 
+.uniswap-section {
+  &__content {
+    height: 800px;
+  }
+
+  &__left-content {
+    background-color: #9090BB;
+  }
+
+  &__right-content {
+    background-color: #ACACDA;
+  }
+
+  &__title {
+    color: #fff;
+  }
+
+  &__info-row {
+    & + & {
+      margin-top: 30px;
+    }
+  }
+
+  &__info-sum {
+    font-family: 'MB', sans-serif;
+    font-size: 24px;
+    color: #4949AE;
+  }
+
+  &__info-descr {
+    margin-top: 5px;
+  }
+}
+
 .reg-economics{
   box-sizing: border-box;
   margin-top:100px;

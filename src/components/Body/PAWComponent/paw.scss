@@ -1,104 +1,54 @@
 @import '../../../styles/fonts';
 
-.paw{
-  position: relative;
-  margin-top: 50px;
-  background-position-x: center;
-  box-sizing: border-box;
-
-  @media (max-width: 376px) {
-    background: #19C2FD;
-    border-radius: 30px;
-    padding: 20px 17px 20px 18px;
-    height: inherit;
-  }
-  &__content{
-    background: url("../../../assets/img/background_1.png") no-repeat;
-    background-color: #19C2FD;
+.paw-section {
+  &__content {
+    padding: 60px 0;
+    background: #19C2FD url("../../../assets/img/background_1.png") top 17px right 6px no-repeat;
     border-radius: 60px;
-    padding-top: 60px;
-    padding-bottom: 70px;
-    @media (max-width: 376px) {
-      background:none;
-      background-color: #19C2FD ;
+  }
+
+  &__title {
+    font-family: 'MEB', sans-serif;
+    font-size: 48px;
+    line-height: 66px;
+    color: #fff;
+    text-align: center;
+  }
+
+  &__img {
+    margin: 30px 0;
+    text-align: center;
+  }
+
+  &__text {
+    position: relative;
+    width: 860px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 28px;
+
+    &--no-bg {
+      width: 615px;
       padding: 0;
-    }
-    &-img {
-      display: block;
+      background-color: transparent;
+      box-shadow: none;
+      border-radius: 0;
+      color: #fff;
       text-align: center;
-      margin-top: 23px;
-      @media (max-width: 376px) {
-        margin-top: 0;
-      }
-      img{
-        width: 43em;
-      }
-      @media (max-width: 376px) {
-        img{
-          position: relative;
-          left: -40px;
-          width: 125%;
-        }
-      }
-    }
-    &-title{
-      /*height: 66px;*/
-      position: relative;
-      font-style: normal;
-      font-weight: 800;
-      font-size: 48px;
-      line-height: 66px;
-      text-align: center;
-      font-feature-settings: 'liga' off;
-      color: #FFFFFF;
-      @media (max-width: 376px){
-         font-size: 34px;
-        line-height: 55px;
-     }
-    }
-    &-frame{
-      position: relative;
-      left: 0;
-      width: 800px;
-      padding: 30px;
-      background: #FFFFFF;
-      box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
-      border-radius: 16px;
-      margin:1em auto;
-      &:nth-child(2n){
-        background: none;
-        box-shadow: none;
-        width: 34em;
-          font-size: 16px;
-          line-height: 28px;
-          color: #FFFFFF;
-        @media (max-width: 376px){
-          width: inherit;
-
-        }
-      }
-      @media (max-width: 376px){
-        top:0;
-        width: inherit;
-        margin: 0;
-      }
-      &-bottle{
-        position: absolute;
-        right: 13px;
-        bottom: 2px;
-      }
-
-      &-text{
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 28px;
-        font-feature-settings: 'liga' off;
-        &-special{
-          font-weight: bold;
-          color: #1490C7;
-        }
-      }
     }
 
+    & + & {
+      margin-top: 40px;
+    }
+  }
+
+  &__decorator {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
   }
 }

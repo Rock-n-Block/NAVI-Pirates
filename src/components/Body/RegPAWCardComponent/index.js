@@ -16,92 +16,70 @@ import img4 from '../../../assets/img/p4.png'
 function RegPAWCardComponent() {
 
 const elements = () =>{
-    return  <><div className = "reg-paw-card__right-content-body-frame">
-            <div className = "reg-paw-card__right-content-body-frame-text">
-                Each Regular PAW CARD displays a Bear Navy PAW Operative Ship with a unique character
-                set and can only move into one of the four field bays. The Regular PAW CARD is used to
-                record the number of Open Chests obtained when the card moves into the Regular PAW CARD
-                associated field bay as a CHEST list on the CARD.
-                <span className = "reg-paw-card__right-content-body-frame-text-special">
-                  The salvaged GOLD tokens received by
-                  each Regular PAW CARD’s Open Chest are claimable by clicking the withdraw button in front
-                  of the Open Chest. The withdrawal automatically closes the Chest and makes it ineligible
-                  to salvaged GOLD tokens from its registered field bay.  Veterans (Regular PAW CARD holders)
-                  are advised to wait till their Open CHEST receives its complete eligible salvaged GOLD tokens
-                  (then Chest becomes Closed) before withdrawing their GOLD tokens.
-                  </span>
+    return  <>
+        <div className="section__text">
+            Each VIP PAW CARD displays a Bear Navy PAW Operative Ship with a unique character set and can only move into one of the four field bays.
+            The VIP PAW CARD is used to record the Open Chests obtained when the card moves into the VIP PAW CARD's associated field bay.
+            <span className="text-decorator text-decorator--blue">
+                The salvaged GOLD tokens received by each VIP PAW CARD’s Open Chest are claimable by clicking the withdraw button in front of the Open Chest.
+                The withdrawal automatically closes the Chest and makes it ineligible to salvaged GOLD tokens from its registered field bay.
+                Veterans (VIP PAW CARD holders) are advised to wait till their Open CHEST receives its complete eligible salvaged GOLD tokens (then Chest becomes Closed) before withdrawing their GOLD tokens.
+            </span>
+        </div>
+
+        <div className="section__text">
+            <span className="text-decorator text-decorator--blue">
+              The Bear Navy PAW Operative Ship displayed on each VIP PAW CARD has four designs and beauty depending on the amount of Open Chest available on the card;
+            </span>
+
+            <div className="vpc-section__list">
+                <div className="vpc-section__list-item">
+                  <span className="text-decorator text-decorator--blue">1. GunBoat</span> - contains 0 to 10 Open Chest.
+                </div>
+                <div className="vpc-section__list-item">
+                  <span className="text-decorator text-decorator--blue">2. BattleShip</span> - contains 11 to 100 Open Chest.
+                </div>
+                <div className="vpc-section__list-item">
+                  <span className="text-decorator text-decorator--blue">3. Aircraft Carrier</span> - contains 101 to 1000 Open Chest.
+                </div>
+                <div className="vpc-section__list-item">
+                  <span className="text-decorator text-decorator--blue">4. Destroyer</span> - contains 1001 or more Open Chest.
+                </div>
             </div>
         </div>
-        <div className = "reg-paw-card__right-content-body-frame">
-        <div className = "reg-paw-card__right-content-body-frame-text">
-        <span className = "reg-paw-card__right-content-body-frame-text-special">
-        The Bear Navy PAW Operative Ship displayed on each Regular PAW CARD has four designs and beauty depending on the amount of Open Chest available on the card;
-</span>
-    <ol>
-        <li>
-                      <span className = "reg-paw-card__right-content-body-frame-text-special">
-                      SubMarines
-                      </span>
-            <span>- contains 0 to 10 Open Chest.</span>
-        </li>
-        <li>
-        <span className = "reg-paw-card__right-content-body-frame-text-special">
-        GunBoat
-        </span>
-        <span> - contains 11 to 100 Open Chest.</span>
-        </li>
-        <li>
-                      <span className = "reg-paw-card__right-content-body-frame-text-special">
-                      BattleShip
-                      </span>
-            <span>- contains 101 to 1000 Open Chest.</span>
-        </li>
-        <li>
-        <span className = "reg-paw-card__right-content-body-frame-text-special">
-        Aircraft Carrier
-        </span>
-        <span> - contains 1001 or more Open Chest.</span>
-        </li>
-    </ol>
-</div>
-</div>
-        </>
+    </>
 };
 
   return (
-      <div className = "reg-paw-card">
-      <div className = "row">
-          <div className = "reg-paw-card__content">
-              <div className = "reg-paw-card__right-content">
-                  <div className = "reg-paw-card__right-content-title">
-                      Regular PAW CARD
-                  </div>
-                  <div className = "reg-paw-card__middle-content">
-                      <div className = "reg-paw-card__middle-content-img">
-                          <img src={pawcard} alt=""/>
+      <section className="section vpc-section">
+          <div className="container">
+              <div className="section__content vpc-section__content">
+                  <div className="section__left-content section__text-content vpc-section__left-content">
+                      <h1 className="section__title vpc-section__title">VIP PAW CARD</h1>
+
+                      <div className="section__right-content vpc-section__right-content">
+                          <div className="reg-paw-card__left-content-img">
+                              <img src={pawcard} alt=""/>
+                              <img src={img1} className="reg-paw-card__left-content-img-first" alt=""/>
+                              <img src={img2} className="reg-paw-card__left-content-img-second" alt=""/>
+                              <img src={img3} className="reg-paw-card__left-content-img-third" alt=""/>
+                              <img src={img4} className="reg-paw-card__left-content-img-forth" alt=""/>
+                          </div>
+                      </div>
+
+                      <div className="section__scroll-content">
+                          { window.innerWidth > 1200 ?
+                              (<Scrollbars>
+                                  {elements()}
+                              </Scrollbars>
+                              ) :
+                              (elements())
+                          }
                       </div>
                   </div>
-              <div className = "reg-paw-card__right-content-body">
-                  { window.innerWidth > 999 ?
-                      (<Scrollbars style={{ width:420, height: 615 }}>
-                              {elements()}
-                      </Scrollbars>
-                      ):
-                      (elements())}
               </div>
-              </div>
-              <div className = "reg-paw-card__left-content">
-                  <div className = "reg-paw-card__left-content-img">
-                      <img src={pawcard} alt=""/>
-                      <img src={img1} className="reg-paw-card__left-content-img-first" alt=""/>
-                      <img src={img2} className="reg-paw-card__left-content-img-second" alt=""/>
-                      <img src={img3} className="reg-paw-card__left-content-img-third" alt=""/>
-                      <img src={img4} className="reg-paw-card__left-content-img-forth" alt=""/>
-                  </div>
-              </div>
-      </div>
-      </div>
-      </div>
+          </div>
+      </section>
   );
 }
 
