@@ -95,7 +95,7 @@ function Header() {
 
     const handleRefund = async () => {
         try {
-            const burn = await contractService.burnTokensToRefund(userAddress,pawCardAmount)
+            const burn = await contractService.refundManyTokens(userAddress,pawCardAmount)
             console.log('handleRefund isRefund',isRefund)
             console.log('handleRefund burn',burn)
             const balanceOf = await contractService.balanceOf(userAddress)
@@ -288,7 +288,7 @@ function Header() {
                             //onSlideChangeTransitionEnd={handleSlideChange}
                             >
                                 {[...new Array(balance)].map((token,it) => {
-                                    const index = it + 1;
+                                    const index = it;
                                     return (
                                     <SwiperSlide
                                     key={`token-${index}`}
