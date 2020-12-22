@@ -36,6 +36,8 @@ function Header() {
     const [balance, setBalance] = React.useState(0)
 
     const pawCardRef = useRef();
+    const sliderRef = useRef();
+    const sliderButtonRef = useRef();
 
     const reload = () => {
         window.location.reload();
@@ -67,6 +69,13 @@ function Header() {
         const path = e.path || (e.composedPath && e.composedPath())
         if (!path.includes(pawCardRef.current)) {
             setCounterActive(false)
+        }
+    }
+
+    const outsideSliderClick = (e) => {
+        const path = e.path || (e.composedPath && e.composedPath())
+        if (!path.includes(sliderRef.current) && !path.includes(sliderButtonRef.current)) {
+            setSlidesActive(false)
         }
     }
 
@@ -136,8 +145,10 @@ function Header() {
 
     React.useEffect(() => {
         document.body.addEventListener('click', outsidePawCardClick)
+        document.body.addEventListener('click', outsideSliderClick)
         return () => {
             document.body.removeEventListener('click', outsidePawCardClick)
+            document.body.removeEventListener('click', outsideSliderClick)
         };
     }, []);
 
@@ -202,6 +213,7 @@ function Header() {
 
                         {!isSlidesActive ? (
                         <button
+                        ref={sliderButtonRef}
                         className="header__right-nftCard-button"
                         onClick={() => {
                             setSlidesActive(!isSlidesActive)
@@ -216,6 +228,7 @@ function Header() {
                         </button>
                         ) : (
                         <button
+                        ref={sliderButtonRef}
                         className="header__right-nftCard-button-active"
                         onClick={() => {
                             setSlidesActive(!isSlidesActive)
@@ -288,7 +301,7 @@ function Header() {
 
                     </div>
                     {isSlidesActive ? (
-                        <div className="header__swiper" id="swiper">
+                        <div className="header__swiper" id="swiper" ref={sliderRef}>
                             { balance !== 0 ?
                             <Swiper
                             spaceBetween={10}
