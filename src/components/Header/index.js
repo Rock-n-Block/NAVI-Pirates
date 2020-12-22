@@ -70,17 +70,26 @@ function Header() {
         }
     }
 
-    const handleCountCardsChange = (amount) => {
+    const handleCountCardsChange = async (amount) => {
+        const balanceOf = await contractService.balanceOf(userAddress)
         const newAmount = +pawCardAmount + amount;
+        if (newAmount > balanceOf) return;
         if (newAmount <= 0) {
             setPawCardAmount(0)
         } else {
-            if (isCrowdsaleClosed && isRefund) {
-                if (newAmount > withdrawForUserWhenRefund) return;
-            } else {
-                setPawCardAmount(newAmount)
-            }
+            setPawCardAmount(newAmount)
         }
+    }
+
+    const handleCountCardsInput = async ({target}) => {
+        const amount = target.value;
+        const balanceOf = await contractService.balanceOf(userAddress)
+        const newAmount = +pawCardAmount + amount;
+        if (newAmount > balanceOf) {
+            setPawCardAmount(balanceOf)
+        } else {
+            setPawCardAmount(newAmount)
+        };
     }
 
     const handleBuyToken = async () => {
@@ -247,7 +256,7 @@ function Header() {
                                         placeholder="0"
                                         type="number"
                                         value={pawCardAmount}
-                                        onChange={({ target }) => setPawCardAmount(target.value)}
+                                        onChange={handleCountCardsInput}
                                         />
                                     </div>
                                     <button onClick={() => handleCountCardsChange(1)}></button>
