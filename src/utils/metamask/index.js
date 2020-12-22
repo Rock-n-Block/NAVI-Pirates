@@ -18,9 +18,10 @@ export default class MetamaskService {
     getAccount() {
         if (!this.wallet) throw new Error(`${this.name} wallet is not injected`);
         return new Promise((resolve, reject) => {
-            const net = IS_PRODUCTION ? 'binance smart chain' : 'binance smart chain test'
-            const usedNet = IS_PRODUCTION ? '0x38' : '0x61'
+            const net = IS_PRODUCTION ? 'mainnet' : 'kovan'
+            const usedNet = IS_PRODUCTION ? '0x1' : '0x2a'
             const netVersion = this.wallet.chainId
+
             if (netVersion === usedNet) {
                 this.wallet.request({ method: 'eth_requestAccounts' })
                 .then(account => resolve({

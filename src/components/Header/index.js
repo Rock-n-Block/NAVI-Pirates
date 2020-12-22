@@ -47,17 +47,10 @@ function Header() {
         document.documentElement.scrollTop = 0;
     };
 
-    const handleLoginBinance = () => {
+    const handleLoginMetamask = async () => {
         try {
-            dispatch(walletActions.setWalletType({type:'binance'}))
-        } catch (e) {
-            console.error(e);
-        }
-    };
-
-    const handleLoginMetamask = () => {
-        try {
-            dispatch(walletActions.setWalletType({type:'metamask'}))
+            const account = await walletService.getAccount()
+            dispatch(userActions.setUserData(account))
         } catch (e) {
             console.error(e);
         }
@@ -190,16 +183,6 @@ function Header() {
                     </div>
                     <div
                     className="header__right">
-
-                        {!userAddress &&
-                        <button
-                        className="header__right-login-button"
-                        onClick={handleLoginBinance}
-                        >
-                            <img src={login_img} />
-                            <div>Login to Binance</div>
-                        </button>
-                        }
 
                         {!userAddress &&
                         <button

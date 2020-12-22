@@ -16,42 +16,6 @@ const ContractProvider = ({ children }) => {
 
     const dispatch = useDispatch();
 
-    const walletType = useSelector(({ wallet }) => wallet.type);
-
-    const loginOneOf = async () => {
-        try {
-            const binance = new BinanceService()
-            const accountBinance = await binance.getAccount()
-            if (accountBinance) {
-                setContractService(new ContractService(binance))
-                setWalletService(binance)
-                dispatch(userActions.setUserData(accountBinance))
-            } else {
-                const metamask = new MetamaskService()
-                const accountMetamask = await metamask.getAccount()
-                if (accountMetamask) {
-                    setContractService(new ContractService(metamask))
-                    setWalletService(metamask)
-                    dispatch(userActions.setUserData(accountMetamask))
-                }
-            }
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
-    const loginBinance = async () => {
-        try {
-            const binance = new BinanceService()
-            setContractService(new ContractService(binance))
-            setWalletService(binance)
-            const account = await binance.getAccount()
-            dispatch(userActions.setUserData(account))
-        } catch (e) {
-            console.error(e);
-        }
-    }
-
     const loginMetamask = async () => {
         try {
             const metamask = new MetamaskService()
@@ -66,28 +30,10 @@ const ContractProvider = ({ children }) => {
     }
 
     React.useEffect(() => {
-        if (walletType==='binance') {
-            loginBinance()
-        } else if (walletType==='metamask') {
-            loginMetamask()
-        }
-    }, [walletType])
-
-    React.useEffect(() => {
         let counter = 0;
         const interval = setInterval(() => {
             counter += 1000;
-            const both = window['BinanceChain'] &&
-            ((window.ethereum && window.ethereum.isMetaMask) || window.web3);
-            if (both) {
-                console.log('Both BinanceChain and MetaMask are installed')
-                loginOneOf()
-                clearInterval(interval)
-            } else if (window['BinanceChain']) {
-                console.log('BinanceChain is installed')
-                clearInterval(interval)
-                loginBinance()
-            } else if ((window.ethereum && window.ethereum.isMetaMask) || window.web3) {
+            if ((window.ethereum && window.ethereum.isMetaMask) || window.web3) {
                 console.log('MetaMask is installed')
                 clearInterval(interval)
                 loginMetamask()

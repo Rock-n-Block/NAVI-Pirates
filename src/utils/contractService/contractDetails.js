@@ -2,12 +2,12 @@ export default {
     PAW: {
         ADDRESS: {
             metamask: {
-                mainnet: '0xffeB4B90bE330EF34c00C50BDb664738c7681b32',
-                testnet: '0xffeB4B90bE330EF34c00C50BDb664738c7681b32',
+                mainnet: '0x66dA6466824653b5D6452ec8189490c84e01aAaA',
+                testnet: '0x66dA6466824653b5D6452ec8189490c84e01aAaA',
             },
             binance: {
-                mainnet: '0xffeB4B90bE330EF34c00C50BDb664738c7681b32',
-                testnet: '0xffeB4B90bE330EF34c00C50BDb664738c7681b32',
+                mainnet: '0x66dA6466824653b5D6452ec8189490c84e01aAaA',
+                testnet: '0x66dA6466824653b5D6452ec8189490c84e01aAaA',
             },
         },
         ABI: [
@@ -38,16 +38,20 @@ export default {
                         "type": "uint256"
                     }, {
                         "internalType": "uint256",
-                        "name": "_percentOfCashback",
-                        "type": "uint256"
-                    }, {
-                        "internalType": "uint256",
                         "name": "_openCrowdsaleTime",
                         "type": "uint256"
                     }, {
                         "internalType": "uint256",
                         "name": "_closeCrowdsaleTime",
                         "type": "uint256"
+                    }, {
+                        "internalType": "uint256",
+                        "name": "_maxTokensToBuyInTx",
+                        "type": "uint256"
+                    }, {
+                        "internalType": "bool",
+                        "name": "_isFirstTime",
+                        "type": "bool"
                     }
                 ],
                 "stateMutability": "nonpayable",
@@ -231,24 +235,6 @@ export default {
                 "stateMutability": "payable",
                 "type": "function"
             }, {
-                "inputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "cashbackOfToken",
-                "outputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            }, {
                 "inputs": [],
                 "name": "closeCrowdsaleTime",
                 "outputs": [
@@ -293,18 +279,6 @@ export default {
             }, {
                 "inputs": [
                     {
-                        "internalType": "uint256",
-                        "name": "tokenId",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "getCashback",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            }, {
-                "inputs": [
-                    {
                         "internalType": "address",
                         "name": "owner",
                         "type": "address"
@@ -327,6 +301,18 @@ export default {
             }, {
                 "inputs": [],
                 "name": "isClosedCrowdsale",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            }, {
+                "inputs": [],
+                "name": "isOpenTransfers",
                 "outputs": [
                     {
                         "internalType": "bool",
@@ -374,19 +360,7 @@ export default {
                 "type": "function"
             }, {
                 "inputs": [],
-                "name": "moneyCollectedAll",
-                "outputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            }, {
-                "inputs": [],
-                "name": "moneyForCashback",
+                "name": "moneyCollected",
                 "outputs": [
                     {
                         "internalType": "uint256",
@@ -422,6 +396,12 @@ export default {
                 "type": "function"
             }, {
                 "inputs": [],
+                "name": "openTransfers",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            }, {
+                "inputs": [],
                 "name": "owner",
                 "outputs": [
                     {
@@ -446,18 +426,6 @@ export default {
                         "internalType": "address",
                         "name": "",
                         "type": "address"
-                    }
-                ],
-                "stateMutability": "view",
-                "type": "function"
-            }, {
-                "inputs": [],
-                "name": "percentOfCashback",
-                "outputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
                     }
                 ],
                 "stateMutability": "view",
@@ -747,24 +715,6 @@ export default {
                 "name": "withdraw",
                 "outputs": [],
                 "stateMutability": "nonpayable",
-                "type": "function"
-            }, {
-                "inputs": [
-                    {
-                        "internalType": "address",
-                        "name": "",
-                        "type": "address"
-                    }
-                ],
-                "name": "withdrawForUserWhenRefund",
-                "outputs": [
-                    {
-                        "internalType": "uint256",
-                        "name": "",
-                        "type": "uint256"
-                    }
-                ],
-                "stateMutability": "view",
                 "type": "function"
             }
         ]
