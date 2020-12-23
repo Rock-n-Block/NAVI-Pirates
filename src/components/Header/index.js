@@ -31,7 +31,6 @@ function Header() {
     const [swipe, setSwipe] = React.useState(false);
     const [isCrowdsaleClosed, setCrowdsaleClosed] = React.useState(false)
     const [isRefund, setIsRefund] = React.useState(false)
-    const [withdrawForUserWhenRefund, setWithdrawForUserWhenRefund] = React.useState(0)
     const [cardPrice, setCardPrice] = React.useState(0)
     const [balance, setBalance] = React.useState(0)
 
@@ -73,9 +72,8 @@ function Header() {
     }
 
     const handleCountCardsChange = async (amount) => {
-        const balanceOf = await contractService.balanceOf(userAddress)
         const newAmount = +pawCardAmount + amount;
-        if (newAmount > balanceOf) return;
+        if (isCrowdsaleClosed && isRefund && (newAmount > balance)) return;
         if (newAmount <= 0) {
             setPawCardAmount(0)
         } else {
@@ -84,13 +82,13 @@ function Header() {
     }
 
     const handleCountCardsInput = async ({target}) => {
+        console.log(target.value)
         const amount = target.value;
-        const balanceOf = await contractService.balanceOf(userAddress)
-        const newAmount = +pawCardAmount + amount;
-        if (newAmount > balanceOf) {
-            setPawCardAmount(balanceOf)
+        console.log(amount)
+        if (isCrowdsaleClosed && isRefund && (+amount > balance)) {
+            setPawCardAmount(+balance)
         } else {
-            setPawCardAmount(newAmount)
+            setPawCardAmount(+amount)
         };
     }
 
@@ -117,17 +115,18 @@ function Header() {
     }
 
     const getData = async () => {
-        if (userAddress) {
-            const count = await contractService.withdrawForUserWhenRefund(userAddress)
-            setWithdrawForUserWhenRefund(count)
-        }
-        const isRefund = await contractService.isRefund()
-        setIsRefund(isRefund)
-        const isClosed = await contractService.isClosedCrowdsale()
-        setCrowdsaleClosed(isClosed)
-        if (!isClosed) {
+        try {
+            if (userAddress) {
+                const isRefund = await contractService.isRefund(userAddress)
+                setIsRefund(isRefund)
+            }
+            const isClosed = await contractService.isClosedCrowdsale()
+            setCrowdsaleClosed(isClosed)
             const price = await contractService.tokenPrice()
+            console.log(price)
             setCardPrice(price)
+        } catch (e) {
+            console.error('Header getData',e);
         }
     }
 
@@ -159,7 +158,7 @@ function Header() {
         if (contractService) {
             getData()
         }
-    }, [contractService])
+    }, [userAddress,contractService])
 
     React.useEffect(() => {
         if (userAddress) {

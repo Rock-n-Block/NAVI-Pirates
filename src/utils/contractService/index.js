@@ -13,19 +13,30 @@ export default class ContractService {
         contractDetails.PAW.ABI,
         contractDetails.PAW.ADDRESS[wallet.name][this.net]
         )
+        this.contractAddress = contractDetails.PAW.ADDRESS[wallet.name][this.net]
     }
 
     tokenPrice = async () => {
-        const price = await this.pawContract.methods.tokenPrice().call()
-        return new BigNumber(price).dividedBy(new BigNumber(10).pow(decimals.BNB)).toFixed()
+        try {
+            const price = await this.pawContract.methods.tokenPrice().call()
+            return new BigNumber(price).dividedBy(new BigNumber(10).pow(decimals.BNB)).toFixed()
+        } catch (e) {
+            console.error('tokenPrice',e);
+        }
     }
 
     isClosedCrowdsale = () => {
         return this.pawContract.methods.isClosedCrowdsale().call()
     }
 
-    isRefund = () => {
-        return this.pawContract.methods.isRefund().call()
+    isRefund = async (address) => {
+        try {
+            const isRefund = await this.pawContract.methods.isRefund().call()
+            // const isRefund = await this.wallet.sendTx('isRefund',address,[],0)
+            return isRefund
+        } catch (e) {
+            console.error('isRefund',e);
+        }
     }
 
     balanceOf = async (address) => {
@@ -36,8 +47,9 @@ export default class ContractService {
         return this.pawContract.methods.tokenOfOwnerByIndex(address,index).call()
     }
 
-    withdrawForUserWhenRefund = async (address) => {
-        return this.pawContract.methods.withdrawForUserWhenRefund(address).call()
+    burnTokensToRefund = async (address) => {
+        const burn = await this.wallet.sendTx('burnTokensToRefund',address,[],0)
+        return burn
     }
 
     cashbackOfToken = async (id) => {
@@ -57,7 +69,7 @@ export default class ContractService {
         try {
             const maxTokensToBuyInTx = await this.maxTokensToBuyInTx();
             const remainderCount = count % maxTokensToBuyInTx; // остаток
-            const iterations = (count / maxTokensToBuyInTx + 1).toFixed();
+            const iterations = Math.ceil(count / maxTokensToBuyInTx);
             if (iterations < 2)
                 return await this.buyTokens(address,count);
             for (let i = 0; i < iterations; i++) {
@@ -90,14 +102,14 @@ export default class ContractService {
         try {
             const maxTokensToBuyInTx = await this.maxTokensToBuyInTx();
             const remainderCount = count % maxTokensToBuyInTx; // остаток
-            const iterations = (count / maxTokensToBuyInTx + 1).toFixed();
+            const iterations = Math.ceil(count / maxTokensToBuyInTx);
             if (iterations < 2)
-                return await this.buyTokens(address,count);
+                return await this.refundTokens(address,count);
             for (let i = 0; i < iterations; i++) {
                 if (i === iterations - 1) {
-                    return await this.buyTokens(address,remainderCount)
+                    return await this.refundTokens(address,remainderCount)
                 } else {
-                    await this.buyTokens(address,maxTokensToBuyInTx)
+                    await this.refundTokens(address,maxTokensToBuyInTx)
                 }
             }
         } catch (e) {
