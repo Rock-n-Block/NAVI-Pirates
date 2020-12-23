@@ -41,8 +41,8 @@ module.exports = async function (deployer, network) {
         return;
 
     let numContracts;
-    if (debug == "true" && (network == "bsc" || network == "bscTestnet"))
-        numContracts = new BN(10);
+    if (debug == "true")// && (network == "bsc" || network == "bscTestnet"))
+        numContracts = new BN(5);
     else
         numContracts = new BN(1);
 

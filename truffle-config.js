@@ -27,7 +27,7 @@ module.exports = {
             gas: 30000000
         }, */
         ropsten: {
-            provider: () => new HDWalletProvider(MNEMONIC, "https://ropsten.infura.io/" + INFURA_ID_PROJECT),
+            provider: () => new HDWalletProvider(MNEMONIC, "https://ropsten.infura.io/v3/" + INFURA_ID_PROJECT),
             network_id: 3,
             gas: DEPLOY_GAS_LIMIT,
             confirmations: 2,
