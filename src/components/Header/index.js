@@ -15,7 +15,6 @@ import './header.scss';
 
 import logo from '../../assets/img/logo.svg'
 import scrollUpImg from '../../assets/img/scroll-up.svg'
-import login_img from '../../assets/img/login_image.png'
 import metamask_img from '../../assets/img/metamask.svg'
 import arrowPrevImg from '../../assets/img/prev.png'
 import arrowNextImg from '../../assets/img/next.png'
@@ -50,14 +49,6 @@ function Header() {
 
     const scrollUp = () => {
         document.documentElement.scrollTop = 0;
-    };
-
-    const handleLoginBinance = () => {
-        try {
-            dispatch(walletActions.setWalletType({type:'binance'}))
-        } catch (e) {
-            console.error(e);
-        }
     };
 
     const handleLoginMetamask = () => {
@@ -188,16 +179,6 @@ function Header() {
 
                     <div className="header__menu m-menu">
                         <div className="header__controls">
-                            {!userAddress &&
-                            <div
-                              className="header__btn header__btn--bg"
-                              onClick={handleLoginBinance}
-                            >
-                                <img src={login_img} />
-                                <div>Login to Binance</div>
-                            </div>
-                            }
-
                             {!userAddress &&
                             <div
                               className="header__btn header__btn--bg"
