@@ -13,15 +13,33 @@
     justify-content: space-between;
     align-items: center;
     height: 72px;
+
+    @media screen and (max-width: 1279px) {
+      justify-content: center;
+    }
+
+    @media screen and (max-width: 767px) {
+      height: 60px;
+    }
   }
 
   &__logo {
     display: flex;
     align-items: center;
+
+    @media screen and (max-width: 767px) {
+      width: 175px;
+    }
   }
 
   &__controls {
     display: flex;
+
+    @media screen and (max-width: 1279px) {
+      flex-direction: column;
+      max-width: 300px;
+      width: 100%;
+    }
   }
 
   &__btn {
@@ -36,12 +54,22 @@
     color: #fff;
     cursor: pointer;
 
+    @media screen and (max-width: 1279px) {
+      justify-content: center;
+      height: 52px;
+    }
+
     img {
       margin-right: 10px;
     }
 
     & + & {
       margin-left: 15px;
+
+      @media screen and (max-width: 1279px) {
+        margin-left: 0;
+        margin-top: 20px;
+      }
     }
 
     &--bg {
@@ -92,6 +120,11 @@
   &__paw-card-wrapper {
     position: relative;
     margin-left: 15px;
+
+    @media screen and (max-width: 1279px) {
+      margin-left: 0;
+      margin-top: 20px;
+    }
   }
 
   &__paw-card-btn {
@@ -198,6 +231,37 @@
 
   &__menu-footer {
     display: none;
+
+    @media screen and (max-width: 1279px) {
+      display: block;
+      text-align: center;
+      font-size: 14px;
+      line-height: 24px;
+    }
+  }
+
+  &__copyright {
+    margin-top: 10px;
+  }
+
+  &__socials {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+
+    a + a {
+      margin-left: 24px;
+    }
+  }
+
+  &__menu {
+    @media screen and (max-width: 1279px) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px 20px 50px;
+    }
   }
 
   &__swiper {
@@ -209,8 +273,14 @@
     padding: 20px 0;
     background-image: url('../../assets/img/swiper-back.png');
     background-color: #727285;
+    background-position: top center;
     box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
     border-radius: 0 0 40px 40px;
+
+    @media screen and (max-width: 767px) {
+      top: 60px;
+      height: calc(100% - 60px);
+    }
 
     .swiper-container {
       height: 100%;
@@ -319,7 +389,110 @@
 .scroll-up-btn {
   display: block;
   position: fixed;
-  left: 20px;
   top: 90px;
+  left: 20px;
   cursor: pointer;
+
+  @media screen and (max-width: 767px) {
+    top: initial;
+    left: initial;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.m-menu-btn-wrapper {
+  display: none;
+  position: absolute;
+  top: calc(50% - 15px);
+  left: 10px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+
+  @media screen and (max-width: 1279px) {
+    display: block;
+  }
+}
+.m-menu-btn {
+  position: absolute;
+  top: calc(50% - 1px);
+  right: 3px;
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background-color: #000;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    border-radius: 2px;
+    -webkit-transition-duration: 0.3s, 0.15s, 0.15s;
+    transition-duration: 0.3s, 0.15s, 0.15s;
+    -webkit-transition-delay: 0s, 0.15s, 0s;
+    transition-delay: 0s, 0.15s, 0s;
+  }
+  &:before {
+    top: -6px;
+    -webkit-transition-property: background-color, top, -webkit-transform;
+    transition-property: background-color, top, transform;
+  }
+  &:after {
+    bottom: -6px;
+    -webkit-transition-property: background-color, bottom, -webkit-transform;
+    transition-property: background-color, bottom, transform;
+  }
+}
+.m-menu {
+  @media screen and (max-width: 1279px) {
+    position: fixed;
+    top: 73px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 73px);
+    background-color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media screen and (max-width: 767px) {
+    top: 61px;
+    height: calc(100% - 61px);
+  }
+}
+
+.header.menu-shown {
+  .m-menu-btn {
+    background-color: transparent;
+    &:before,
+    &:after {
+      -webkit-transition-delay: 0s, 0s, 0.15s;
+      transition-delay: 0s, 0s, 0.15s;
+    }
+    &:before {
+      top: 0;
+      -webkit-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+    &:after {
+      bottom: 0;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+  }
+
+  .m-menu {
+    opacity: 1;
+    visibility: visible;
+  }
 }

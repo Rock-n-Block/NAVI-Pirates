@@ -2,17 +2,35 @@
 @import '../../../styles/settings';
 
 .versus-section {
+  @media screen and (max-width: 767px) {
+    margin-top: 57px !important;
+  }
+
   &__content {
     position: relative;
     background-color: $blue-bg;
     border-radius: 60px;
     padding-bottom: 50px;
+
+    @media screen and (max-width: 767px) {
+      margin: 0 -20px;
+      padding: 0 20px 20px;
+      border-radius: 30px;
+    }
   }
 
   &__title {
     position: relative;
     top: -40px;
     text-align: center;
+
+    @media screen and (max-width: 767px) {
+      top: -26px;
+
+      img {
+        max-width: 346px;
+      }
+    }
   }
 
   &__decorator {
@@ -21,16 +39,36 @@
     &-1 {
       top: 40px;
       left: -110px;
+
+      @media screen and (max-width: 1279px) {
+        top: 240px;
+        left: 5%;
+      }
+
+      @media screen and (max-width: 767px) {
+        width: 131px;
+        top: 110px;
+        left: 20px;
+      }
     }
 
     &-2 {
-      top: 130px;
-      right: -75px;
+      @media screen and (max-width: 1279px) {
+        top: 300px;
+        right: 5%;
+      }
+
+      @media screen and (max-width: 767px) {
+        width: 140px;
+        top: 130px;
+        right: 20px;
+      }
     }
   }
 
   &__text {
-    width: 660px;
+    max-width: 660px;
+    width: 100%;
     margin: 0 auto;
     padding: 30px;
     background-color: #fff;
@@ -38,5 +76,13 @@
     border-radius: 16px;
     font-size: 16px;
     line-height: 28px;
+
+    @media screen and (max-width: 1279px) {
+      margin: 320px auto 0;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-top: 145px;
+    }
   }
 }

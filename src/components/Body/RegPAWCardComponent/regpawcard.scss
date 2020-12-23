@@ -3,6 +3,10 @@
 .vpc-section {
   &__content {
     height: 800px;
+
+    @media screen and (max-width: 1279px) {
+      height: auto;
+    }
   }
 
   &__left-content {
@@ -11,9 +15,104 @@
 
   &__right-content {
     background-color: #47AFDD;
+
+    @media screen and (max-width: 1279px) {
+      min-height: 800px;
+    }
+
+    @media screen and (max-width: 767px) {
+      min-height: 390px;
+    }
   }
 
   &__title {
     color: #1490C7;
+  }
+
+  &__list {
+    margin-top: 30px;
+  }
+
+  &__list-item {
+    & + & {
+      margin-top: 30px;
+    }
+  }
+
+  &__anchor {
+    position: absolute;
+    top: -19px;
+    left: -58px;
+
+    @media screen and (max-width: 1279px) {
+      display: none;
+    }
+  }
+
+  &__card {
+    position: absolute;
+    z-index: 1;
+
+    &-1 {
+      bottom: 70px;
+      left: 5px;
+
+      @media screen and (max-width: 767px) {
+        bottom: 10px;
+        left: 5px;
+        width: 51%;
+      }
+    }
+
+    &-2 {
+      top: 60px;
+      right: -120px;
+
+      @media screen and (max-width: 767px) {
+        top: 30px;
+        right: 0;
+        width: 55%;
+      }
+    }
+  }
+
+  &__coins {
+    position: absolute;
+    bottom: -42px;
+    right: -76px;
+
+    @media screen and (max-width: 767px) {
+      width: 268px;
+      bottom: -25px;
+      right: -47px;
+    }
+  }
+
+  &__decorator {
+    position: absolute;
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
+
+    &-1 {
+      bottom: 150px;
+      right: 70px;
+    }
+
+    &-2 {
+      bottom: -60px;
+      left: 107px;
+    }
+
+    &-3 {
+      top: 105px;
+      left: 130px;
+    }
+
+    &-4 {
+      bottom: 180px;
+      left: -30px;
+    }
   }
 }

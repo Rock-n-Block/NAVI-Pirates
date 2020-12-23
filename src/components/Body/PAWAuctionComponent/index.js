@@ -1,11 +1,11 @@
 import React from "react";
 
 import './pawauction.scss';
-import img from '../../../assets/img/AuctionCard.png'
-import img_1 from '../../../assets/img/auction_1.png'
-import img_2 from '../../../assets/img/auction_2.png'
-import img_3 from '../../../assets/img/auction_3.png'
-import img_4 from '../../../assets/img/auction_4.png'
+import card from '../../../assets/img/paw-card-auction/card.png'
+import decorator1 from '../../../assets/img/paw-card-auction/decorator-1.png'
+import decorator2 from '../../../assets/img/paw-card-auction/decorator-2.png'
+import decorator3 from '../../../assets/img/paw-card-auction/decorator-3.png'
+import decorator4 from '../../../assets/img/paw-card-auction/decorator-4.png'
 
 
 function PAWAuctionComponent() {
@@ -17,12 +17,12 @@ function PAWAuctionComponent() {
               <h1 className="section__title auction-section__title">PAW CARD AUCTION Marketplace</h1>
 
               <div className="section__right-content auction-section__right-content">
-                <div className="paw-auction__right-content-img">
-                  <img className="paw-auction__right-content-img-main"  src={img} alt=""/>
-                  <img className="paw-auction__right-content-img-first" src={img_1} alt=""/>
-                  <img className="paw-auction__right-content-img-second" src={img_2} alt=""/>
-                  <img className="paw-auction__right-content-img-third" src={img_3} alt=""/>
-                  <img className="paw-auction__right-content-img-forth" src={img_4} alt=""/>
+                <div className="section__coordinator auction-section__coordinator">
+                  <img src={card} alt="" className="auction-section__card"/>
+                  <img src={decorator1} alt="" className="auction-section__decorator auction-section__decorator-1"/>
+                  <img src={decorator2} alt="" className="auction-section__decorator auction-section__decorator-2"/>
+                  <img src={decorator3} alt="" className="auction-section__decorator auction-section__decorator-3"/>
+                  <img src={decorator4} alt="" className="auction-section__decorator auction-section__decorator-4"/>
                 </div>
               </div>
 

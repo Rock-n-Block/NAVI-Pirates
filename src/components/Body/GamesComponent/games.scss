@@ -5,16 +5,32 @@
   background: url('../../../assets/img/background_11.png');
   background-size: cover;
 
+  @media screen and (max-width: 1279px) {
+    padding: 120px 0 180px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 30px 0 80px;
+  }
+
   &__content {
     position: relative;
   }
 
   &__title {
-    max-width: 420px;
     font-family: 'MEB', sans-serif;
     font-size: 85px;
     line-height: 85px;
     color: #4F320F;
+
+    @media screen and (max-width: 1279px) {
+      text-align: center;
+    }
+
+    @media screen and (max-width: 767px) {
+      font-size: 48px;
+      line-height: 48px;
+    }
   }
 
   &__text {
@@ -22,11 +38,32 @@
     margin-top: 70px;
     font-size: 16px;
     line-height: 32px;
+
+    @media screen and (max-width: 1279px) {
+      max-width: 660px;
+      margin: 70px auto 0;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-top: 50px;
+    }
   }
 
   &__logo {
     position: absolute;
     top: -25px;
     right: 10px;
+
+    @media screen and (max-width: 1279px) {
+      position: static;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 767px) {
+      img {
+        width: 240px;
+      }
+    }
   }
 }

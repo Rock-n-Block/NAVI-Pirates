@@ -3,6 +3,10 @@
 .strategy-section {
   &__content {
     height: 800px;
+
+    @media screen and (max-width: 1279px) {
+      height: auto;
+    }
   }
 
   &__left-content {
@@ -11,6 +15,14 @@
 
   &__right-content {
     background-color: #E0846B;
+
+    @media screen and (max-width: 1279px) {
+      min-height: 800px;
+    }
+
+    @media screen and (max-width: 767px) {
+      min-height: 500px;
+    }
   }
 
   &__title {
@@ -19,6 +31,10 @@
 
   &__decorator {
     position: absolute;
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
 
     &-1 {
       bottom: 120px;
@@ -33,6 +49,18 @@
     &-3 {
       top: 60px;
       right: 25px;
+    }
+  }
+
+  &__card {
+    position: absolute;
+    top: -61px;
+    right: 0;
+
+    @media screen and (max-width: 767px) {
+      top: 0;
+      right: -5px;
+      margin-top: -10.6%;
     }
   }
 }

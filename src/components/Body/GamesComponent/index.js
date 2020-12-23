@@ -9,7 +9,7 @@ function GamesComponent() {
       <section className="games-section">
         <div className="container">
           <div className="games-section__content">
-            <div className="games-section__title">Games and Gains</div>
+            <div className="games-section__title">Games <br/> and Gains</div>
             <div className="games-section__logo">
               <img src={bearLogo} alt=""/>
             </div>

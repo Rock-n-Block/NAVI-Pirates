@@ -16,13 +16,13 @@ import './header.scss';
 import logo from '../../assets/img/logo.svg'
 import scrollUpImg from '../../assets/img/scroll-up.svg'
 import login_img from '../../assets/img/login_image.png'
-import trust_img from '../../assets/img/trust.png'
+import metamask_img from '../../assets/img/metamask.svg'
 import arrowPrevImg from '../../assets/img/prev.png'
 import arrowNextImg from '../../assets/img/next.png'
-import github from "../../assets/img/socials/Github.svg";
-import twitter from "../../assets/img/socials/Twitter.svg";
-import telegram from "../../assets/img/socials/Telegram.svg";
-import youtube from "../../assets/img/socials/Youtube.svg";
+import github from "../../assets/img/socials/github_header.svg";
+import twitter from "../../assets/img/socials/twitter_header.svg";
+import telegram from "../../assets/img/socials/telegram_header.svg";
+import youtube from "../../assets/img/socials/youtube_header.svg";
 import { github_url, telegram_url, twitter_url, youtube_url } from "../Footer";
 
 function Header() {
@@ -30,6 +30,7 @@ function Header() {
 
     const { walletService, contractService } = useContractContext()
 
+    const [isMenuActive, setIsMenuActive] = React.useState(false)
     const [isTabActive, setIsTabActive] = React.useState(false);
     const [isCounterActive, setCounterActive] = React.useState(false);
     const [isSlidesActive, setSlidesActive] = React.useState(false);
@@ -74,6 +75,11 @@ function Header() {
         if (!path.includes(pawCardRef.current)) {
             setCounterActive(false)
         }
+    }
+
+    const onMenuBtnClick = () => {
+        setIsMenuActive(!isMenuActive)
+        setSlidesActive(false)
     }
 
     const handleCountCardsChange = (amount) => {
@@ -161,12 +167,18 @@ function Header() {
     }, [userAddress])
 
     return (
-        <header className="header">
+        <header className={classNames('header', {
+            'menu-shown': isMenuActive
+        })}>
             <div className="container">
                 <div className="header__content">
                     {isTabActive &&
                         <img className="scroll-up-btn" src={scrollUpImg} alt="" onClick={scrollUp} />
                     }
+
+                    <div className="m-menu-btn-wrapper" onClick={() => onMenuBtnClick()}>
+                        <span className="m-menu-btn"></span>
+                    </div>
 
                     <div className="header__logo">
                         <NavLink to="/">
@@ -174,7 +186,7 @@ function Header() {
                         </NavLink>
                     </div>
 
-                    <div className="header__menu">
+                    <div className="header__menu m-menu">
                         <div className="header__controls">
                             {!userAddress &&
                             <div
@@ -191,7 +203,7 @@ function Header() {
                               className="header__btn header__btn--bg"
                               onClick={handleLoginMetamask}
                             >
-                                <img src={trust_img}/>
+                                <img src={metamask_img}/>
                                 <div>Login to Metamask</div>
                             </div>
                             }

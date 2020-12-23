@@ -3,16 +3,11 @@ import {Scrollbars} from "react-custom-scrollbars";
 
 import './missioneconomics.scss';
 
-
-import addCard from '../../../assets/img/AddCard.png'
-import bubbles from '../../../assets/img/bubbles.png'
-import me1 from '../../../assets/img/me-1.png'
-import me2 from '../../../assets/img/me-2.png'
-import pawcard from "../../../assets/img/Paw Card.png";
-import img1 from "../../../assets/img/P1.png";
-import img2 from "../../../assets/img/P2.png";
-import img3 from "../../../assets/img/P3.png";
-import img4 from "../../../assets/img/p4.png";
+import bubbles from '../../../assets/img/mission-economics/bubbles.png'
+import card from '../../../assets/img/mission-economics/card.png'
+import chest from '../../../assets/img/mission-economics/chest.png'
+import decorator1 from '../../../assets/img/mission-economics/decorator-1.png'
+import decorator2 from '../../../assets/img/mission-economics/decorator-2.png'
 
 function RegPAWCardComponent() {
 
@@ -66,16 +61,19 @@ function RegPAWCardComponent() {
               <div className="section__content section__content--reverse economics-section__content">
                   <div className="section__left-content section__text-content economics-section__left-content">
                       <h1 className="section__title economics-section__title">Mission <br/> Economics</h1>
-                      <img className="mission-economics__right-content-bubbles" src={bubbles} alt=""/>
+                      <img src={bubbles} alt="" className="economics-section__bubbles"/>
 
                       <div className="section__right-content economics-section__right-content">
-                          <div className="reg-paw-card__left-content-img">
-                              <img src={addCard} alt=""/>
+                          <div className="section__coordinator economics-section__coordinator">
+                              <img src={chest} alt="" className="economics-section__chest"/>
+                              <img src={card} alt="" className="economics-section__card"/>
+                              <img src={decorator1} alt="" className="economics-section__decorator economics-section__decorator-1"/>
+                              <img src={decorator2} alt="" className="economics-section__decorator economics-section__decorator-2"/>
                           </div>
                       </div>
 
                       <div className="section__scroll-content">
-                          { window.innerWidth > 1200 ?
+                          { window.innerWidth > 1279 ?
                             (<Scrollbars>
                                   {elements()}
                               </Scrollbars>

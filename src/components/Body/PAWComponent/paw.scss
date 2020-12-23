@@ -5,6 +5,18 @@
     padding: 60px 0;
     background: #19C2FD url("../../../assets/img/background_1.png") top 17px right 6px no-repeat;
     border-radius: 60px;
+
+    @media screen and (max-width: 1279px) {
+      padding: 60px;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin: 0 -20px;
+      padding: 20px;
+      background: none;
+      background-color: #19C2FD;
+      border-radius: 30px;
+    }
   }
 
   &__title {
@@ -18,11 +30,16 @@
   &__img {
     margin: 30px 0;
     text-align: center;
+
+    @media screen and (max-width: 767px) {
+      margin: 20px -20px 0;
+    }
   }
 
   &__text {
     position: relative;
-    width: 860px;
+    max-width: 860px;
+    width: 100%;
     margin: 0 auto;
     padding: 30px;
     background-color: #fff;
@@ -32,7 +49,8 @@
     line-height: 28px;
 
     &--no-bg {
-      width: 615px;
+      max-width: 615px;
+      width: 100%;
       padding: 0;
       background-color: transparent;
       box-shadow: none;
@@ -43,6 +61,10 @@
 
     & + & {
       margin-top: 40px;
+
+      @media screen and (max-width: 767px) {
+        margin-top: 30px;
+      }
     }
   }
 
@@ -50,5 +72,9 @@
     position: absolute;
     bottom: 20px;
     right: 30px;
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
   }
 }

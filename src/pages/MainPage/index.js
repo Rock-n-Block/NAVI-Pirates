@@ -2,6 +2,8 @@ import React from "react";
 
 import { Header, Body, Footer } from '../../components'
 
+import './MainPage.scss';
+
 const MainPage = () => {
 
     return (

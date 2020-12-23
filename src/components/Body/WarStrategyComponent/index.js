@@ -7,8 +7,6 @@ import img from '../../../assets/img/WARStrategyGard.png'
 import img1 from '../../../assets/img/picture1.png'
 import img2 from '../../../assets/img/picture2.png'
 import img3 from '../../../assets/img/picture3.png'
-import bubbles from "../../../assets/img/bubbles.png";
-import addCard from "../../../assets/img/AddCard.png";
 
 function GOLDTokensComponent() {
     const elements = () => {
@@ -52,13 +50,13 @@ function GOLDTokensComponent() {
                       <img src={img3} alt="" className="strategy-section__decorator strategy-section__decorator-3"/>
 
                       <div className="section__right-content strategy-section__right-content">
-                          <div className="reg-paw-card__left-content-img">
-                              <img src={img} alt=""/>
+                          <div className="section__coordinator strategy-section__coordinator">
+                            <img src={img} alt="" className="strategy-section__card"/>
                           </div>
                       </div>
 
                       <div className="section__scroll-content">
-                          { window.innerWidth > 1200 ?
+                          { window.innerWidth > 1279 ?
                             (<Scrollbars>
                                   {elements()}
                               </Scrollbars>

@@ -3,6 +3,10 @@
 .tokens-section {
   &__content {
     height: 600px;
+
+    @media screen and (max-width: 1279px) {
+      height: auto;
+    }
   }
 
   &__left-content {
@@ -11,14 +15,38 @@
 
   &__right-content {
     background-color: #FFF0BF;
+
+    @media screen and (max-width: 1279px) {
+      min-height: 600px;
+    }
+
+    @media screen and (max-width: 767px) {
+      min-height: 320px;
+    }
   }
 
   &__title {
     color: #A0730A;
   }
 
+  &__money {
+    position: absolute;
+    top: 20px;
+    left: 80px;
+
+    @media screen and (max-width: 767px) {
+      top: 12px;
+      left: 50px;
+      width: 65%;
+    }
+  }
+
   &__decorator {
     position: absolute;
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
 
     &-1 {
       top: 90px;
@@ -28,6 +56,18 @@
     &-2 {
       bottom: 80px;
       left: -15px;
+    }
+
+    &-3 {
+      bottom: 38px;
+      right: 38px;
+
+      @media screen and (max-width: 767px) {
+        display: block;
+        bottom: 25px;
+        right: 10px;
+        width: 48px;
+      }
     }
   }
 }

@@ -6,12 +6,6 @@ import money from '../../../assets/img/Money.png'
 import points from '../../../assets/img/points.png'
 import waves from '../../../assets/img/waves.png'
 import strs from '../../../assets/img/strs.png'
-import pawcard from "../../../assets/img/Paw Card.png";
-import img1 from "../../../assets/img/P1.png";
-import img2 from "../../../assets/img/P2.png";
-import img3 from "../../../assets/img/P3.png";
-import img4 from "../../../assets/img/p4.png";
-import { Scrollbars } from "react-custom-scrollbars";
 
 function GOLDTokensComponent() {
   return (
@@ -25,8 +19,10 @@ function GOLDTokensComponent() {
                       <img src={strs} alt="" className="tokens-section__decorator tokens-section__decorator-2"/>
 
                       <div className="section__right-content tokens-section__right-content">
-                          <img src={money} alt=""/>
-                          <img src={points} alt=""/>
+                          <div className="section__coordinator tokens-section__coordinator">
+                              <img src={money} alt="" className="tokens-section__money"/>
+                              <img src={points} alt="" className="tokens-section__decorator tokens-section__decorator-3"/>
+                          </div>
                       </div>
 
                       <div className="section__scroll-content">
