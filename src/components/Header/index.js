@@ -78,8 +78,8 @@ function Header() {
     }
 
     const onMenuBtnClick = () => {
-        setIsMenuActive(!isMenuActive)
         setSlidesActive(false)
+        setIsMenuActive(!isMenuActive)
     }
 
     const handleCountCardsChange = (amount) => {
@@ -93,9 +93,7 @@ function Header() {
     }
 
     const handleCountCardsInput = async ({target}) => {
-        console.log(target.value)
         const amount = target.value;
-        console.log(amount)
         if (isCrowdsaleClosed && isRefund && (+amount > balance)) {
             setPawCardAmount(+balance)
         } else {
@@ -134,7 +132,6 @@ function Header() {
             const isClosed = await contractService.isClosedCrowdsale()
             setCrowdsaleClosed(isClosed)
             const price = await contractService.tokenPrice()
-            console.log(price)
             setCardPrice(price)
         } catch (e) {
             console.error('Header getData',e);
@@ -210,6 +207,7 @@ function Header() {
                             }
 
                             <div
+                            ref={sliderButtonRef}
                               className={classNames('header__btn header__nft-card-btn', {
                                   'header__nft-card-btn--active': isSlidesActive
                               })}
@@ -248,7 +246,7 @@ function Header() {
                                             placeholder="0"
                                             type="number"
                                             value={pawCardAmount}
-                                            onChange={({ target }) => setPawCardAmount(target.value)}
+                                            onChange={handleCountCardsInput}
                                           />
                                       </div>
                                       <div className="paw-card__counter-btn paw-card__counter-btn--plus" onClick={() => handleCountCardsChange(1)}></div>
@@ -291,37 +289,37 @@ function Header() {
                     </div>
 
                     {isSlidesActive &&
-                        <div className="header__swiper" id="swiper">
+                        <div className="header__swiper" id="swiper" ref={sliderRef}>
                             {balance !== 0 ?
-                              <Swiper
-                                spaceBetween={40}
-                                slidesPerView={3}
+                                <Swiper
+                                spaceBetween={0}
+                                slidesPerView={2}
                                 onSwiper={swiper => setSwipe(swiper)}
                                 //onSlideChangeTransitionEnd={handleSlideChange}
-                              >
-                                  {[...new Array(balance)].map((token, it) => {
-                                      const index = it;
-                                      return (
-                                        <SwiperSlide
-                                          key={`token-${index}`}
-                                        >
-                                            <TokenCardComponent
-                                              index={index}
-                                            />
-                                        </SwiperSlide>
-                                      )
-                                  })}
-                                  <div className="media__btn media__btn--prev" onClick={() => swipe.slidePrev()}>
-                                      <img src={arrowPrevImg} alt=""/>
-                                  </div>
-                                  <div className="media__btn media__btn--next" onClick={() => swipe.slideNext()}>
-                                      <img src={arrowNextImg} alt=""/>
-                                  </div>
-                              </Swiper>
-                              :
-                              <div className="swiper-empty">
-                                  nothing yet
-                              </div>
+                                >
+                                    {[...new Array(balance)].map((token, it) => {
+                                        const index = it;
+                                        return (
+                                            <SwiperSlide
+                                            key={`token-${index}`}
+                                            >
+                                                <TokenCardComponent
+                                                index={index}
+                                                />
+                                            </SwiperSlide>
+                                        )
+                                    })}
+                                    <div className="media__btn media__btn--prev" onClick={() => swipe.slidePrev()}>
+                                        <img src={arrowPrevImg} alt=""/>
+                                    </div>
+                                    <div className="media__btn media__btn--next" onClick={() => swipe.slideNext()}>
+                                        <img src={arrowNextImg} alt=""/>
+                                    </div>
+                                </Swiper>
+                                :
+                                <div className="swiper-empty">
+                                    nothing yet
+                                </div>
                             }
                         </div>
                     }
