@@ -1,112 +1,94 @@
 @import '../../../styles/fonts';
 
-.paw-auction {
-  box-sizing: border-box;
-  margin-top:100px;
-
-  //font-family: MM;
-  @media (max-width: 376px) {
-    background: #F6F9FF;
-    border-radius: 30px;
-  }
+.auction-section {
   &__content {
-    display: flex;
-    flex-direction: row;
+    height: 900px;
+
+    @media screen and (max-width: 1279px) {
+      height: auto;
+    }
   }
+
   &__left-content {
     background-color: #F6F9FF;
-    border-radius: 30px 0 0 30px;
-    width:50%;
-    padding-top: 60px;
-    padding-left:60px;
-    padding-bottom: 60px;
-    &-title {
-      position: relative;
-      margin-bottom:47px;
-      width: 10em;
-      font-weight: 800;
-      font-size: 48px;
-      line-height: 66px;
-      font-feature-settings: 'liga' off;
-      color: #1490C7;
+  }
 
+  &__right-content {
+    background-color: #47AFDD;
+
+    @media screen and (max-width: 1279px) {
+      min-height: 800px;
     }
-    &-body {
-      position: relative;
-      width: fit-content;
-      overflow-y: auto;
-      overflow-x: hidden;
-      &-frame {
-        background-color: white;
-        width: 440px;
-        padding: 30px;
-        box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
-        border-radius: 16px;
-        &-text {
-          font-weight: normal;
-          font-size: 14px;
-          line-height: 28px;
-          font-feature-settings: 'liga' off;
-          color: #18191F;
 
-          flex: none;
-          order: 0;
-          flex-grow: 0;
-          margin: 10px 0;
-          &-special {
-            font-weight: bold;
-            color: #ce8500;
-          }
-        }
-      }
-    }
-    &-img {
-      display: none;
-      background: #47AFDD;
-      border-radius: 30px;
-
-
-      @media (max-width: 376px) {
-        display: block;
-        text-align: center;
-      }
+    @media screen and (max-width: 767px) {
+      min-height: 420px;
+      overflow: hidden;
     }
   }
-  &__right-content{
-    background-color:#47AFDD;
-    border-radius:0 30px 30px 0;
-    width:50%;
-    &-img{
-      position: relative;
-      &-main{
-        position: absolute;
-        top:10em;
-        left:50px;
-        z-index: 10;
-      }
-      &-first{
-        top: 2em;
-        left: -25px;
-        position: absolute;
-      }
-      &-second{
-        top: 48px;
-        right: -84px;
-        position: absolute;
-        z-index: 1;
-      }
-      &-third{
-        bottom: -46em;
-        right: 1em;
-        position: absolute;
-      }
-      &-forth{
-        top: 43em;
-        left: -31px;
-        position: absolute;
-      }
 
+  &__title {
+    color: #1490C7;
+  }
 
+  &__card {
+    position: absolute;
+    top: 160px;
+    right: -85px;
+    z-index: 1;
+
+    @media screen and (max-width: 767px) {
+      top: initial;
+      bottom: 30px;
+      right: -35px;
+      width: 93.5%;
+    }
+  }
+
+  &__decorator {
+    position: absolute;
+
+    &-1 {
+      top: 40px;
+      left: -30px;
+
+      @media screen and (max-width: 767px) {
+        top: 25px;
+        left: -19px;
+        width: 82px;
+      }
+    }
+
+    &-2 {
+      top: -17px;
+      right: -64px;
+
+      @media screen and (max-width: 767px) {
+        top: -15px;
+        right: -40px;
+        width: 207px;
+      }
+    }
+
+    &-3 {
+      bottom: 65px;
+      right: 24px;
+
+      @media screen and (max-width: 767px) {
+        bottom: 20px;
+        right: 15px;
+        width: 23px;
+      }
+    }
+
+    &-4 {
+      bottom: -47px;
+      left: -18px;
+
+      @media screen and (max-width: 767px) {
+        bottom: -45px;
+        left: -19px;
+        width: 75px;
+      }
     }
   }
 }

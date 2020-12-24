@@ -1,219 +1,186 @@
 @import '../../../styles/fonts';
+@import '../../../styles/settings';
 
-.nft-offering {
-  background-color: #47AFDD;
+.offering-section {
+  margin-top: -60px;
+  padding: 70px 0 40px;
+  background-color: $blue-bg;
   border-radius: 60px;
-  box-sizing: border-box;
-  position: relative;
-  top: -7em;
-  z-index: 0;
-  font-family: MM;
-  @media (max-width: 376px) {
-    padding: 40px 30px 20px 30px;
-    top:-50px;
+
+  @media screen and (max-width: 1279px) {
+    padding: 60px 0;
+  }
+
+  @media screen and (max-width: 767px) {
+    margin-top: -20px;
+    padding: 20px 0;
+    border-radius: 30px;
+  }
+
+  &__title {
+    font-family: 'MEB', sans-serif;
+    font-size: 100px;
+    line-height: 137px;
+    text-align: center;
+    color: #FAC34E;
+    text-shadow: 2px 2px 0 #FFFFFF, 7px 7px 0 #000000;
+
+    @media screen and (max-width: 767px) {
+      font-size: 50px;
+      line-height: 68px;
+    }
   }
 
   &__content {
     position: relative;
-    border-radius: 60px;
-    padding-bottom: 46px;
-    padding-top: 72px;
-    @media (max-width: 376px) {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-    &-title {
-      font-weight: 800;
-      font-size: 100px;
-      line-height: 137px;
-      /* identical to box height */
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 155px;
 
+    @media screen and (max-width: 1279px) {
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+      padding: 0;
+    }
+
+    @media screen and (max-width: 767px) {
+      margin-top: 20px;
+    }
+  }
+
+  &__card {
+    margin-left: -25px;
+
+    @media screen and (max-width: 767px) {
+      max-width: 375px;
+      margin: 0 -20px;
+    }
+  }
+
+  &__descr {
+    position: absolute;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
+    border-radius: 16px;
+    font-size: 16px;
+    line-height: 28px;
+
+    @media screen and (max-width: 1279px) {
+      position: relative;
+      top: 0 !important;
+      right: 0 !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      max-width: 660px;
+      width: 100% !important;
+
+      &:before {
+        content: none !important;
+      }
+
+      & + & {
+        margin-top: 40px;
+      }
+    }
+
+    @media screen and (max-width: 767px) {
+      & + & {
+        margin-top: 20px;
+      }
+    }
+
+    &--left {
+      left: 30px;
+      width: 300px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        right: -13px;
+        width: 26px;
+        height: 26px;
+        background-color: #fff;
+        transform: rotate(45deg);
+      }
+
+      &:nth-of-type(2) {
+        top: 30px;
+
+        &:before {
+          top: 175px;
+        }
+      }
+
+      &:nth-of-type(3) {
+        top: 530px;
+        text-transform: uppercase;
+
+        &:before {
+          top: 55px;
+        }
+      }
+    }
+
+    &--right {
+      top: 240px;
+      right: 0;
+      width: 360px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 100px;
+        left: -13px;
+        width: 26px;
+        height: 26px;
+        background-color: #fff;
+        transform: rotate(45deg);
+      }
+    }
+
+    &--bottom {
+      bottom: 0;
+      left: calc(50% - 330px);
+      width: 660px;
       text-align: center;
-      letter-spacing: 0.02em;
-      font-feature-settings: 'liga' off;
-
-      color: #FAC34E;
-      text-shadow: 2px 2px 0 #FFFFFF, 7px 7px 0 #000000;
-
-      @media (max-width: 376px) {
-        font-size: 50px;
-        line-height: 68px;
-        letter-spacing: 0.02em;
-      }
+      text-transform: uppercase;
     }
-      &-picture {
-        display: flex;
-        justify-content: center;
-        @media (max-width: 376px) {
-          & {
-            img {
-              width: 286px;
-              height: 453px;
-            }
-          }
-        }
-      }
-      &-backPicture {
+  }
 
-        &-first, &-second {
-          position: absolute;
-          @media (max-width: 376px) {
-            display: none;
-          }
-        }
-        &-first {
-          top: 56px;
-          right: 94.1px;
-        }
-        &-second {
-          top: -116px;
-          left: 35px;
-          z-index: -10;
-        }
-      }
-      &-body {
-        position: relative;
+  &__decorator {
+    position: absolute;
 
-        &-left {
-          position: absolute;
-          background: #FFFFFF;
-          width: 253px;
-          top: 472px;
-          left: 50px;
-          font-weight: bold;
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
 
-          @media (max-width: 376px) {
-            margin-bottom: 5px;
-          }
-          &-img-1, &-img-2 {
+    &-1 {
+      top: 90px;
+      right: 65px;
+    }
 
-            width: 26.59px;
-            height: 26.59px;
-            background: #FFFFFF;
-            transform: rotate(135deg);
-            position: absolute;
-            right: -13px;
-          }
-          &-img-1 {
-            bottom: 97.4px;
-            @media (max-width: 376px) {
-              display: none;
-            }
-          }
-          &-img-2 {
-            top: 69px;
-            @media (max-width: 376px) {
-              display: none;
-            }
-          }
-          &:nth-child(2n) {
-            top: 130px;
-            font-weight: normal;
-          }
-          &-backPicture {
-            @media (max-width: 376px) {
-              display: none;
-            }
-            position: absolute;
-            bottom: -43px;
-            left: -34px;
-          }
-        }
-        &-right {
-          position: absolute;
-          right:-52px;
-          padding: 30px;
-          width: 360px;
-          top: 13em;
-          border-radius: 0 30px 0 0;
+    &-2 {
+      bottom: calc(100% + 20px);
+      left: -40px;
+    }
 
-          @media (max-width: 376px) {
-            margin-top:20px;
-          }
+    &-3 {
+      top: 45px;
+      left: -42px;
+    }
 
-          &-cap {
-            position: absolute;
-            right: -71px;
-            top: -75px;
+    &-cap {
+      top: -75px;
+      right: -75px;
 
-            @media (max-width: 376px) {
-              &{
-                img{
-                  right: -80px;
-                  top: -75px;
-                }
-              }
-            }
-          }
-          &-img {
-            position: absolute;
-            top: 97px;
-            left: -13px;
-            width: 26.59px;
-            height: 26.59px;
-            background: #FFFFFF;
-            transform: rotate(135deg);
-            @media (max-width: 376px) {
-              display: none;
-            }
-          }
-        }
-        &-right, &-left {
-          box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
-          border-radius: 16px;
-          background-color: white;
-          padding: 30px;
-          @media (max-width: 376px) {
-            position: relative;
-            top:0 !important;
-            left:0 !important;
-            width:inherit;
-            font-size: 16px;
-            line-height: 28px;
-          }
-          &-text {
-
-            font-size: 16px;
-            line-height: 28px;
-            font-feature-settings: 'liga' off;
-            color: #18191F;
-            &-special {
-              color: #1490C7;
-              margin: 5px;
-            }
-          }
-        }
-
-        &-bottom {
-          margin: auto;
-          width: 660px;
-          background-color: white;
-          box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
-          border-radius: 16px;
-          @media (max-width: 376px) {
-            position: relative;
-            width: inherit;
-          }
-          &-text {
-            font-weight: bold;
-            flex: none;
-            order: 0;
-            flex-grow: 0;
-            margin: 10px 0;
-            padding: 20px;
-
-            font-size: 16px;
-            line-height: 28px;
-            text-align: center;
-            text-transform: uppercase;
-            font-feature-settings: 'liga' off;
-            &-special {
-              font-weight: bold;
-              color: #1490C7;
-              margin: 5px;
-            }
-          }
-        }
+      @media screen and (max-width: 767px) {
+        top: -52px;
+        right: -52px;
+        display: block;
+        width: 118px;
       }
     }
   }
+}

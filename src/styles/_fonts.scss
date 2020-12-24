@@ -1,24 +1,29 @@
 @font-face {
-  font-family: 'MB';
-  src: url('../assets/fonts/Manrope-Bold.ttf') format('ttf');
-}
-@font-face {
-  font-family: 'MEB';
-  src: url('../assets/fonts/Manrope-ExtraBold.ttf') format('ttf');
-}
-@font-face {
   font-family: 'ML';
-  src: url('../assets/fonts/Manrope-Light.ttf') format('ttf');
+  src: url('../assets/fonts/Manrope-Light.ttf') format('truetype');
 }
-@font-face {
-  font-family: 'MM';
-  src: url('../assets/fonts/Manrope-Medium.ttf') format('ttf');
-}
+
 @font-face {
   font-family: 'MR';
-  src: url('../assets/fonts/Manrope-Regular.ttf') format('ttf');
+  src: url('../assets/fonts/Manrope-Regular.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'MM';
+  src: url('../assets/fonts/Manrope-Medium.ttf') format('truetype');
+}
+
 @font-face {
   font-family: 'MS';
-  src: url('../assets/fonts/Manrope-SemiBold.ttf') format('ttf');
+  src: url('../assets/fonts/Manrope-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MB';
+  src: url('../assets/fonts/Manrope-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MEB';
+  src: url('../assets/fonts/Manrope-ExtraBold.ttf') format('truetype');
 }

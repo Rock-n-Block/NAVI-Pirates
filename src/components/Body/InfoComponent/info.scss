@@ -1,23 +1,32 @@
-.info{
-  box-sizing: border-box;
-  margin-top:150px;
-  &__content{
-    position: relative;
-    margin: auto;
-    padding: 40px;
+.info-section {
+  @media screen and (max-width: 767px) {
+    margin-top: 50px !important;
+  }
 
-   // font-family: Manrope;
-    font-style: normal;
-    font-weight: bold;
+  &__content{
+    padding: 0 100px;
+
+    @media screen and (max-width: 1279px) {
+      padding: 0;
+    }
+  }
+
+  &__text {
+    font-family: 'MB', sans-serif;
     font-size: 18px;
     line-height: 28px;
     text-align: center;
     text-transform: uppercase;
-    font-feature-settings: 'liga' off;
     color: #CB5322;
-    &-text{
-      margin-bottom: 2em;
-    }
+
+    @media screen and (max-width: 1279px) {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
     }
 
+    & + & {
+      margin-top: 30px;
+    }
+  }
 }

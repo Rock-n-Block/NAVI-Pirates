@@ -1,200 +1,140 @@
 @import '../../../styles/fonts';
 
+.economics-section {
+  &__content {
+    height: 800px;
 
-
-.mission-economics{
-
-  background-position-x: center;
-  box-sizing: border-box;
-  margin-top:100px;
- // font-family: MM;
-  @media (max-width: 376px) {
-    background: #F7F9FF;
-    border-radius: 30px;
-    padding-bottom: 20px;
-  }
-  &__content{
-    display: flex;
-    flex-direction: row;
-    @media (max-width: 376px) {
-      display: block;
-      padding-left: 0;
-
+    @media screen and (max-width: 1279px) {
+      height: auto;
     }
   }
-  &__middle-content{
-    display: none;
-    background-color: #CAC6EA;
-    border-radius: 37px;
-    @media (max-width: 376px) {
-      display: block;
-    }
-    &-img{
-      padding: 48px 17px 28px 17px;
-    }
-    &-img-3{
-      position: relative;
-      @media (max-width: 376px) {
-        position: relative;
-        top:20px;
-        right: 0;
-        width: 100%;
-      }
-    }
-    &-img-1,&-img-2{
-      position: absolute;
-      z-index: 0;
-      width: 20%;
-    }
-    &-img-1{
-      right: 16px;
-      top: 170px;
-    }
-    &-img-2{
-      top: 34em;
-      left: 22px;
-    }
+
+  &__left-content {
+    background-color: #F7F9FF;
   }
 
   &__right-content {
-    background-color:#F6F9FF;
-    border-radius: 0 30px 30px 0;
-    width: 50%;
-    padding-top: 80px;
-    padding-left: 62px;
-    position: relative;
-    @media (max-width: 376px) {
-      height: max-content;
-      padding-left: 0;
-      padding-top: 0;
-      width: 100%;
-    }
-    &-bubbles{
-      position: absolute;
-      top: 63px;
-      right: -45px;
-      @media (max-width: 376px) {
-        display: none;
-      }
+    background-color: #CAC6EA;
+
+    @media screen and (max-width: 1279px) {
+      min-height: 800px;
     }
 
-    &-title{
+    @media screen and (max-width: 767px) {
+      min-height: 500px;
+    }
+  }
 
-      width: 5em;
-      left: 16em;
-      font-style: normal;
-      font-weight: 800;
-      font-size: 48px;
-      line-height: 66px;
-      font-feature-settings: 'liga' off;
+  &__title {
+    color: #6C5CE7;
+  }
 
+  &__distribution-title {
+    margin-bottom: 40px;
+    font-family: 'MB', sans-serif;
+    color: #6C5CE7;
+  }
+
+  &__distribution-row {
+    display: flex;
+
+    & + & {
+      margin-top: 30px;
+    }
+
+    &:last-child {
+      font-family: 'MB', sans-serif;
       color: #6C5CE7;
-      @media (max-width: 376px) {
-        top:0;
-        left:0;
-        text-align: center;
-        width:inherit;
-      }
     }
-    &-body{
+  }
 
-      width: fit-content;
-      height: 512px;
-      overflow-y: auto;
-      overflow-x: hidden;
+  &__distribution-num {
+    flex-shrink: 0;
+    width: 55px;
+    font-family: 'MB', sans-serif;
+    font-size: 24px;
+    color: #6C5CE7;
+  }
 
-      @media (max-width: 376px) {
-        margin-top: 40px;
-        width: inherit;
-        height: inherit;
-        top:0;
-        left:0;
-        padding-left: 17px;
-        padding-right: 18px;
+  &__distribution-descr {
+    margin-left: 25px;
+  }
 
-      }
-      &-frame{
-        background-color: white;
-        width: 26em;
-        margin-top: 2em;
-        padding: 30px;
-        box-shadow: 0 30px 40px rgba(212, 217, 232, 0.2);
-        border-radius: 16px;
-        @media (max-width: 376px) {
-          width: 100%;
-          margin-bottom: 0;
-          &:first-child{
-            margin-bottom: 20px;
-          }
-        }
-        &-text{
-          position: relative;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 16px;
-          line-height: 28px;
-          font-feature-settings: 'liga' off;
-          color: #18191F;
-          flex: none;
-          order: 0;
-          flex-grow: 0;
-          padding-bottom: 9px;
-          margin: 10px 0px;
-          &-special {
-            font-weight: bold;
-            color: #6C5CE7;
-          }
-          &-component{
-            display: flex;
-            margin: 10px 0;
-            &-percents{
-              min-width: 50px;
-              margin-right: 1em;
-              color: #6C5CE7;
-              font-weight: bold;
-              font-size: 24px;
-              line-height: 28px;
-              font-feature-settings: 'liga' off;
+  &__bubbles {
+    position: absolute;
+    top: 63px;
+    right: -45px;
 
-            }
-            &-info{
-              font-style: normal;
-              font-weight: normal;
-              font-size: 16px;
-              line-height: 28px;
-            }
-          }
-        }
-      }
+    @media screen and (max-width: 1279px) {
+      top: 60px;
+      right: 30px;
     }
-    &-img {
+
+    @media screen and (max-width: 767px) {
       display: none;
-      background: #CAC6EA;
-      border-radius: 18.8625px;
-      @media (max-width: 376px) {
-        display: block;
-        text-align: center;
+    }
+  }
+
+  &__coordinator {
+    position: absolute;
+    bottom: 70px;
+    left: 50px;
+
+    @media screen and (max-width: 767px) {
+      position: static;
+      bottom: 0;
+      left: 0;
+    }
+  }
+
+  &__chest {
+    position: relative;
+    z-index: 1;
+
+    @media screen and (max-width: 767px) {
+      position: absolute;
+      bottom: 20px;
+      left: 25px;
+      width: 90%;
+    }
+  }
+
+  &__card {
+    position: absolute;
+    bottom: 140px;
+    left: 40px;
+    z-index: 1;
+
+    @media screen and (max-width: 767px) {
+      bottom: 110px;
+      left: 50px;
+      width: 66%;
+    }
+  }
+
+  &__decorator {
+    position: absolute;
+
+    &-1 {
+      top: 20px;
+      right: 18px;
+
+      @media screen and (max-width: 767px) {
+        top: 35px;
+        right: 20px;
+        width: 28%;
+      }
+    }
+
+    &-2 {
+      bottom: -2px;
+      left: -22px;
+
+      @media screen and (max-width: 767px) {
+        bottom: 40px;
+        left: 20px;
+        width: 26%;
       }
     }
   }
-  &__left-content{
-    background: url("../../../assets/img/background_3.png") no-repeat;
-    background-color: #CAC6EA;
-    border-radius: 30px 0 0 30px;
-    width: 50%;
-    position: relative;
-    @media (max-width: 376px) {
-      display: none;
-    }
-    &-img{
-      position: absolute;
-      left: -6px;
-      top: -28px;
-      text-align: center;
-      padding-top: 51px;
-      width: 34em;
-      height: 48em;
-    }
-    }
-
 }
