@@ -229,7 +229,7 @@ function Header() {
                                   onClick={() => setCounterActive(!isCounterActive)}
                                 >
                                     {isCrowdsaleClosed && isRefund ?
-                                      'WITHDRAW' : 'BUY VIP PAW CARD'
+                                      'REFUND' : 'BUY VIP PAW CARD'
                                     }
 
                                     <div className={classNames('count-component-arrow', {
@@ -257,13 +257,13 @@ function Header() {
                                       {cardPrice && pawCardAmount ?
                                         new BigNumber(cardPrice).multipliedBy(pawCardAmount).toFixed() :
                                         0
-                                      } BNB
+                                      } ETH
                                     </div>
                                     {isCrowdsaleClosed && isRefund ?
                                     <div
                                       className="paw-card__buy-btn"
                                       onClick={handleRefund}>
-                                        REFUND
+                                        SEND TOKEN
                                     </div> :
                                     <div
                                       className="paw-card__buy-btn"
