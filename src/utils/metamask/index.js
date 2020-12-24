@@ -1,5 +1,6 @@
 import Web3 from 'web3';
 import contractDetails from "../contractService/contractDetails";
+import {isEqual} from 'lodash/lang';
 
 const IS_PRODUCTION = false;
 
@@ -11,8 +12,24 @@ export default class MetamaskService {
         this.providers = {};
         this.providers.metamask = Web3.givenProvider;
         this.Web3Provider = new Web3(this.providers.metamask);
-        this.wallet && this.wallet.on('chainChanged', () => window.location.reload());
-        this.wallet && this.wallet.on('accountsChanged', () => window.location.reload());
+        this.wallet.on('chainChanged', (newChain) => {
+            const chainId = localStorage.getItem('chainId')
+            console.log('chainChanged')
+            if (String(chainId) !== String(newChain)) {
+                console.log('chains not equal',String(chainId),String(newChain))
+                localStorage.setItem('chainId',newChain)
+                window.location.reload()
+            }
+        });
+        this.wallet.on('accountsChanged', (newAccounts) => {
+            console.log('accountsChanged')
+            const accounts = JSON.parse(localStorage.getItem('accounts'))
+            if (!isEqual(accounts.accounts,newAccounts)) {
+                console.log('accounts not equal',accounts,newAccounts)
+                localStorage.setItem('accounts',JSON.stringify({accounts:newAccounts}))
+                window.location.reload()
+            }
+        });
     }
 
     getAccount() {
