@@ -128,13 +128,20 @@
   }
 
   &__paw-card-btn {
-    min-width: 180px;
+    min-width: 186px;
     background-color: $blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    &-text {
+      width: 100%;
+      text-align: center;
+    }
 
     .count-component-arrow {
-      width: 28px;
+      min-width: 28px;
       height: 28px;
-      margin-left: 10px;
       border-radius: 8px;
       background-image: url('../../assets/img/button_a.png');
 
@@ -165,7 +172,7 @@
     }
 
     &__counter-value {
-      width: 60px;
+      width: 80px;
       height: 48px;
       padding: 10px 5px;
       background-color: rgba(255, 255, 255, 0.25);
@@ -194,12 +201,12 @@
       cursor: pointer;
 
       &--minus {
-        margin-right: 15px;
+        margin-right: 10px;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='none' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23fff' opacity='.25' rx='14'/%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 14h12'/%3E%3C/svg%3E");
       }
 
       &--plus {
-        margin-left: 15px;
+        margin-left: 10px;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' fill='none' viewBox='0 0 28 28'%3E%3Crect width='28' height='28' fill='%23fff' opacity='.25' rx='14'/%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 14h12M14 20V8'/%3E%3C/svg%3E");
       }
     }

@@ -228,7 +228,8 @@ function Header() {
                                   onClick={() => setCounterActive(!isCounterActive)}
                                 >
                                     {isCrowdsaleClosed && isRefund ?
-                                      'REFUND' : 'BUY VIP PAW CARD'
+                                    <div className="header__paw-card-btn-text">REFUND</div> :
+                                    <div className="header__paw-card-btn-text">BUY VIP PAW CARD</div>
                                     }
 
                                     <div className={classNames('count-component-arrow', {
