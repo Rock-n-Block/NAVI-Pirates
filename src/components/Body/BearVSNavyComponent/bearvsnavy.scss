@@ -3,7 +3,7 @@
 
 .versus-section {
   @media screen and (max-width: 767px) {
-    margin-top: 57px !important;
+    padding-top: 27px;
   }
 
   &__content {
@@ -53,6 +53,9 @@
     }
 
     &-2 {
+      top: 130px;
+      right: -75px;
+
       @media screen and (max-width: 1279px) {
         top: 300px;
         right: 5%;

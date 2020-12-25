@@ -13,6 +13,17 @@ import decorator5 from '../../../assets/img/uniswap/decorator-5.svg'
 import decorator6 from '../../../assets/img/uniswap/decorator-6.svg'
 
 function RegEconomicsComponent() {
+    const [windowWidth, setWidth] = React.useState(window.innerWidth);
+
+    const updateWidth = () => {
+        setWidth(window.innerWidth);
+    };
+
+    React.useEffect(() => {
+        window.addEventListener('resize', updateWidth);
+        return () => window.removeEventListener('resize', updateWidth);
+    });
+
     const elements = () => {
         return <>
             <div className="section__text">
@@ -23,7 +34,7 @@ function RegEconomicsComponent() {
                 <div className="uniswap-section__info">
                     <div className="uniswap-section__info-row">
                         <div className="uniswap-section__info-sum">100,000 BEAR</div>
-                        <div className="uniswap-section__info-descr">Used to mint GOLD tokens to provide liquidity Uniswap at the current price.</div>
+                        <div className="uniswap-section__info-descr">Distributed 1:1 to VIP PAW NFT buyers a day after INO completion.</div>
                     </div>
 
                     <div className="uniswap-section__info-row">
@@ -70,7 +81,7 @@ function RegEconomicsComponent() {
                       </div>
 
                       <div className="section__scroll-content">
-                          { window.innerWidth > 1279 ?
+                          { windowWidth > 1279 ?
                             (<Scrollbars>
                                   {elements()}
                               </Scrollbars>

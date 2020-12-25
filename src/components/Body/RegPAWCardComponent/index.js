@@ -13,6 +13,17 @@ import decorator3 from "../../../assets/img/vip-paw-card/decorator-3.png";
 import decorator4 from "../../../assets/img/vip-paw-card/decorator-4.png";
 
 function RegPAWCardComponent() {
+  const [windowWidth, setWidth] = React.useState(window.innerWidth);
+
+  const updateWidth = () => {
+    setWidth(window.innerWidth);
+  };
+
+  React.useEffect(() => {
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
+  });
+
   const elements = () => {
     return <>
       <div className="section__text">
@@ -73,7 +84,7 @@ function RegPAWCardComponent() {
             </div>
 
             <div className="section__scroll-content">
-              {window.innerWidth > 1279 ?
+              { windowWidth > 1279 ?
                 (<Scrollbars>
                     {elements()}
                   </Scrollbars>

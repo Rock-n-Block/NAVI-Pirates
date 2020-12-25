@@ -17,7 +17,7 @@ function PAWComponent() {
                   </div>
 
                   <div className="paw-section__text">
-                      There is a continuous ongoing war in two field bays of a corner of the BEARing Sea between BEAR NAVY and Pirates. Two Pirate ships have been looting GOLD tokens (a ERC-20 token) by the chest load. In a move to "PAW OUT" these pirates, a secret black ops division of the BEAR NAVY has been formed, code name PAW (Pirate Assault Warriors).
+                      There is a continuous ongoing war in two field bays of a corner of the BEARing Sea between BEAR NAVY and Pirates. Two Pirate ships have been looting GOLD tokens (an ERC-20 token) by the chest load. In a move to "PAW OUT" these pirates, a secret black ops division of the BEAR NAVY has been formed, code name PAW (Pirate Assault Warriors).
                       <img src={bottle} alt="" className="paw-section__decorator"/>
                   </div>
 
@@ -30,7 +30,7 @@ function PAWComponent() {
                       the Bear Navy is offering veterans (that's those who play the game) CHEST (GOLD tokens bonds),
                       minted at a rate of 125% of input ETH per player entry into any of the four field bays.
                       Should YOU choose to be involved as a Veteran, you are required to obtain a certified and unique VIP PAW CARD (NFT token),
-                      where your Open CHEST and Closed Chest shall be recorded. Each VIP PAW CARD is used to move into only one field bay.
+                      where your Open CHEST and Closed Chest is recorded. Each VIP PAW CARD is used to move into only one field bay.
                       You can mint any amount of CHEST of GOLD anytime you enter into any of the two field bays from any of your VIP PAW CARD owned,
                       by depositing ETH, but there is a required minimum deposit of 0.01 ETH. To enter all two field bays, you must hold two VIP PAW CARD,
                       one for each of the field bays. Each VIP PAW CARD carries a PAW Operative ship (see VIP PAW CARD below).
