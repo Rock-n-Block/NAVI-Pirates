@@ -20,7 +20,7 @@ function GamesComponent() {
               to innovate and disrupt itself while offering players several means
               of earning cryptocurrencies, termed “Gains.”
               Bear Games will launch the first Initial NFT Offering (INO)
-              on Binance Smart Chain to fund its first Defi Game called  BEAR NAVY Vs. Pirates (BVP).
+              on Ethereum Chain to fund its first Defi Game called  BEAR NAVY Vs. Pirates (BVP).
             </div>
           </div>
         </div>

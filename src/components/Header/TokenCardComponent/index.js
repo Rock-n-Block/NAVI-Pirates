@@ -1,6 +1,7 @@
 import React from "react";
 import {useContractContext} from "../../../contexts/contractContext";
 import {useSelector} from "react-redux";
+import sliderCard from '../../../assets/img/slider-card.png'
 
 function TokenCardComponent(props) {
     const {
@@ -36,17 +37,11 @@ function TokenCardComponent(props) {
     }, [contractService, getToken])
 
     return (
-    <div className="swiper-slide-data">
-      <div className="swiper-slide-value">
-          {/*DIVS {cashback} BNB*/}
+    <div className="swiper-slide__data">
+      <div className="swiper-slide__card">
+        <img src={sliderCard} alt="" />
       </div>
-      {/*<button*/}
-      {/*className="swiper-slide-button"*/}
-      {/*// onClick={getCashback}*/}
-      {/*>*/}
-      {/*    WITHDRAW*/}
-      {/*</button>*/}
-      <div className="swiper-slide-id">
+      <div className="swiper-slide__id">
           #{tokenId}
       </div>
     </div>

@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { NavLink } from 'react-router-dom';
+import SwiperCore, { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
@@ -12,17 +13,16 @@ import { useContractContext } from '../../contexts/contractContext';
 import 'swiper/swiper.scss';
 import './header.scss';
 
-import trust_img from '../../assets/img/trust.png'
 import logo from '../../assets/img/logo.svg'
 import scrollUpImg from '../../assets/img/scroll-up.svg'
 import metamask_img from '../../assets/img/metamask.svg'
-import arrowPrevImg from '../../assets/img/prev.png'
-import arrowNextImg from '../../assets/img/next.png'
 import github from "../../assets/img/socials/github_header.svg";
 import twitter from "../../assets/img/socials/twitter_header.svg";
 import telegram from "../../assets/img/socials/telegram_header.svg";
 import youtube from "../../assets/img/socials/youtube_header.svg";
 import { github_url, telegram_url, twitter_url, youtube_url } from "../Footer";
+
+SwiperCore.use([Navigation]);
 
 function Header() {
     const dispatch = useDispatch();
@@ -34,7 +34,6 @@ function Header() {
     const [isCounterActive, setCounterActive] = React.useState(false);
     const [isSlidesActive, setSlidesActive] = React.useState(false);
     const [pawCardAmount, setPawCardAmount] = React.useState(0);
-    const [swipe, setSwipe] = React.useState(false);
     const [isCrowdsaleClosed, setCrowdsaleClosed] = React.useState(false)
     const [isRefund, setIsRefund] = React.useState(false)
     const [cardPrice, setCardPrice] = React.useState(0)
@@ -201,7 +200,7 @@ function Header() {
                             className="header__btn header__btn--bg"
                             onClick={handleLoginMetamask}
                             >
-                                <img src={trust_img}/>
+                                <img src={metamask_img}/>
                                 <div>Login to Metamask</div>
                             </div>
                             }
@@ -279,6 +278,7 @@ function Header() {
                         <div className="header__menu-footer">
                             <div className="header__maintenance">Maintained by RocknBlock.io</div>
                             <div className="header__copyright">© 2020 BEAR Games. All rights reserved</div>
+                            <div className="header__version">Lite Paper v1.0</div>
                             <div className="header__socials">
                                 <NavLink to={github_url}><img src={github} alt=""/></NavLink>
                                 <NavLink to={twitter_url}><img src={twitter} alt=""/></NavLink>
@@ -291,31 +291,42 @@ function Header() {
                     {isSlidesActive &&
                         <div className="header__swiper" id="swiper" ref={sliderRef}>
                             {balance !== 0 ?
-                                <Swiper
-                                spaceBetween={0}
-                                slidesPerView={2}
-                                onSwiper={swiper => setSwipe(swiper)}
-                                //onSlideChangeTransitionEnd={handleSlideChange}
-                                >
-                                    {[...new Array(balance)].map((token, it) => {
-                                        const index = it;
-                                        return (
-                                            <SwiperSlide
-                                            key={`token-${index}`}
-                                            >
-                                                <TokenCardComponent
-                                                index={index}
-                                                />
-                                            </SwiperSlide>
-                                        )
-                                    })}
-                                    <div className="media__btn media__btn--prev" onClick={() => swipe.slidePrev()}>
-                                        <img src={arrowPrevImg} alt=""/>
-                                    </div>
-                                    <div className="media__btn media__btn--next" onClick={() => swipe.slideNext()}>
-                                        <img src={arrowNextImg} alt=""/>
-                                    </div>
-                                </Swiper>
+                                <div className="header__swiper-inner">
+                                    <div className="swiper-button-prev"></div>
+                                    <div className="swiper-button-next"></div>
+                                    <Swiper
+                                    spaceBetween={0}
+                                    slidesPerView={3}
+                                    navigation={{
+                                        prevEl: '.swiper-button-prev',
+                                        nextEl: '.swiper-button-next'
+                                    }}
+                                    breakpoints={{
+                                        0: {
+                                            slidesPerView: 1,
+                                        },
+                                        768: {
+                                            slidesPerView: 2,
+                                        },
+                                        1024: {
+                                            slidesPerView: 3,
+                                        }
+                                    }}
+                                    >
+                                        {[...new Array(balance)].map((token, it) => {
+                                            const index = it;
+                                            return (
+                                                <SwiperSlide
+                                                key={`token-${index}`}
+                                                >
+                                                    <TokenCardComponent
+                                                    index={index}
+                                                    />
+                                                </SwiperSlide>
+                                            )
+                                        })}
+                                    </Swiper>
+                                </div>
                                 :
                                 <div className="swiper-empty">
                                     nothing yet

@@ -10,6 +10,16 @@ import decorator1 from '../../../assets/img/mission-economics/decorator-1.png'
 import decorator2 from '../../../assets/img/mission-economics/decorator-2.png'
 
 function RegPAWCardComponent() {
+    const [windowWidth, setWidth] = React.useState(window.innerWidth);
+
+    const updateWidth = () => {
+        setWidth(window.innerWidth);
+    };
+
+    React.useEffect(() => {
+        window.addEventListener('resize', updateWidth);
+        return () => window.removeEventListener('resize', updateWidth);
+    });
 
     const elements = () => {
         return <>
@@ -23,7 +33,7 @@ function RegPAWCardComponent() {
 
                     <div className="economics-section__distribution-row">
                         <div className="economics-section__distribution-num">60%</div>
-                        <div className="economics-section__distribution-descr">used to mint GOLD tokens to provide liquidity Uniswap at the current price.</div>
+                        <div className="economics-section__distribution-descr">used to mint GOLD tokens to provide liquidity on Uniswap at the current price.</div>
                     </div>
 
                     <div className="economics-section__distribution-row">
@@ -73,7 +83,7 @@ function RegPAWCardComponent() {
                       </div>
 
                       <div className="section__scroll-content">
-                          { window.innerWidth > 1279 ?
+                          { windowWidth > 1279 ?
                             (<Scrollbars>
                                   {elements()}
                               </Scrollbars>

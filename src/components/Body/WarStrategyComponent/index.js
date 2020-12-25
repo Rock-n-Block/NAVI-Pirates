@@ -9,6 +9,17 @@ import img2 from '../../../assets/img/picture2.png'
 import img3 from '../../../assets/img/picture3.png'
 
 function GOLDTokensComponent() {
+    const [windowWidth, setWidth] = React.useState(window.innerWidth);
+
+    const updateWidth = () => {
+        setWidth(window.innerWidth);
+    };
+
+    React.useEffect(() => {
+        window.addEventListener('resize', updateWidth);
+        return () => window.removeEventListener('resize', updateWidth);
+    });
+
     const elements = () => {
         return <>
             <div className="section__text">
@@ -33,7 +44,7 @@ function GOLDTokensComponent() {
                 The salvaging process occurs continuously over time, and the salvaged GOLD tokens are issued at the rate
                 of 125% of the ETH used to purchase respective Open CHEST on the VIP PAW CARDS. Understandably,
                 the time it takes to recover each full chest of GOLD tokens varies.
-                <span className="text-decorator text-decorator--orange">Veterans should be rest assured that the Bear Navy is committed to the salvaging every last scrap looted GOLD tokens.</span>
+                <span className="text-decorator text-decorator--orange">Veterans should be rest assured that the Bear Navy is committed to salvaging every last scrap looted GOLD tokens.</span>
             </div>
         </>
     };
@@ -56,7 +67,7 @@ function GOLDTokensComponent() {
                       </div>
 
                       <div className="section__scroll-content">
-                          { window.innerWidth > 1279 ?
+                          { windowWidth > 1279 ?
                             (<Scrollbars>
                                   {elements()}
                               </Scrollbars>

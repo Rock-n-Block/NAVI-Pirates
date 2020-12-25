@@ -34,7 +34,7 @@ function OfferingComponent() {
 
                   <div className="offering-section__descr offering-section__descr--right">
                       <img src={cap} alt="" className="offering-section__decorator offering-section__decorator-cap"/>
-                      Bear Games Initial NFT Offering issues VIP PAW NFT CARDS at rate <span className="text-decorator text-decorator--blue">1:0.005 ETH</span> to fund Bear Navy Vs. Pirates Game to interested participants. Bear Games will create 100,000 VIP PAW CARDS available for sale during the Initial NFT Offering (INO) with the same design and auctionable (sellable) on the launch of the Bear Navy Vs. Pirates (BVP) platform launch. All funds raised, minus a 5% public dev fee (their charge for being public during Initial NFT Offering), can utilized to develop and market the platform transparently.
+                      Bear Games Initial NFT Offering issues VIP PAW NFT CARDS at rate <span className="text-decorator text-decorator--blue">1:0.005 ETH</span> to fund Bear Navy Vs. Pirates Game to interested participants. Bear Games will create 100,000 VIP PAW CARDS available for sale during the Initial NFT Offering (INO) with the same design and auctionable (sellable) on the launch of the Bear Navy Vs. Pirates (BVP) platform launch. All funds raised, minus a 5% public dev fee (their charge for being public during Initial NFT Offering), is utilized to develop and market the platform transparently.
                   </div>
 
                   <div className="offering-section__descr offering-section__descr--bottom">

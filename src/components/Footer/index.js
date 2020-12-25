@@ -26,6 +26,7 @@ function Footer() {
                   <div className="footer__copyright">© 2020 BEAR Games. All rights reserved</div>
               </div>
               <div className="footer__content-col">
+                  <div className="footer__version">Lite Paper v1.0</div>
                   <div className="footer__socials">
                       <NavLink to={github_url} className="footer__socials-item"><img src={github} alt=""/></NavLink>
                       <NavLink to={twitter_url} className="footer__socials-item"><img src={twitter} alt=""/></NavLink>
