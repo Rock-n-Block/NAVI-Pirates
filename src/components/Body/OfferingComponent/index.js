@@ -14,6 +14,7 @@ function OfferingComponent() {
       <section className="section offering-section">
           <div className="container">
               <div className="offering-section__title">Initial NFT Offering</div>
+              <div className="offering-section__title__under">(NFT + ERC20 token "BEAR" sale)</div>
 
               <div className="offering-section__content">
                   <img src={first} alt="" className="offering-section__decorator offering-section__decorator-1"/>

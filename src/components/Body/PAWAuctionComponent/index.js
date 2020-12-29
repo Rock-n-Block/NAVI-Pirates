@@ -28,13 +28,7 @@ function PAWAuctionComponent() {
 
               <div className="section__scroll-content">
                 <div className="section__text">
-                  Veterans may choose to auction their VIP PAW CARD to other interested veterans (players) in the CARD AUCTION marketplace at their desired ETH price.
-                  <span className="text-decorator text-decorator--blue">The only requirement is that the purchaser MUST prove they are already a Navy registered veteran by presenting an existing VIP PAW CARD or PAW VIP CARD in their possession.</span>
-                </div>
-
-                <div className="section__text">
-                  <span className="text-decorator text-decorator--blue">VIP PAW CARD holders can also auction their cards in the CARD AUCTION marketplace at their desired ETH price to any interested purchaser without any requirement from the purchaser.</span>
-                  There is a 0.5% fee in ETH on all Card auctions collected for a week and distributed as following; 60% goes to minting Gold and locking liquidity for Gold tokens, 30% goes to salvaging GOLD for VIP PAW Card holders and 10% is issued as Divs to existing VIP PAW Card holders.
+                    Veterans may choose to auction their VIP PAW CARD to other interested veterans (players) in the CARD AUCTION marketplace at their desired ETH price. There is a 0.5% fee in ETH on all Card auctions collected for a week and distributed as following; 60% goes to minting Gold at its current price and locking liquidity for the minted Gold tokens, 30% goes to salvaging GOLD for VIP PAW Card holders and 10% is issued as Divs to existing VIP PAW Card holders.
                 </div>
               </div>
             </div>

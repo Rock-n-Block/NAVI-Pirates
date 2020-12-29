@@ -27,14 +27,10 @@ function RegPAWCardComponent() {
   const elements = () => {
     return <>
       <div className="section__text">
-        Each VIP PAW CARD displays a Bear Navy PAW Operative Ship with a unique character set and can only move into one
-        of the four field bays.
-        The VIP PAW CARD is used to record the Open Chests obtained when the card moves into the VIP PAW CARD's
-        associated field bay.
+        Each VIP PAW CARD displays a Bear Navy PAW Operative Ship with a unique character set and can only move into one of the two field bays. The VIP PAW CARD is used to record the Open Chests obtained when the card moves into the VIP PAW CARD's associated field bay.
+        {' '}
         <span className="text-decorator text-decorator--blue">
-          The salvaged GOLD tokens received by each VIP PAW CARD’s Open Chest are claimable by clicking the withdraw button in front of the Open Chest.
-          The withdrawal automatically closes the Chest and makes it ineligible to salvaged GOLD tokens from its registered field bay.
-          Veterans (VIP PAW CARD holders) are advised to wait till their Open CHEST receives its complete eligible salvaged GOLD tokens (then Chest becomes Closed) before withdrawing their GOLD tokens.
+          The salvaged GOLD tokens received by each VIP PAW CARD’s Open Chest are claimable by clicking the withdraw button in front of the Open Chest. The withdrawal automatically closes the Chest and makes it ineligible to salvaged GOLD tokens from its registered field bay.  Veterans (VIP PAW CARD holders) are advised to wait till their Open CHEST receives its complete eligible salvaged GOLD tokens (then Chest becomes Closed) before withdrawing their GOLD tokens.
         </span>
       </div>
 

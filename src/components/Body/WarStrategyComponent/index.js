@@ -27,14 +27,7 @@ function GOLDTokensComponent() {
             </div>
 
             <div className="section__text">
-                Frustratingly, every 24 hours, two PAW Operative ships (on a VIP PAW CARD),
-                <span className="text-decorator text-decorator--orange">one from each field bay</span>,
-                get sunk during the war, injuring the PAW Operatives in those ships (<span className="text-decorator text-decorator--orange">called Wound</span>)
-                and sending their chests of GOLD tokens to the ocean floor. Every PAW NFT CARD with Open Chest in each field bay has an equal chance of being sunken
-                and is eligible for the BEAR NAVY injury insurance for its registered field bay.
-                1/4 of ETH entering each of the four field bay in 24 hours goes to the Injury Insurance Pool
-                (displayed as a wound lottery jackpot on the PAW Operative VIP Card) and is paid to the injured PAW Operative for that field bay.
-                <span className="text-decorator text-decorator--orange">3/4 of ETH entering each of the four field bay goes to the Divs Payout Pool (see Mission Economics).</span>
+                Frustratingly, every 24 hours, two PAW Operative ships (on a VIP PAW CARD), <span className="text-decorator text-decorator--orange">one from each field bay</span>, get sunk during the war, injuring the PAW Operatives in those ships (<span className="text-decorator text-decorator--orange">called Wound</span>) and sending their chests of GOLD tokens to the ocean floor. Every PAW NFT CARD with Open Chest in each field bay has an equal chance of being sunken and is eligible for the BEAR NAVY injury insurance for its registered field bay. 1/4 of ETH entering each of the two field bay in 24 hours goes to the Injury Insurance Pool (displayed as a wound lottery jackpot on the PAW Operative VIP Card) and is paid to the injured PAW Operative for that field bay. <span className="text-decorator text-decorator--orange">3/4 of ETH entering each of the two field bay goes to the Divs Payout Pool for that field bay (see Mission Economics).</span>
             </div>
 
             <div className="section__text">

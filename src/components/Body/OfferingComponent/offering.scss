@@ -29,7 +29,23 @@
       font-size: 50px;
       line-height: 68px;
     }
+
+    &__under {
+      font-family: 'MEB', sans-serif;
+      font-size: 50px;
+      line-height: 137px;
+      text-align: center;
+      color: #FAC34E;
+      text-shadow: 2px 2px 0 #FFFFFF, 7px 7px 0 #000000;
+
+      @media screen and (max-width: 855px) {
+        text-shadow: 1px 1px 0 #FFFFFF, 5px 5px 0 #000000;
+        font-size: 25px;
+        line-height: 68px;
+      }
+    }
   }
+
 
   &__content {
     position: relative;
