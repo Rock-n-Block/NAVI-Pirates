@@ -65,11 +65,36 @@ export default class ContractService {
         return await this.pawContract.methods.maxTokensToBuyInTx().call()
     }
 
+    amountOfCount = async (count) => {
+        const tokenPrice = await this.tokenPrice();
+        let amount = new BigNumber(count)
+        .multipliedBy(new BigNumber(tokenPrice))
+        .multipliedBy(new BigNumber(10).pow(decimals.BNB)).toFixed();
+        amount = '0x' + (+amount).toString(16)
+        return amount
+    }
+
     buyManyTokens = async (address, count) => {
         try {
             const maxTokensToBuyInTx = await this.maxTokensToBuyInTx();
             const remainderCount = count % maxTokensToBuyInTx; // остаток
             const iterations = Math.ceil(count / maxTokensToBuyInTx);
+            // const maxGasPerTx = await this.wallet.gasLimit();
+            // const amountOfOneToken = await this.amountOfCount(1)
+            // const gasOfOneToken = await this.wallet.estimateGasTx('buyToken',address,[1],amountOfOneToken)
+            // const amount = await this.amountOfCount(count)
+            // const gas = await this.wallet.estimateGasTx('buyToken',address,[count],amount)
+            // const maxTokensToBuyInTx = Math.floor(maxGasPerTx / gasOfOneToken)
+            // const maxAmountInTx = await this.amountOfCount(maxTokensToBuyInTx)
+            // const maxGasInTx = await this.wallet.estimateGasTx('buyToken',address,[maxTokensToBuyInTx],maxAmountInTx)
+            // const remainderCount = Math.ceil((gas - maxGasInTx) / gasOfOneToken)
+            // const iterations = Math.ceil(gas / maxGasInTx)
+            // console.log('maxGasPerTx',maxGasPerTx)
+            // console.log('gas',gas)
+            // console.log('gasOfOneToken',gasOfOneToken)
+            // console.log('maxTokensToBuyInTx',maxTokensToBuyInTx)
+            // console.log('remainderCount',remainderCount)
+            // console.log('iterations',iterations)
             if (iterations < 2)
                 return await this.buyTokens(address,count);
             for (let i = 0; i < iterations; i++) {
@@ -85,7 +110,7 @@ export default class ContractService {
     }
 
 
-    buyTokens = async (address, count) => {
+    buyTokens = async (address, count, amount) => {
       try {
         const tokenPrice = await this.tokenPrice();
         let amount = new BigNumber(count)

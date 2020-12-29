@@ -14,18 +14,15 @@ export default class MetamaskService {
         this.Web3Provider = new Web3(this.providers.metamask);
         this.wallet.on('chainChanged', (newChain) => {
             const chainId = localStorage.getItem('chainId')
-            console.log('chainChanged')
             if (String(chainId) !== String(newChain)) {
-                console.log('chains not equal',String(chainId),String(newChain))
                 localStorage.setItem('chainId',newChain)
                 window.location.reload()
             }
         });
         this.wallet.on('accountsChanged', (newAccounts) => {
-            console.log('accountsChanged')
+            console.log('accountsChanged',newAccounts)
             const accounts = JSON.parse(localStorage.getItem('accounts'))
-            if (!isEqual(accounts.accounts,newAccounts)) {
-                console.log('accounts not equal',accounts,newAccounts)
+            if (!accounts || !isEqual(accounts.accounts,newAccounts)) {
                 localStorage.setItem('accounts',JSON.stringify({accounts:newAccounts}))
                 window.location.reload()
             }
@@ -59,7 +56,6 @@ export default class MetamaskService {
 
     sendTx = async (methodName, addressFrom, data, amount) => {
         try {
-            console.log('sendTx')
             const method = this.getMethodInterface(methodName, contractDetails.PAW.ABI);
             const signature = this.encodeFunctionCall(method, data);
             const params = {
@@ -98,6 +94,23 @@ export default class MetamaskService {
         }
     }
 
+    estimateGasTx = async (methodName, addressFrom, data, amount) => {
+        try {
+            const method = this.getMethodInterface(methodName, contractDetails.PAW.ABI);
+            const signature = this.encodeFunctionCall(method, data);
+            const params = {
+                from: addressFrom,
+                to: contractDetails.PAW.ADDRESS[this.name][this.net],
+                value: amount,
+                data: signature,
+            };
+            const result = await this.Web3Provider.eth.estimateGas(params)
+            return result;
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
     encodeFunctionCall(abi, data) {
         return this.Web3Provider.eth.abi.encodeFunctionCall(abi, data);
     }
@@ -106,6 +119,11 @@ export default class MetamaskService {
         return abi.filter((m) => {
             return m.name === methodName;
         })[0];
+    }
+
+    async gasLimit() {
+        const block = await this.Web3Provider.eth.getBlock("latest");
+        return await block.gasLimit;
     }
 
 

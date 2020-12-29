@@ -32,8 +32,8 @@ const ContractProvider = ({ children }) => {
     React.useEffect(() => {
         let counter = 0;
         const interval = setInterval(() => {
-            counter += 1000;
-            if ((window.ethereum && window.ethereum.isMetaMask) || window.web3) {
+            counter += 10;
+            if (window.ethereum) {
                 console.log('MetaMask is installed')
                 clearInterval(interval)
                 loginMetamask()
@@ -41,7 +41,7 @@ const ContractProvider = ({ children }) => {
                 console.log('Error: no wallet is installed')
                 clearInterval(interval)
             }
-        }, 1000)
+        }, 10)
     }, [])
 
     return (
