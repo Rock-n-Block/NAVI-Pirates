@@ -23,7 +23,19 @@
     line-height: 137px;
     text-align: center;
     color: #FAC34E;
-    text-shadow: 2px 2px 0 #FFFFFF, 7px 7px 0 #000000;
+    text-shadow:
+            3px 0px 0 #000000,
+            0px -3px 0 #000000,
+            -3px 0px 0 #000000,
+            0px 3px 0 #000000,
+            3px 3px 0 #000000,
+            3px -3px 0 #000000,
+            -3px 3px 0 #000000,
+            -3px -3px 0 #000000,
+
+            5px 5px 0 #ffffff,
+            10px 10px 0 #000000,
+    ;
 
     @media screen and (max-width: 767px) {
       font-size: 50px;
@@ -36,10 +48,34 @@
       line-height: 137px;
       text-align: center;
       color: #FAC34E;
-      text-shadow: 2px 2px 0 #FFFFFF, 7px 7px 0 #000000;
+      text-shadow:
+              2px 0px 0 #000000,
+              0px -2px 0 #000000,
+              -2px 0px 0 #000000,
+              0px 2px 0 #000000,
+              2px 2px 0 #000000,
+              2px -2px 0 #000000,
+              -2px 2px 0 #000000,
+              -2px -2px 0 #000000,
+
+              3px 3px 0 #FFFFFF,
+              8px 8px 0 #000000
+      ;
 
       @media screen and (max-width: 855px) {
-        text-shadow: 1px 1px 0 #FFFFFF, 5px 5px 0 #000000;
+        text-shadow:
+                1px 0px 0 #000000,
+                0px -1px 0 #000000,
+                -1px 0px 0 #000000,
+                0px 1px 0 #000000,
+                1px 1px 0 #000000,
+                1px -1px 0 #000000,
+                -1px 1px 0 #000000,
+                -1px -1px 0 #000000,
+
+                2px 2px 0 #FFFFFF,
+                4px 4px 0 #000000
+        ;
         font-size: 25px;
         line-height: 68px;
       }
