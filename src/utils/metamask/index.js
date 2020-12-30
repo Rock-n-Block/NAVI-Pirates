@@ -1,6 +1,8 @@
 import Web3 from 'web3';
-import contractDetails from "../contractService/contractDetails";
+import {isMobile} from "react-device-detect";
 import {isEqual} from 'lodash/lang';
+
+import contractDetails from "../contractService/contractDetails";
 
 const IS_PRODUCTION = false;
 
@@ -13,39 +15,58 @@ export default class MetamaskService {
         this.providers.metamask = Web3.givenProvider;
         this.Web3Provider = new Web3(this.providers.metamask);
         this.wallet.on('chainChanged', (newChain) => {
-            const chainId = localStorage.getItem('chainId')
-            if (String(chainId) !== String(newChain)) {
-                localStorage.setItem('chainId',newChain)
-                window.location.reload()
-            }
+            // !isMobile && window.location.reload()
+            window.location.reload()
         });
         this.wallet.on('accountsChanged', (newAccounts) => {
             console.log('accountsChanged',newAccounts)
             const accounts = JSON.parse(localStorage.getItem('accounts'))
             if (!accounts || !isEqual(accounts.accounts,newAccounts)) {
                 localStorage.setItem('accounts',JSON.stringify({accounts:newAccounts}))
+                // !isMobile && window.location.reload()
                 window.location.reload()
             }
         });
     }
 
     getAccount() {
-        if (!this.wallet) throw new Error(`${this.name} wallet is not injected`);
+        if (!this.wallet) {
+            return {
+                errorMsg: `${this.name} wallet is not injected`
+            }
+        }
         return new Promise((resolve, reject) => {
             const net = IS_PRODUCTION ? 'mainnet' : 'kovan'
             const usedNet = IS_PRODUCTION ? '0x1' : '0x2a'
             const netVersion = this.wallet.chainId
-
-            if (netVersion === usedNet) {
-                this.wallet.request({ method: 'eth_requestAccounts' })
-                .then(account => resolve({
-                    address: account[0]
-                }))
+            if (!netVersion || netVersion===null) {
+                this.wallet.request({ method: 'eth_chainId' })
+                .then(netVersion => {
+                    if (netVersion === usedNet) {
+                        this.wallet.request({ method: 'eth_requestAccounts' })
+                        .then(account => resolve({
+                            address: account[0]
+                        }))
+                        .catch(_ => reject({ errorMsg: 'Not authorized' }))
+                    } else {
+                        reject({
+                            errorMsg: 'Please choose ' + net + ' network in metamask wallet'
+                        })
+                    }
+                })
                 .catch(_ => reject({ errorMsg: 'Not authorized' }))
             } else {
-                reject({
-                    errorMsg: `Please choose ${net} network in ${this.name} wallet.`
-                })
+                if (netVersion === usedNet) {
+                    this.wallet.request({ method: 'eth_requestAccounts' })
+                    .then(account => resolve({
+                        address: account[0]
+                    }))
+                    .catch(_ => reject({ errorMsg: 'Not authorized' }))
+                } else {
+                    reject({
+                        errorMsg: 'Please choose ' + net + ' network in metamask wallet.'
+                    })
+                }
             }
         })
     }

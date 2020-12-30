@@ -1,8 +1,9 @@
 import React, { createContext, useContext } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { isMobile } from "react-device-detect";
 
 import { BinanceService, ContractService, MetamaskService } from '../../utils';
-import { userActions } from '../../redux/actions';
+import { userActions, modalActions } from '../../redux/actions';
 
 const contractContext = createContext({
     walletService: null,
@@ -16,32 +17,53 @@ const ContractProvider = ({ children }) => {
 
     const dispatch = useDispatch();
 
-    const loginMetamask = async () => {
+    const loginMetamask = React.useCallback(async () => {
         try {
+            // dispatch(modalActions.toggleModal({isOpen:true,text:'loginMetamask'}))
             const metamask = new MetamaskService()
+            // dispatch(modalActions.toggleModal({isOpen:true,text:'MetamaskService'}))
             await window.ethereum.enable()
+            // dispatch(modalActions.toggleModal({isOpen:true,text:'ethereum.enable'}))
             setContractService(new ContractService(metamask))
             setWalletService(metamask)
+            // dispatch(modalActions.toggleModal({isOpen:true,text:'ContractService'}))
             const account = await metamask.getAccount()
             dispatch(userActions.setUserData(account))
+            isMobile && dispatch(modalActions.toggleModal({isOpen:true,text:'Metamask connected'}))
         } catch (e) {
             console.error(e);
+            dispatch(modalActions.toggleModal({isOpen:true,text:e.errorMsg}))
         }
-    }
+    },[])
 
     React.useEffect(() => {
         let counter = 0;
+        let time = 1000;
         const interval = setInterval(() => {
-            counter += 10;
+            counter += time;
             if (window.ethereum) {
                 console.log('MetaMask is installed')
                 clearInterval(interval)
                 loginMetamask()
-            } else if (counter > 3000) {
-                console.log('Error: no wallet is installed')
+            } else if (counter > 1000) {
+                let countReloads = JSON.parse(localStorage.getItem('countReloads'))
+                if (countReloads===null || Number(countReloads)<2) {
+                    if (countReloads!==null) {
+                        localStorage.setItem('countReloads',countReloads++)
+                    } else {
+                        localStorage.setItem('countReloads','0')
+                    }
+                    // dispatch(modalActions.toggleModal({isOpen:true,text:countReloads}))
+                    if (isMobile) return window.location.reload()
+                }
+                localStorage.setItem('countReloads','0')
                 clearInterval(interval)
+                dispatch(modalActions.toggleModal({
+                    isOpen:true,
+                    text:`Metamask extension is not found. You can install it from <a href="https://metamask.io" target="_blank">metamask.io</a>`
+                }))
             }
-        }, 10)
+        }, time)
     }, [])
 
     return (

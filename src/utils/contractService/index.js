@@ -1,6 +1,9 @@
+import React from "react";
+import { isMobile } from "react-device-detect";
+import BigNumber from "bignumber.js";
+
 import contractDetails from './contractDetails';
 import decimals from './decimals';
-import BigNumber from "bignumber.js";
 
 const IS_PRODUCTION = false;
 
@@ -76,25 +79,37 @@ export default class ContractService {
 
     buyManyTokens = async (address, count) => {
         try {
-            const maxTokensToBuyInTx = await this.maxTokensToBuyInTx();
-            const remainderCount = count % maxTokensToBuyInTx; // остаток
-            const iterations = Math.ceil(count / maxTokensToBuyInTx);
-            // const maxGasPerTx = await this.wallet.gasLimit();
-            // const amountOfOneToken = await this.amountOfCount(1)
-            // const gasOfOneToken = await this.wallet.estimateGasTx('buyToken',address,[1],amountOfOneToken)
-            // const amount = await this.amountOfCount(count)
-            // const gas = await this.wallet.estimateGasTx('buyToken',address,[count],amount)
-            // const maxTokensToBuyInTx = Math.floor(maxGasPerTx / gasOfOneToken)
-            // const maxAmountInTx = await this.amountOfCount(maxTokensToBuyInTx)
-            // const maxGasInTx = await this.wallet.estimateGasTx('buyToken',address,[maxTokensToBuyInTx],maxAmountInTx)
-            // const remainderCount = Math.ceil((gas - maxGasInTx) / gasOfOneToken)
-            // const iterations = Math.ceil(gas / maxGasInTx)
+            // const maxTokensToBuyInTx = await this.maxTokensToBuyInTx();
+            // const remainderCount = count % maxTokensToBuyInTx; // остаток
+            // const iterations = Math.ceil(count / maxTokensToBuyInTx);
+            const maxGasPerTx = isMobile ? 5500000 : await this.wallet.gasLimit(); //пришлось хорошо перестраховаться
+            const amountOfOneToken = await this.amountOfCount(1)
+            const gasOfOneToken = await this.wallet.estimateGasTx('buyToken',address,[1],amountOfOneToken)
+            const amount = await this.amountOfCount(count)
+            const gas = await this.wallet.estimateGasTx('buyToken',address,[count],amount)
+            const maxTokensToBuyInTx = Math.floor(maxGasPerTx / gasOfOneToken)
+            const maxAmountInTx = await this.amountOfCount(maxTokensToBuyInTx)
+            const maxGasInTx = await this.wallet.estimateGasTx('buyToken',address,[maxTokensToBuyInTx],maxAmountInTx)
+            const remainderCount = Math.ceil((count % maxTokensToBuyInTx))
+            const iterations = Math.ceil(gas / maxGasInTx)
             // console.log('maxGasPerTx',maxGasPerTx)
-            // console.log('gas',gas)
             // console.log('gasOfOneToken',gasOfOneToken)
+            // console.log('gas',gas)
             // console.log('maxTokensToBuyInTx',maxTokensToBuyInTx)
+            // console.log('maxGasInTx',maxGasInTx)
             // console.log('remainderCount',remainderCount)
             // console.log('iterations',iterations)
+            // return (
+            // <div style={{textAlign:'left'}}>
+            //     maxGasPerTx: {maxGasPerTx} <br/>
+            //     gasOfOneToken: {gasOfOneToken} <br/>
+            //     gas: {gas} <br/>
+            //     maxTokensToBuyInTx: {maxTokensToBuyInTx} <br/>
+            //     maxGasInTx: {maxGasInTx} <br/>
+            //     remainderCount: {remainderCount} <br/>
+            //     iterations: {iterations}
+            // </div>
+            // )
             if (iterations < 2)
                 return await this.buyTokens(address,count);
             for (let i = 0; i < iterations; i++) {
@@ -125,9 +140,35 @@ export default class ContractService {
 
     refundManyTokens = async (address, count) => {
         try {
-            const maxTokensToBuyInTx = await this.maxTokensToBuyInTx();
-            const remainderCount = count % maxTokensToBuyInTx; // остаток
-            const iterations = Math.ceil(count / maxTokensToBuyInTx);
+            // const maxTokensToBuyInTx = await this.maxTokensToBuyInTx();
+            // const remainderCount = count % maxTokensToBuyInTx; // остаток
+            // const iterations = Math.ceil(count / maxTokensToBuyInTx);
+            const maxGasPerTx = isMobile ? 5500000 : await this.wallet.gasLimit(); //пришлось хорошо перестраховаться
+            const amountOfOneToken = await this.amountOfCount(1)
+            const gasOfOneToken = await this.wallet.estimateGasTx('burnTokensToRefund',address,[1],amountOfOneToken)
+            const amount = await this.amountOfCount(count)
+            const gas = await this.wallet.estimateGasTx('burnTokensToRefund',address,[count],amount)
+            const maxTokensToBuyInTx = Math.floor(maxGasPerTx / gasOfOneToken)
+            const maxAmountInTx = await this.amountOfCount(maxTokensToBuyInTx)
+            const maxGasInTx = await this.wallet.estimateGasTx('burnTokensToRefund',address,[maxTokensToBuyInTx],maxAmountInTx)
+            const remainderCount = Math.ceil((count % maxTokensToBuyInTx))
+            const iterations = Math.ceil(gas / maxGasInTx)
+            // console.log('maxGasPerTx',maxGasPerTx)
+            // console.log('gasOfOneToken',gasOfOneToken)
+            // console.log('gas',gas)
+            // console.log('maxTokensToBuyInTx',maxTokensToBuyInTx)
+            // console.log('maxGasInTx',maxGasInTx)
+            // console.log('remainderCount',remainderCount)
+            // console.log('iterations',iterations)
+            // return `
+            // maxGasPerTx: ${maxGasPerTx} \n
+            // gasOfOneToken: ${gasOfOneToken} \n
+            // gas: ${gas} \n
+            // maxTokensToBuyInTx: ${maxTokensToBuyInTx} \n
+            // maxGasInTx: ${maxGasInTx} \n
+            // remainderCount: ${remainderCount} \n
+            // iterations: ${iterations}
+            // `
             if (iterations < 2)
                 return await this.refundTokens(address,count);
             for (let i = 0; i < iterations; i++) {

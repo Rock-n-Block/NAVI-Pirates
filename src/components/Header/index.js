@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import BigNumber from "bignumber.js";
 import TokenCardComponent from './TokenCardComponent';
 
-import {userActions, walletActions} from '../../redux/actions';
+import {userActions, walletActions, modalActions} from '../../redux/actions';
 import { useContractContext } from '../../contexts/contractContext';
 
 import 'swiper/swiper.scss';
@@ -17,10 +17,11 @@ import logo from '../../assets/img/logo.svg'
 import scrollUpImg from '../../assets/img/scroll-up.svg'
 import metamask_img from '../../assets/img/metamask.svg'
 import github from "../../assets/img/socials/github_header.svg";
+import medium from "../../assets/img/socials/Medium-black.svg";
 import twitter from "../../assets/img/socials/twitter_header.svg";
 import telegram from "../../assets/img/socials/telegram_header.svg";
 import youtube from "../../assets/img/socials/youtube_header.svg";
-import { github_url, telegram_url, twitter_url, youtube_url } from "../Footer";
+import {github_url, lightpaper_url, medium_url, telegram_url, twitter_url, youtube_url} from "../Footer";
 
 SwiperCore.use([Navigation]);
 
@@ -103,6 +104,7 @@ function Header() {
     const handleBuyToken = async () => {
         try {
             const bought = await contractService.buyManyTokens(userAddress,pawCardAmount)
+            // dispatch(modalActions.toggleModal({isOpen:true,text:bought}))
             const balanceOf = await contractService.balanceOf(userAddress)
             setBalance(balanceOf)
         } catch (e) {
@@ -131,9 +133,11 @@ function Header() {
             const isClosed = await contractService.isClosedCrowdsale()
             setCrowdsaleClosed(isClosed)
             const price = await contractService.tokenPrice()
+            // dispatch(modalActions.toggleModal({isOpen:true,text:price}))
             setCardPrice(price)
         } catch (e) {
             console.error('Header getData',e);
+            // dispatch(modalActions.toggleModal({isOpen:true,text:'Header getData error'}))
         }
     }
 
@@ -279,12 +283,17 @@ function Header() {
                         <div className="header__menu-footer">
                             <div className="header__maintenance">Maintained by RocknBlock.io</div>
                             <div className="header__copyright">© 2020 BEAR Games. All rights reserved</div>
-                            <div className="header__version">Lite Paper v1.0</div>
+                            <div className="header__version">
+                                <a href={lightpaper_url} className="header__paper">
+                                    Lite Paper v1.0
+                                </a>
+                            </div>
                             <div className="header__socials">
-                                <NavLink to={github_url}><img src={github} alt=""/></NavLink>
-                                <NavLink to={twitter_url}><img src={twitter} alt=""/></NavLink>
-                                <NavLink to={telegram_url}><img src={telegram} alt=""/></NavLink>
-                                <NavLink to={youtube_url}><img src={youtube} alt=""/></NavLink>
+                                <a href={github_url}><img src={github} alt=""/></a>
+                                <a href={medium_url}><img src={medium} alt=""/></a>
+                                <a href={twitter_url}><img src={twitter} alt=""/></a>
+                                <a href={telegram_url}><img src={telegram} alt=""/></a>
+                                <a href={youtube_url}><img src={youtube} alt=""/></a>
                             </div>
                         </div>
                     </div>
