@@ -27,11 +27,9 @@ function GOLDTokensComponent() {
 
                       <div className="section__scroll-content">
                           <div className="section__text">
-                              GOLD tokens have an unlimited supply; the GOLD tokens token current circulating supply at any time can be seen from any Ethereum explorer.
-                              The GOLD tokens token has a precision of 10, which means when you own 1 GOLD tokens, you are holding 10^10, the smallest unit of GOLD tokens.
+                              GOLD token has an unlimited supply; GOLD token's current circulating supply at any time can be seen from any Ethereum explorer. GOLD token has a precision of 10, which means when you own 1 GOLD token, you are holding 10^10, the smallest unit of GOLD token.
                               <span className="text-decorator text-decorator--orange">
-                                  The starting price of GOLD tokens on Uniswap can 0.000001 ETH, with no premine for admins.
-                                  Gold tokens can designed always to have enough ETH backing on Uniswap and liquidity provided can locked forever and hence has a built in gamified pumpamentals.
+                                  The starting price of GOLD tokens on Uniswap is 0.000001 ETH, with no premine for admins. Gold tokens is designed to always have enough ETH backing on Uniswap and this liquidity provided is locked forever and hence has a built in gamified pumpamentals.
                             </span>
                           </div>
                       </div>

@@ -17,7 +17,7 @@ function PAWComponent() {
                   </div>
 
                   <div className="paw-section__text">
-                      There is a continuous ongoing war in two field bays of a corner of the BEARing Sea between BEAR NAVY and Pirates. Two Pirate ships have been looting GOLD tokens (an ERC-20 token) by the chest load. In a move to "PAW OUT" these pirates, a secret black ops division of the BEAR NAVY has been formed, code name PAW (Pirate Assault Warriors).
+                      There is a continuous ongoing war in two field bays of a corner of the BEARing Sea between BEAR NAVY and Pirates. Two Pirate ships have been looting GOLD tokens (an ERC-20 token) by the chest load. In a move to "PAW OUT" these pirates, a secret black ops division of the BEAR NAVY formed, code name PAW (Pirate Assault Warriors).
                       <img src={bottle} alt="" className="paw-section__decorator"/>
                   </div>
 
