@@ -19,7 +19,6 @@ const ContractProvider = ({ children }) => {
 
     const loginMetamask = React.useCallback(async () => {
         try {
-            // dispatch(modalActions.toggleModal({isOpen:true,text:'loginMetamask'}))
             const metamask = new MetamaskService()
             // dispatch(modalActions.toggleModal({isOpen:true,text:'MetamaskService'}))
             await window.ethereum.enable()
