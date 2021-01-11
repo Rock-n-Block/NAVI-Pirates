@@ -1,5 +1,4 @@
 import Web3 from 'web3';
-import {isMobile} from "react-device-detect";
 import {isEqual} from 'lodash/lang';
 
 import contractDetails from "../contractService/contractDetails";
@@ -12,10 +11,8 @@ export default class MetamaskService {
         this.wallet = window.ethereum;
         this.net = IS_PRODUCTION ? 'mainnet' : 'testnet'
         this.providers = {};
-        // this.providers.metamask = Web3.givenProvider;
         this.Web3Provider = new Web3(this.wallet);
         this.wallet.on('chainChanged', (newChain) => {
-            // !isMobile && window.location.reload()
             window.location.reload()
         });
         this.wallet.on('accountsChanged', (newAccounts) => {
@@ -23,7 +20,6 @@ export default class MetamaskService {
             const accounts = JSON.parse(localStorage.getItem('accounts'))
             if (!accounts || !isEqual(accounts.accounts,newAccounts)) {
                 localStorage.setItem('accounts',JSON.stringify({accounts:newAccounts}))
-                // !isMobile && window.location.reload()
                 window.location.reload()
             }
         });
