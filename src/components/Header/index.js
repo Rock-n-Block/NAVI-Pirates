@@ -127,8 +127,8 @@ function Header() {
             // dispatch(modalActions.toggleModal({isOpen:true,text:price}))
             setCardPrice(price)
         } catch (e) {
-            console.error('Header getData',e);
-            // dispatch(modalActions.toggleModal({isOpen:true,text:'Header getData error'}))
+            console.error('Header getData',JSON.stringify(e.message));
+            // dispatch(modalActions.toggleModal({isOpen:true,text:`Header getData error: ${JSON.stringify(e.message)}`}))
         }
     }
 

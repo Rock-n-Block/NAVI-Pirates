@@ -12,8 +12,8 @@ export default class MetamaskService {
         this.wallet = window.ethereum;
         this.net = IS_PRODUCTION ? 'mainnet' : 'testnet'
         this.providers = {};
-        this.providers.metamask = Web3.givenProvider;
-        this.Web3Provider = new Web3(this.providers.metamask);
+        // this.providers.metamask = Web3.givenProvider;
+        this.Web3Provider = new Web3(this.wallet);
         this.wallet.on('chainChanged', (newChain) => {
             // !isMobile && window.location.reload()
             window.location.reload()
