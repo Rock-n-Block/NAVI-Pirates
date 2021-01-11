@@ -52,15 +52,6 @@ function Header() {
         document.documentElement.scrollTop = 0;
     };
 
-    const handleLoginMetamask = async () => {
-        try {
-            const account = await walletService.getAccount()
-            dispatch(userActions.setUserData(account))
-        } catch (e) {
-            console.error(e);
-        }
-    };
-
     const userAddress = useSelector(({ user }) => user.address);
 
     const outsidePawCardClick = (e) => {
@@ -199,15 +190,6 @@ function Header() {
 
                     <div className="header__menu m-menu">
                         <div className="header__controls">
-                            {!userAddress &&
-                            <div
-                            className="header__btn header__btn--bg"
-                            onClick={handleLoginMetamask}
-                            >
-                                <img src={metamask_img}/>
-                                <div>Login to Metamask</div>
-                            </div>
-                            }
 
                             <div
                             ref={sliderButtonRef}
