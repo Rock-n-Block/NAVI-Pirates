@@ -60,7 +60,16 @@ const ContractProvider = ({ children }) => {
                 clearInterval(interval)
                 dispatch(modalActions.toggleModal({
                     isOpen:true,
-                    text:`Metamask extension is not found. You can install it from <a href="https://metamask.io" target="_blank">metamask.io</a>`
+                    text:
+                    <div>
+                      <p>
+                        Metamask extension is not found.
+                      </p>
+                      <p>
+                        You can install it from {' '}
+                        <a href="https://metamask.io" target="_blank">metamask.io</a>
+                      </p>
+                    </div>
                 }))
             }
         }, time)
