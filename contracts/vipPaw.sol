@@ -6,7 +6,7 @@ import "openzeppelin-solidity/contracts/token/ERC721/ERC721.sol";
 import "openzeppelin-solidity/contracts/access/Ownable.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 
-contract vipPaw is ERC721, Ownable
+contract VipPaw is ERC721, Ownable
 {
     using SafeMath for uint256;
 
@@ -40,19 +40,18 @@ contract vipPaw is ERC721, Ownable
         uint256 _maxSupply,
         uint256 _openCrowdsaleTime,
         uint256 _closeCrowdsaleTime,
-        uint256 _maxTokensToBuyInTx,
-        bool _isFirstTime
+        uint256 _maxTokensToBuyInTx
     )
         public
         ERC721(name, symbol)
     {
         require(
             _softCapInTokens <= _maxSupply,
-            "vipPaw: Wrong soft cap"
+            "VipPaw: Wrong soft cap"
         );
         require(
             _openCrowdsaleTime <= _closeCrowdsaleTime,
-            "vipPaw: Wrong open and close time of crowdsale"
+            "VipPaw: Wrong open and close time of crowdsale"
         );
 
         tokenPrice = _tokenPrice;
@@ -61,19 +60,6 @@ contract vipPaw is ERC721, Ownable
         openCrowdsaleTime = _openCrowdsaleTime;
         closeCrowdsaleTime = _closeCrowdsaleTime;
         maxTokensToBuyInTx = _maxTokensToBuyInTx;
-        isFirstTime = _isFirstTime;
-    }
-
-    bool isFirstTime;
-    function startCrowdsale() external onlyOwner
-    {
-        require(
-            isFirstTime == true,
-            "vipPaw: Can not open crowdsale twice"
-        );
-        openCrowdsaleTime = now;
-        closeCrowdsaleTime = now + 10 minutes;
-        isFirstTime = false;
     }
 
     function setBaseUri(string memory newBaseUri) external onlyOwner
@@ -100,7 +86,7 @@ contract vipPaw is ERC721, Ownable
     {
         require(
             isOpenTransfers == false,
-            "vipPaw: Transfers is already opened"
+            "VipPaw: Transfers is already opened"
         );
         isOpenTransfers = true;
     }
@@ -109,7 +95,11 @@ contract vipPaw is ERC721, Ownable
     {
         require(
             isClosedCrowdsale() == false,
-            "vipPaw: Crowdsale is closed"
+            "VipPaw: Crowdsale is closed"
+        );
+        require(
+            count <= maxTokensToBuyInTx,
+            "VipPaw: count must be not bigger than maxTokensToBuyInTx"
         );
 
         address sender = _msgSender();
@@ -117,11 +107,11 @@ contract vipPaw is ERC721, Ownable
 
         require(
             count > 0 && count <= maxSupply.sub(lastTokenId),
-            "vipPaw: Wrong amount of tokens to purchase"
+            "VipPaw: Wrong amount of tokens to purchase"
         );
         require(
             rawAmount == tokenPrice.mul(count),
-            "vipPaw: Wrong amount of money"
+            "VipPaw: Wrong amount of money"
         );
 
         for(uint256 token = 0; token < count; token = token.add(1))
@@ -139,27 +129,22 @@ contract vipPaw is ERC721, Ownable
         emit TokensPurchased(sender, count, now);
     }
 
-    function withdraw() external
+    function withdraw() external onlyOwner
     {
         require(
             isClosedCrowdsale() == true,
-            "vipPaw: Crowdsale is not closed"
-        );
-        address payable sender = _msgSender();
-        require(
-            sender == owner(),
-            "vipPaw: Sender must be owner of the contract"
+            "VipPaw: Crowdsale is not closed"
         );
         require(
             isRefund() == false,
-            "vipPaw: Owner can not withdraw when it is refund"
+            "VipPaw: Owner can not withdraw when it is refund"
         );
         uint256 amountToReturn = moneyCollected;
         require(
             amountToReturn > 0,
-            "vipPaw: Nothing to return"
+            "VipPaw: Nothing to return"
         );
-        sender.transfer(amountToReturn);
+        payable(owner()).transfer(amountToReturn);
         moneyCollected = 0;
     }
 
@@ -167,17 +152,21 @@ contract vipPaw is ERC721, Ownable
     {
         require(
             isClosedCrowdsale() == true,
-            "vipPaw: Crowdsale is not closed"
+            "VipPaw: Crowdsale is not closed"
         );
         require(
             isRefund() == true,
-            "vipPaw: Can not refund"
+            "VipPaw: Can not refund"
+        );
+        require(
+            count <= maxTokensToBuyInTx,
+            "VipPaw: count must be not bigger than maxTokensToBuyInTx"
         );
         address payable sender = _msgSender();
         uint256 len = balanceOf(sender);
         require(
             len > 0,
-            "vipPaw: Need to have vip paw cards to refund"
+            "VipPaw: Need to have vip paw cards to refund"
         );
 
         uint256 amountToBurn;
@@ -187,7 +176,7 @@ contract vipPaw is ERC721, Ownable
             amountToBurn = count;
         require(
             len >= count,
-            "vipPaw: Does not have this much tokens"
+            "VipPaw: Does not have this much tokens"
         );
 
         uint256 amountToRefund;
@@ -228,7 +217,7 @@ contract vipPaw is ERC721, Ownable
         {
             require(
                 lastTokenId >= maxSupply,
-                "vipPaw: Crowdsale is not ended"
+                "VipPaw: Crowdsale is not ended"
             );
             return false;
         }
@@ -247,7 +236,7 @@ contract vipPaw is ERC721, Ownable
             return;
         require(
             isOpenTransfers == true,
-            "vipPaw: Transfers is not opened yet"
+            "VipPaw: Transfers is not opened yet"
         );
     }
 }

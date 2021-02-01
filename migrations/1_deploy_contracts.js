@@ -18,7 +18,7 @@ const {
     MAX_TOKENS_TO_BUY_IN_TX_ROPSTEN,
 } = process.env;
 
-const vipPaw = artifacts.require("vipPaw");
+const VipPaw = artifacts.require("VipPaw");
 
 const debug = "false";
 
@@ -46,28 +46,27 @@ module.exports = async function (deployer, network) {
     else
         numContracts = new BN(1);
 
-    let vipPawInstArray = [];
+    let VipPawInstArray = [];
 
     for(i = 0; i < numContracts; ++i){
         if (debug == "true")
         {
             await deployer.deploy(
-                vipPaw,
+                VipPaw,
                 NAME,
                 SYMBOL,
                 TOKEN_PRICE,
                 new BN(500),
                 new BN(1000),
-                ZERO,
-                ZERO,
-                maxTokensToBuyInTx,
-                true
+                OPEN_CROWDSALE_TIME,
+                CLOSE_CROWDSALE_TIME,
+                maxTokensToBuyInTx
             );
         }
         else
         {
             await deployer.deploy(
-                vipPaw,
+                VipPaw,
                 NAME,
                 SYMBOL,
                 TOKEN_PRICE,
@@ -75,18 +74,17 @@ module.exports = async function (deployer, network) {
                 MAX_SUPPLY,
                 OPEN_CROWDSALE_TIME,
                 CLOSE_CROWDSALE_TIME,
-                maxTokensToBuyInTx,
-                false
+                maxTokensToBuyInTx
             );
         }
-        let vipPawInst = await vipPaw.deployed();
-        await vipPawInst.setBaseUri(BASE_URI);
-        await vipPawInst.setDefaultTokenURI(DEFAULT_TOKEN_URI);
-        await vipPawInst.transferOwnership(OWNER);
-        vipPawInstArray.push(vipPawInst.address);
+        let VipPawInst = await VipPaw.deployed();
+        await VipPawInst.setBaseUri(BASE_URI);
+        await VipPawInst.setDefaultTokenURI(DEFAULT_TOKEN_URI);
+        await VipPawInst.transferOwnership(OWNER);
+        VipPawInstArray.push(VipPawInst.address);
     }
 
-    for(i = 0; i < vipPawInstArray.length; ++i){
-        console.log(vipPawInstArray[i]);
+    for(i = 0; i < VipPawInstArray.length; ++i){
+        console.log(VipPawInstArray[i]);
     }
 };
