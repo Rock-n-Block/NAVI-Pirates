@@ -23,6 +23,44 @@ function GamesComponent() {
               on Ethereum Chain to fund its first Defi Game called  BEAR NAVY Vs. Pirates (BVP).
             </div>
           </div>
+          <div className="games-section__buttons">
+            <a
+            className="button-document"
+            href="https://bit.ly/3td59Ym"
+            target="_blank"
+            >
+              <img
+              src={require('../../../assets/img/google-docs.svg').default}
+              alt=""
+              className="button-document-image"
+              />
+              Audit
+            </a>
+            <a
+            className="button-document"
+            href="https://bit.ly/39xZVyu"
+            target="_blank"
+            >
+              <img
+              src={require('../../../assets/img/google-docs.svg').default}
+              alt=""
+              className="button-document-image"
+              />
+              Whitepaper
+            </a>
+            <a
+            className="button-document"
+            href="https://bit.ly/3oFi69H"
+            target="_blank"
+            >
+              <img
+              src={require('../../../assets/img/google-docs.svg').default}
+              alt=""
+              className="button-document-image"
+              />
+              Tokenmetrics
+            </a>
+          </div>
         </div>
       </section>
   );

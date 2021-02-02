@@ -28,7 +28,7 @@ function RegEconomicsComponent() {
         return <>
             <div className="section__text">
                 <p>
-                    $BEAR token is an ERC20 token, not mintable, and has a fixed supply of 150,000 BEAR. It is the governance token used to make changes and updates to the Bear Games platform. The Governance system is a token permission governance system powered by <a href="https://collab.land" target="_blank">Collab.land</a> on Telegram.
+                    $BEAR token is an ERC20 token, not mintable, and has a fixed supply of 1,000,000 BEAR. It is the governance token used to make changes and updates to the Bear Games platform. The Governance system is a token permission governance system powered by <a href="https://collab.land" target="_blank">Collab.land</a> on Telegram.
                 </p>
                 <p>
                     Token Permission Chat allows us to create an exclusive chatroom for members who hold a certain amount of BEAR tokens. To enter in the BEAR Governance group, one must hold at least 1000 $BEAR tokens in their MetaMask wallet. BEAR Games uses the Collab.Land telegram bot built by the <a href="https://abridged.io" target="_blank">Abridged.io</a> team to verify ownership of the BEAR tokens.
@@ -41,23 +41,35 @@ function RegEconomicsComponent() {
             <div className="section__text">
                 <div className="uniswap-section__info">
                     <div className="uniswap-section__info-row">
-                        <div className="uniswap-section__info-sum">100,000 BEAR</div>
-                        <div className="uniswap-section__info-descr">Distributed 1:1 to VIP PAW NFT buyers a day after INO completion.</div>
+                        <div className="uniswap-section__info-sum">500,000 $BEAR</div>
+                        <div className="uniswap-section__info-descr">
+                            Distributed 1:5 to VIP PAW NFT buyers a day after INO completion.
+                        </div>
                     </div>
 
                     <div className="uniswap-section__info-row">
-                        <div className="uniswap-section__info-sum">30,000 BEAR</div>
-                        <div className="uniswap-section__info-descr">Used to provide liquidity in Uniswap + 65% of funds raised locked forever.</div>
+                        <div className="uniswap-section__info-sum">200,000 $BEAR</div>
+                        <div className="uniswap-section__info-descr">Used to provide liquidity in  Uniswap  +  60%  of funds raised locked forever.</div>
                     </div>
 
                     <div className="uniswap-section__info-row">
-                        <div className="uniswap-section__info-sum">13,000 BEAR</div>
-                        <div className="uniswap-section__info-descr">Partner and Development tokens locked and released @ 10% monthly.</div>
+                        <div className="uniswap-section__info-sum">50,000 $BEAR</div>
+                        <div className="uniswap-section__info-descr">10% discount distributed as Gas Bonus to INO contributors.</div>
                     </div>
 
                     <div className="uniswap-section__info-row">
-                        <div className="uniswap-section__info-sum">7,000 BEAR</div>
-                        <div className="uniswap-section__info-descr">Team tokens locked and released @ 10% per month from platform launch.</div>
+                        <div className="uniswap-section__info-sum">120,000 $BEAR</div>
+                        <div className="uniswap-section__info-descr">Reserve tokens for partner, marketing and development tokens locked and released @ 10% monthly for 10 months.</div>
+                    </div>
+
+                    <div className="uniswap-section__info-row">
+                        <div className="uniswap-section__info-sum">100,000 $BEAR</div>
+                        <div className="uniswap-section__info-descr">Team tokens locked and released @ 10% per month for 25 months.</div>
+                    </div>
+
+                    <div className="uniswap-section__info-row">
+                        <div className="uniswap-section__info-sum">30,000 $BEAR</div>
+                        <div className="uniswap-section__info-descr">Used for Liquidity Mining program to incentivize Liquidity for $BEAR token Uniswap liquidity providers per @ 3000 $BEAR per month for 10 months.</div>
                     </div>
                 </div>
             </div>
