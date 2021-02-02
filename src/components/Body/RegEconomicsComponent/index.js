@@ -27,7 +27,15 @@ function RegEconomicsComponent() {
     const elements = () => {
         return <>
             <div className="section__text">
-                Bear tokens is an ERC20 token, not mintable and has a fixed supply 150,000 BEAR. It is the governance token used to make changes and updates to the Bear Games platform. The Governance system will be a clone of the Compound protocol Governance system. More info about the  Governance structure will be released before Bear Games Governance system launch. Bear Token is allocated below;
+                <p>
+                    $BEAR token is an ERC20 token, not mintable, and has a fixed supply of 150,000 BEAR. It is the governance token used to make changes and updates to the Bear Games platform. The Governance system is a token permission governance system powered by <a href="https://collab.land" target="_blank">Collab.land</a> on Telegram.
+                </p>
+                <p>
+                    Token Permission Chat allows us to create an exclusive chatroom for members who hold a certain amount of BEAR tokens. To enter in the BEAR Governance group, one must hold at least 1000 $BEAR tokens in their MetaMask wallet. BEAR Games uses the Collab.Land telegram bot built by the <a href="https://abridged.io" target="_blank">Abridged.io</a> team to verify ownership of the BEAR tokens.
+                </p>
+                <p>
+                  BEAR Token allocation is seen below;
+                </p>
             </div>
 
             <div className="section__text">

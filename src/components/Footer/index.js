@@ -1,5 +1,4 @@
 import React from "react";
-import {Link} from "react-router-dom";
 
 import './footer.scss';
 
@@ -10,7 +9,7 @@ import telegram from '../../assets/img/socials/Telegram.svg'
 import youtube from '../../assets/img/socials/Youtube.svg'
 
 
-export const lightpaper_url = "https://bit.ly/2M6dQT9";
+export const lightpaper_url = "https://bit.ly/39EWll3";
 export const github_url = "https://github.com/Rock-n-Block/NAVI-Pirates";
 export const medium_url = "https://medium.com/@beargames";
 export const twitter_url = "https://twitter.com/BearGamesNFT";
