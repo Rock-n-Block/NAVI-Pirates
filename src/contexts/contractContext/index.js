@@ -1,6 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isMobile } from "react-device-detect";
+import { withUserAgent } from 'react-ua';
 
 import { BinanceService, ContractService, MetamaskService } from '../../utils';
 import { userActions, modalActions } from '../../redux/actions';
@@ -11,11 +11,14 @@ const contractContext = createContext({
 })
 
 
-const ContractProvider = ({ children }) => {
+const ContractProvider = ({ children, ua }) => {
+    console.log('ContractProvider', ua)
     const [walletService, setWalletService] = React.useState(null)
     const [contractService, setContractService] = React.useState(null)
 
     const dispatch = useDispatch();
+
+    const isMobile = ua.device.type === 'mobile';
 
     const loginMetamask = React.useCallback(async () => {
         try {
@@ -46,14 +49,14 @@ const ContractProvider = ({ children }) => {
                 loginMetamask()
             } else if (counter > 1000) {
                 let countReloads = JSON.parse(localStorage.getItem('countReloads'))
-                if (countReloads===null || Number(countReloads)<2) {
-                    if (countReloads!==null) {
-                        localStorage.setItem('countReloads',countReloads++)
-                    } else {
+                if (countReloads===null || +countReloads < 2) {
+                    if (countReloads===null) {
                         localStorage.setItem('countReloads','0')
+                    } else {
+                        localStorage.setItem('countReloads',countReloads++)
                     }
                     // dispatch(modalActions.toggleModal({isOpen:true,text:countReloads}))
-                    if (isMobile) return window.location.reload()
+                    // if (isMobile) return window.location.reload()
                 }
                 localStorage.setItem('countReloads','0')
                 clearInterval(interval)
@@ -61,13 +64,13 @@ const ContractProvider = ({ children }) => {
                     isOpen:true,
                     text:
                     <div>
-                      <p>
-                        Metamask extension is not found.
-                      </p>
-                      <p>
-                        You can install it from {' '}
-                        <a href="https://metamask.io" target="_blank">metamask.io</a>
-                      </p>
+                        <p>
+                            Metamask extension is not found.
+                        </p>
+                        <p>
+                            You can install it from {' '}
+                            <a href="https://metamask.io" target="_blank">metamask.io</a>
+                        </p>
                     </div>
                 }))
             }
@@ -81,7 +84,7 @@ const ContractProvider = ({ children }) => {
     );
 }
 
-export default ContractProvider;
+export default withUserAgent(ContractProvider);
 
 export function useContractContext() {
     return useContext(contractContext)

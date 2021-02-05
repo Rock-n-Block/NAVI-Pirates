@@ -60,6 +60,13 @@
     }
   }
 
+  &__maintenance {
+    &-link {
+      text-decoration: none;
+      color: #D9DBE1;
+    }
+  }
+
   &__copyright {
     text-align: center;
   }

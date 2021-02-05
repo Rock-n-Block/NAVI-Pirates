@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import BigNumber from "bignumber.js";
 import TokenCardComponent from './TokenCardComponent';
 
-import {userActions, walletActions, modalActions} from '../../redux/actions';
 import { useContractContext } from '../../contexts/contractContext';
 
 import 'swiper/swiper.scss';
@@ -15,18 +14,16 @@ import './header.scss';
 
 import logo from '../../assets/img/logo.svg'
 import scrollUpImg from '../../assets/img/scroll-up.svg'
-import metamask_img from '../../assets/img/metamask.svg'
 import github from "../../assets/img/socials/github_header.svg";
 import medium from "../../assets/img/socials/Medium-black.svg";
 import twitter from "../../assets/img/socials/twitter_header.svg";
 import telegram from "../../assets/img/socials/telegram_header.svg";
 import youtube from "../../assets/img/socials/youtube_header.svg";
-import {github_url, lightpaper_url, medium_url, telegram_url, twitter_url, youtube_url} from "../Footer";
+import {github_url, medium_url, telegram_url, twitter_url, youtube_url} from "../Footer";
 
 SwiperCore.use([Navigation]);
 
 function Header() {
-    const dispatch = useDispatch();
 
     const { walletService, contractService } = useContractContext()
 
@@ -133,8 +130,12 @@ function Header() {
     }
 
     const getBalance = async () => {
-        const balanceOf = await contractService.balanceOf(userAddress)
-        setBalance(balanceOf)
+        try {
+            const balanceOf = await contractService.balanceOf(userAddress)
+            setBalance(balanceOf)
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     React.useEffect(() => {
@@ -263,13 +264,16 @@ function Header() {
                         </div>
 
                         <div className="header__menu-footer">
-                            <div className="header__maintenance">Maintained by RocknBlock.io</div>
-                            <div className="header__copyright">© 2020 BEAR Games. All rights reserved</div>
-                            <div className="header__version">
-                                <a href={lightpaper_url} className="header__paper">
-                                    Lite Paper v1.0
+                            <div className="header__maintenance">
+                                Maintained by {' '}
+                                <a
+                                className="header__maintenance-link"
+                                href="https://rocknblock.io/"
+                                >
+                                    RocknBlock.io
                                 </a>
                             </div>
+                            <div className="header__copyright">© 2020 BEAR Games. All rights reserved</div>
                             <div className="header__socials">
                                 <a href={github_url}><img src={github} alt=""/></a>
                                 <a href={medium_url}><img src={medium} alt=""/></a>

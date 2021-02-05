@@ -9,8 +9,7 @@ import telegram from '../../assets/img/socials/Telegram.svg'
 import youtube from '../../assets/img/socials/Youtube.svg'
 
 
-export const lightpaper_url = "https://bit.ly/39xZVyu";
-export const github_url = "https://github.com/Rock-n-Block/NAVI-Pirates";
+export const github_url = "https://github.com/BearDefiGames/BearGamesDefi";
 export const medium_url = "https://medium.com/@beargames";
 export const twitter_url = "https://twitter.com/BearGamesNFT";
 export const telegram_url = "https://t.me/BearGamesChat";
@@ -22,17 +21,20 @@ function Footer() {
       <div className = "container">
           <div className="footer__content">
               <div className="footer__content-col">
-                  <div className="footer__maintenance">Maintained by RocknBlock.io</div>
+                  <div className="footer__maintenance">
+                      Maintained by {' '}
+                      <a
+                      className="footer__maintenance-link"
+                      href="https://rocknblock.io/"
+                      >
+                          RocknBlock.io
+                      </a>
+                  </div>
               </div>
               <div className="footer__content-col">
                   <div className="footer__copyright">© 2020 BEAR Games. All rights reserved</div>
               </div>
               <div className="footer__content-col">
-                  <div className="footer__version">
-                    <a href={lightpaper_url} className="footer__paper">
-                      Lite Paper v1.0
-                    </a>
-                  </div>
                   <div className="footer__socials">
                       <a href={github_url} className="footer__socials-item"><img src={github} alt=""/></a>
                       <a href={medium_url} className="footer__socials-item"><img src={medium} alt=""/></a>

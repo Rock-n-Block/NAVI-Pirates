@@ -249,6 +249,13 @@
     }
   }
 
+  &__maintenance {
+    &-link {
+      text-decoration: none;
+      color: black;
+    }
+  }
+
   &__copyright {
     margin-top: 10px;
   }
