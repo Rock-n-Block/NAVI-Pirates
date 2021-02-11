@@ -21,7 +21,7 @@ function InfoComponent() {
                   </div>
 
                   <div className="info-section__text">
-                  The purchaser understands and accepts that all purchases of VIP PAW Card NFT tokens are final and may be reversed only in case the minimum sale after 28 days of INO launch does not exceed the soft cap (300 ETH - 60,000 VIP PAW NFT Sold). After an unsuccessful sale, the purchaser needs to return the VIP PAW NFT Card before a refund. Maximum NFT that can be purchased by a single address is 2000 NFT.
+                      THE PURCHASER UNDERSTANDS AND ACCEPTS THAT ALL PURCHASES OF VIP PAW CARD NFT TOKENS ARE FINAL AND MAY NOT BE REVERSED. SALE ENDS AFTER 28 DAYS OF INO LAUNCH. SOFTCAP (200 ETH - 40,000 VIP PAW NFT), HARDCAP (500 ETH - 100,000 VIP PAW NFT SOLD). MAXIMUM NFT THAT CAN BE PURCHASED BY A SINGLE ADDRESS IS 2000 NFT.AND ACCEPTS THAT ALL PURCHASES OF VIP PAW CARD NFT TOKENS ARE FINAL AND MAY NOT BE REVERSED. SALE ENDS AFTER 28 DAYS OF INO LAUNCH. SOFTCAP (200 ETH - 400 VIP PAW NFT), HARDCAP (500 ETH - 1000 VIP PAW NFT SOLD). MAXIMUM NFT THAT CAN BE PURCHASED BY A SINGLE ADDRESS IS 20 NFT.
                   </div>
 
               </div>

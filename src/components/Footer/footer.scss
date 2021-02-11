@@ -11,6 +11,7 @@
   &__content {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 80px;
     padding: 0 50px;
 
@@ -31,7 +32,7 @@
 
     &:last-child {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
     }
 

@@ -10,6 +10,12 @@ export default class MetamaskService {
         this.name = 'metamask'
         this.wallet = window.ethereum;
         this.net = IS_PRODUCTION ? 'mainnet' : 'testnet'
+        this.testnet = 'ropsten'
+        this.nets = {
+            mainnet: '0x1',
+            kovan: '0x2a',
+            ropsten: '0x3',
+        }
         this.providers = {};
         this.Web3Provider = new Web3(this.wallet);
         this.wallet.on('chainChanged', (newChain) => {
@@ -32,8 +38,8 @@ export default class MetamaskService {
             }
         }
         return new Promise((resolve, reject) => {
-            const net = IS_PRODUCTION ? 'mainnet' : 'kovan'
-            const usedNet = IS_PRODUCTION ? '0x1' : '0x2a'
+            const net = IS_PRODUCTION ? 'mainnet' : this.testnet
+            const usedNet = IS_PRODUCTION ? '0x1' : this.nets[this.testnet]
             const netVersion = this.wallet.chainId
             if (!netVersion || netVersion===null) {
                 this.wallet.request({ method: 'eth_chainId' })

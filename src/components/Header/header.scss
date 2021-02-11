@@ -151,6 +151,35 @@
     }
   }
 
+  &__buyErc20-card {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: calc(50% - 150px);
+    max-width: 300px;
+    z-index: 1;
+  }
+
+  .buyErc20-card {
+    padding: 15px 15px 20px;
+    background-color: $white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+  }
+
+  &__erc20address {
+    text-align: center;
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: 2px solid $blue;
+    color: $blue;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    min-width: 270px;
+  }
+
+
   &__paw-card {
     position: absolute;
     top: calc(100% + 1px);

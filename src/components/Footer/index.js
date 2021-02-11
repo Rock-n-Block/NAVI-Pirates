@@ -21,17 +21,6 @@ function Footer() {
       <div className = "container">
           <div className="footer__content">
               <div className="footer__content-col">
-                  <div className="footer__maintenance">
-                      Maintained by {' '}
-                      <a
-                      className="footer__maintenance-link"
-                      href="https://rocknblock.io/"
-                      >
-                          RocknBlock.io
-                      </a>
-                  </div>
-              </div>
-              <div className="footer__content-col">
                   <div className="footer__copyright">© 2020 BEAR Games. All rights reserved</div>
               </div>
               <div className="footer__content-col">

@@ -5,8 +5,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import BigNumber from "bignumber.js";
-import TokenCardComponent from './TokenCardComponent';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
+import TokenCardComponent from './TokenCardComponent';
 import { useContractContext } from '../../contexts/contractContext';
 
 import 'swiper/swiper.scss';
@@ -31,15 +32,18 @@ function Header() {
     const [isTabActive, setIsTabActive] = React.useState(false);
     const [isCounterActive, setCounterActive] = React.useState(false);
     const [isSlidesActive, setSlidesActive] = React.useState(false);
+    const [isBuyErc20Active, setBuyErc20Active] = React.useState(false);
     const [pawCardAmount, setPawCardAmount] = React.useState(0);
     const [isCrowdsaleClosed, setCrowdsaleClosed] = React.useState(false)
     const [isRefund, setIsRefund] = React.useState(false)
     const [cardPrice, setCardPrice] = React.useState(0)
     const [balance, setBalance] = React.useState(0)
+    const [addressCopied, setAddressCopied] = React.useState(false)
 
     const pawCardRef = useRef();
     const sliderRef = useRef();
     const sliderButtonRef = useRef();
+    const buyErc20Ref = useRef();
 
     const reload = () => {
         window.location.reload();
@@ -62,6 +66,13 @@ function Header() {
         const path = e.path || (e.composedPath && e.composedPath())
         if (!path.includes(sliderRef.current) && !path.includes(sliderButtonRef.current)) {
             setSlidesActive(false)
+        }
+    }
+
+    const outsideBuyErc20Click = (e) => {
+        const path = e.path || (e.composedPath && e.composedPath())
+        if (!path.includes(buyErc20Ref.current) && !path.includes(buyErc20Ref.current)) {
+            setBuyErc20Active(false)
         }
     }
 
@@ -141,9 +152,11 @@ function Header() {
     React.useEffect(() => {
         document.body.addEventListener('click', outsidePawCardClick)
         document.body.addEventListener('click', outsideSliderClick)
+        document.body.addEventListener('click', outsideBuyErc20Click)
         return () => {
             document.body.removeEventListener('click', outsidePawCardClick)
             document.body.removeEventListener('click', outsideSliderClick)
+            document.body.removeEventListener('click', outsideBuyErc20Click)
         };
     }, []);
 
@@ -209,6 +222,38 @@ function Header() {
                                 </div>
                             </div>
 
+                            <div className="header__paw-card-wrapper" ref={buyErc20Ref}>
+                                <div
+                                  className="header__btn header__nft-card-btn"
+                                  onClick={() => setBuyErc20Active(!isBuyErc20Active)}
+                                >
+                                    <div className="header__paw-card-btn-text">Buy ERC20</div>
+
+                                    <div className={classNames('count-component-arrow', {
+                                        'count-component-arrow--up': isBuyErc20Active,
+                                        'count-component-arrow--down': !isBuyErc20Active
+                                    })}/>
+                                </div>
+                                {isBuyErc20Active &&
+                                <div className="header__buyErc20-card buyErc20-card">
+                                    <CopyToClipboard
+                                    text={contractService?.contractAddress}
+                                    onCopy={() => {
+                                        setAddressCopied(true)
+                                        setTimeout(() => setAddressCopied(false),2000)
+                                    }}
+                                    >
+                                        <div className="header__erc20address">
+                                            { addressCopied ? 'Copied' : contractService?.contractAddress}
+                                        </div>
+                                    </CopyToClipboard>
+                                    <div>
+                                        By sending ETH to this address, you agree to buy $BEAR tokens only, the platform governance tokens. You accept that you are ineligible to the PAW VIP NFTs and will be eligible only if everyone participates through this ERC20 only method, which in-turn implies that we implement a dashboard for ERC20 only contributors to mint VIP PAW NFTs.
+                                    </div>
+                                </div>
+                                }
+                            </div>
+
                             <div className="header__paw-card-wrapper" ref={pawCardRef}>
                                 <div
                                   className="header__btn header__paw-card-btn"
@@ -264,15 +309,6 @@ function Header() {
                         </div>
 
                         <div className="header__menu-footer">
-                            <div className="header__maintenance">
-                                Maintained by {' '}
-                                <a
-                                className="header__maintenance-link"
-                                href="https://rocknblock.io/"
-                                >
-                                    RocknBlock.io
-                                </a>
-                            </div>
                             <div className="header__copyright">© 2020 BEAR Games. All rights reserved</div>
                             <div className="header__socials">
                                 <a href={github_url}><img src={github} alt=""/></a>
@@ -330,6 +366,7 @@ function Header() {
                             }
                         </div>
                     }
+
                 </div>
             </div>
         </header>
