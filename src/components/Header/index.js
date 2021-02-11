@@ -309,7 +309,7 @@ function Header() {
                         </div>
 
                         <div className="header__menu-footer">
-                            <div className="header__copyright">© 2020 BEAR Games. All rights reserved</div>
+                            <div className="header__copyright">© 2021 BEAR Games. All rights reserved</div>
                             <div className="header__socials">
                                 <a href={github_url}><img src={github} alt=""/></a>
                                 <a href={medium_url}><img src={medium} alt=""/></a>
