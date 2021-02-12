@@ -26,7 +26,7 @@ contract VipPaw is ERC721, Ownable
 
     bool public isOpenTransfers = false;
 
-    address payable feeAddress;
+    address payable defaultAddress;
 
     event TokensPurchased(
         address user,
@@ -41,7 +41,7 @@ contract VipPaw is ERC721, Ownable
         uint256 _softCapInTokens,
         uint256 _maxSupply,
         uint256 _maxTokensToBuyInTx,
-        address payable _feeAddress
+        address payable _defaultAddress
     )
         ERC721(name, symbol)
     {
@@ -54,7 +54,7 @@ contract VipPaw is ERC721, Ownable
         softCapInTokens = _softCapInTokens;
         maxSupply = _maxSupply;
         maxTokensToBuyInTx = _maxTokensToBuyInTx;
-        feeAddress = _feeAddress;
+        defaultAddress = _defaultAddress;
     }
 
     function setBaseUri(string memory newBaseUri) external onlyOwner
@@ -146,7 +146,7 @@ contract VipPaw is ERC721, Ownable
         }
 
         uint256 fee = rawAmount.mul(5).div(100);
-        feeAddress.transfer(fee);
+        defaultAddress.transfer(fee);
 
         moneyCollected = moneyCollected.add(rawAmount.sub(fee));
 

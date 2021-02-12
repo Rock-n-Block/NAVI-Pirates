@@ -14,12 +14,12 @@ const {
     MAX_TOKENS_TO_BUY_IN_TX_ETH_MAINNET,
     MAX_TOKENS_TO_BUY_IN_TX_KOVAN,
     MAX_TOKENS_TO_BUY_IN_TX_ROPSTEN,
-    FEE_ADDRESS
+    DEFAULT_ADDRESS
 } = process.env;
 
 const VipPaw = artifacts.require("VipPaw");
 
-const debug = "true";
+const debug = "false";
 
 const ZERO = new BN(0);
 
@@ -58,7 +58,7 @@ module.exports = async function (deployer, network) {
                 SOFTCAP_IN_TOKENS,
                 MAX_SUPPLY,
                 maxTokensToBuyInTx,
-                FEE_ADDRESS
+                DEFAULT_ADDRESS
             );
         }
         else
@@ -71,7 +71,7 @@ module.exports = async function (deployer, network) {
                 SOFTCAP_IN_TOKENS,
                 MAX_SUPPLY,
                 maxTokensToBuyInTx,
-                FEE_ADDRESS
+                DEFAULT_ADDRESS
             );
         }
         let VipPawInst = await VipPaw.deployed();
