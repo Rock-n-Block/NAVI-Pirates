@@ -26,7 +26,7 @@ const ContractProvider = ({ children, ua }) => {
             // dispatch(modalActions.toggleModal({isOpen:true,text:'MetamaskService'}))
             await window.ethereum.enable()
             // dispatch(modalActions.toggleModal({isOpen:true,text:'ethereum.enable'}))
-            setContractService(new ContractService(metamask))
+            setContractService(new ContractService(metamask,isMobile))
             setWalletService(metamask)
             // dispatch(modalActions.toggleModal({isOpen:true,text:'ContractService'}))
             const account = await metamask.getAccount()

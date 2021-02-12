@@ -10,7 +10,7 @@ export default class MetamaskService {
         this.name = 'metamask'
         this.wallet = window.ethereum;
         this.net = IS_PRODUCTION ? 'mainnet' : 'testnet'
-        this.testnet = 'ropsten'
+        this.testnet = 'kovan'
         this.nets = {
             mainnet: '0x1',
             kovan: '0x2a',
@@ -120,7 +120,9 @@ export default class MetamaskService {
     estimateGasTx = async (methodName, addressFrom, data, amount) => {
         try {
             const method = this.getMethodInterface(methodName, contractDetails.PAW.ABI);
+            console.log('estimateGasTx getMethodInterface',method)
             const signature = this.encodeFunctionCall(method, data);
+            console.log('estimateGasTx encodeFunctionCall',signature)
             const params = {
                 from: addressFrom,
                 to: contractDetails.PAW.ADDRESS[this.name][this.net],
@@ -128,6 +130,7 @@ export default class MetamaskService {
                 data: signature,
             };
             const result = await this.Web3Provider.eth.estimateGas(params)
+            console.log('estimateGasTx estimateGas',result)
             return result;
         } catch (e) {
             console.error(e);
