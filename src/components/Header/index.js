@@ -245,7 +245,7 @@ function Header() {
                                     }}
                                     >
                                         <div className="header__erc20address">
-                                            0x29803d14b84c6372f77d45b3433298e21c27b7cc
+                                            { addressCopied ? 'Copied' : '0x29803d14b84c6372f77d45b3433298e21c27b7cc' }
                                         </div>
                                     </CopyToClipboard>
                                     <div>
