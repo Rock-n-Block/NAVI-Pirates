@@ -24,6 +24,9 @@ function Footer() {
                   <div className="footer__copyright">© 2021 BEAR Games. All rights reserved</div>
               </div>
               <div className="footer__content-col">
+                  <div className="footer__copyright">Smart contract developed and tested by Rock'n'Block</div>
+              </div>
+              <div className="footer__content-col">
                   <div className="footer__socials">
                       <a href={github_url} className="footer__socials-item"><img src={github} alt=""/></a>
                       <a href={medium_url} className="footer__socials-item"><img src={medium} alt=""/></a>

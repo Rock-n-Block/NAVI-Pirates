@@ -9,6 +9,7 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import TokenCardComponent from './TokenCardComponent';
 import { useContractContext } from '../../contexts/contractContext';
+import contractDetails from '../../utils/contractService/contractDetails';
 
 import 'swiper/swiper.scss';
 import './header.scss';
@@ -237,14 +238,14 @@ function Header() {
                                 {isBuyErc20Active &&
                                 <div className="header__buyErc20-card buyErc20-card">
                                     <CopyToClipboard
-                                    text={contractService?.contractAddress}
+                                    text="0x29803d14b84c6372f77d45b3433298e21c27b7cc"
                                     onCopy={() => {
                                         setAddressCopied(true)
                                         setTimeout(() => setAddressCopied(false),2000)
                                     }}
                                     >
                                         <div className="header__erc20address">
-                                            { addressCopied ? 'Copied' : contractService?.contractAddress}
+                                            0x29803d14b84c6372f77d45b3433298e21c27b7cc
                                         </div>
                                     </CopyToClipboard>
                                     <div>

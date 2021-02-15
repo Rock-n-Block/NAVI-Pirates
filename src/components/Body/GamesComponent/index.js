@@ -38,7 +38,7 @@ function GamesComponent() {
             </a>
             <a
             className="button-document"
-            href="https://bit.ly/372GAUB"
+            href="https://bit.ly/2OnhPvJ"
             target="_blank"
             >
               <img
